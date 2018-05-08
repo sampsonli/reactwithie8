@@ -1,0 +1,39 @@
+.header {
+    line-height: 70px;
+    font-size: 24px;
+    color: #333333;
+    margin: 0 106px 0 12px;
+    border-bottom: 1px solid #333333;
+    padding-left: 113px;
+}
+
+.item {
+    margin: 24px 0 0 90px;
+    font-size: 14px;
+    color: #333333;
+}
+
+.item>span {
+    margin-right: 43px;
+}
+
+.birth {}
+
+.daysel {
+    width: 100px;
+    height: 36px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+.nextstep {
+    margin: 136px auto 0;
+    background: #CCCCCC;
+    border-radius: 4px;
+    width: 100px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 16px;
+    color: #FFFFFF;
+}

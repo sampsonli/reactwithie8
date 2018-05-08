@@ -1,0 +1,67 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    background-color: rgba(0, 0, 0, .4);
+    filter: alpha(opacity=40);
+}
+
+.dialogw {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -195px;
+    margin-top: -105px;
+    height: 210px;
+    width: 390px;
+    background-color: white;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.20);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.header {
+    height: 40px;
+    background: #F2F2F2;
+    line-height: 40px;
+    text-align: center;
+    position: relative;
+    font-size: 16px;
+    color: #333333;
+    i {
+        float: right;
+        margin: 10px 20px 0 0;
+        width: 16px;
+        height: 16px;
+        border: 1px solid red;
+    }
+}
+
+.ct {
+    margin: 38px;
+    text-align: center;
+    font-size: 14px;
+    color: #666666;
+}
+
+.btn {
+    width: 96px;
+    margin: 52px auto 0;
+    line-height: 36px;
+    background: #00A4EF;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #FFFFFF;
+    text-align: center;
+}

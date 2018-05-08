@@ -1,0 +1,40 @@
+
+.fl {
+    float: left;
+    _display: inline;
+}
+.fr {
+    float: right;
+    _display: inline;
+}
+.W1000 {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.siteNav {
+    background-color: #ebebeb;
+    padding: 3px 0;
+    height: 30px;
+    line-height: 30px;
+    color: #999;
+}
+
+.siteNav a {
+    color: #000;
+    font-size: 12px;
+    font-family: "SimSun";
+}
+
+.mrgR5 {
+    margin-right: 5px;
+}
+.mrgL5 {
+    margin-left: 5px;
+}
+
+
+.marginH {
+    margin: 0 5px;
+}

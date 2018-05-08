@@ -1,0 +1,58 @@
+.main {
+    color: red;
+}
+.selector {
+    position: fixed;
+    top: 36px;
+    width: 154px;
+    height: 885px;
+    background-color: #FAFAFA;
+    padding: 57px 13px 0;
+    z-index: 1010;
+    left: 50%;
+    margin-left: -615px;
+}
+
+.nav {
+    display: block;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+    font-family: "Microsoft Yahei";
+    border-bottom: 1px solid #EBEBEB;
+    margin: 0 auto;
+    text-decoration: none;
+}
+.cur {
+    width: 200px;
+    height: 59px;
+    background: url(~assets/images/triangle167.png) no-repeat;
+    text-shadow: 0 1px 0px #00386b;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 300;
+    margin-left: -23px;
+    border-bottom: 0px;
+    border-top: 0px;
+}
+
+.content  {
+    width: 800px;
+    margin-left: 360px;
+    overflow: hidden;
+    border: 1px solid gray;
+    min-height: 400px;
+}
+
+.brand {
+    width: 92px;
+    height: 30px;
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    margin-left: -46px;
+    background: url(~assets/images/EWTlogo.png) no-repeat;
+}
