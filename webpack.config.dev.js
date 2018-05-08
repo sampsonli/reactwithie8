@@ -13,7 +13,7 @@ module.exports = {
         path: path.join(__dirname, 'dist'),
         chunkFilename: '[name].chunk.js',
         filename: '[name].bundle.js',
-        publicPath: '/',
+        publicPath: '',
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({

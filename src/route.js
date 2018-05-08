@@ -20,15 +20,15 @@ const store = configureStore(window.__INITIAL_STATE__)
 
 const rootRoute = {
     path: '/',
-    indexRoute: {
-        // 表示将按需加载的组件
-        getComponent(nextState, cb) {
-            //require.ensure，webpack异步加载的典型范式
-            require.ensure([], (require) => {
-                cb(null, require('~containers/FirstPage'));
-            }, 'FirstPage');
-        } 
-    },
+    // indexRoute: {
+    //     // 表示将按需加载的组件
+    //     getComponent(nextState, cb) {
+    //         //require.ensure，webpack异步加载的典型范式
+    //         require.ensure([], (require) => {
+    //             cb(null, require('~containers/FirstPage'));
+    //         }, 'FirstPage');
+    //     } 
+    // },
     childRoutes: [
         {
             path: 'test',
@@ -46,29 +46,17 @@ const rootRoute = {
                 {
                     path: 'error',
                     component: TestErrorPage,
-                    // getComponent(ns, cb) {
-                    //     require.ensure([], (require) => {
-                    //         cb(null, require('~containers/Counter'));
-                    //     }, 'counter');
-                    // },
+                
                 },
                 {
                     path: 'start',
                     component: TestStartPage,
-                    // getComponent(ns, cb) {
-                    //     require.ensure([], (require) => {
-                    //         cb(null, require('~containers/Counter'));
-                    //     }, 'counter');
-                    // },
+                   
                 },
                 {
                     path: 'question',
                     component: TestQuestionPage,
-                    // getComponent(ns, cb) {
-                    //     require.ensure([], (require) => {
-                    //         cb(null, require('~containers/Counter'));
-                    //     }, 'counter');
-                    // },
+                   
                 },
 
             ]
