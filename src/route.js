@@ -4,11 +4,11 @@ import { Router, hashHistory, BrowserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 
 
-import TestPage from '~containers/test';
-import TestStartPage from '~containers/test/start';
-import TestQuestionPage from '~containers/test/question';
-import TestHomePage from '~containers/test/home';
-import TestErrorPage from '~containers/test/error';
+import TestPage from '~containers/evt';
+import TestStartPage from '~containers/evt/start';
+import TestQuestionPage from '~containers/evt/question';
+import TestHomePage from '~containers/evt/home';
+import TestErrorPage from '~containers/evt/error';
 
 const configureStore = require('./store/configureStore');
 
