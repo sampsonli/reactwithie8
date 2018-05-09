@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "compression": "^1.7.2",
     "console-polyfill": "^0.3.0",

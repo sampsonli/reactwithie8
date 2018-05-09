@@ -1,45 +1,29 @@
 // 如果是开发模式，store 采用此配置
-import React from 'react'
-import {createStore, applyMiddleware, compose} from 'redux';
-import thunk from 'redux-thunk';
+
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
 
-import { createDevTools } from 'redux-devtools';
-import LogMonitor from 'redux-devtools-log-monitor';
-import DockMonitor from 'redux-devtools-dock-monitor';
-
-//创建DevTools组件
-const DevTools = createDevTools(
-  <DockMonitor toggleVisibilityKey='ctrl-h' changePositionKey  ='ctrl-q'>
-    <LogMonitor theme='tomorrow' />
-  </DockMonitor>
-);
-
-// 合并原有中间件
-const echancer  = compose(
-    applyMiddleware(thunk),
-    //启用带有monitors（监视显示）的DevTools
-    DevTools.instrument()
-  )
-
 const configureStore = (preloadedState) => {
-    // store通过redux.createStore(reducer,初始state,middleWare)生成
-    const store = createStore(
-        rootReducer,
-        preloadedState,
-        echancer 
-    );
+  const store = createStore(
+    rootReducer,
+    preloadedState,
+    compose(
+      applyMiddleware(thunkMiddleware, createLogger()),
+      // applyMiddleware 是redux的原生方法，它将所有中间件组成一个数组，依次执行。
+    ),
+  );
 
-    if (module.hot) {
-        // Enable Webpack hot module replacement for reducers
-        module.hot.accept('../reducers', () => {
-            const nextRootReducer = require('../reducers').default;
-            store.replaceReducer(nextRootReducer);
-        });
-    }
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('../reducers', () => {
+      const nextRootReducer = require('../reducers').default;
+      store.replaceReducer(nextRootReducer);
+    });
+  }
 
-    return store;
+  return store;
 };
 
-export default {configureStore,DevTools};
+export default configureStore;

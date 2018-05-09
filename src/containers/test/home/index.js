@@ -6,23 +6,24 @@ import axios from 'axios';
 import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as actions from '~actions/evtActions';
 
-import Dialog from '~components/test/dialog';
+// import Dialog from '~components/test/dialog';
 
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
+        this.props.onToggle4()
 
     }
 
 
 
     render() {
-        console.log(Dialog)
 
         return (
             <div>
-                <Dialog></Dialog>
+                {/* <Dialog></Dialog> */}
                 <div className={style.header}>高中生心里健康诊断</div>
                 <div className={style.ct}>
                     <div className={style.zhidao}>
@@ -50,14 +51,7 @@ const mapStateToProps = state => ({
 
 
 //bindActionCreators is just a potting for dispatch single action
-const mapDispatchToProps = dispatch => ({
-
-    async onToggleClick() {
-        const res = await axios.get('http://ews.500.com/score/zq/baseinfo?fid=711484')
-        dispatch({ type: 'TOGGLE', payload: res });
-    },
-
-});
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 export default connect(
     mapStateToProps,
