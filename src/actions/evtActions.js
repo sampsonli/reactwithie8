@@ -1,9 +1,17 @@
 
 import ajax from '../common/ajax';
+import {EVT_SET_GETQUESTION_LIST} from './actionsTypes';
 
 
-export const onToggle4 = () => async (dispatch) => {
-    const res = await ajax.get('http://ews.500.com/score/zq/baseinfo?fid=711484')
-    // dispatch({type: 'TOGGLE', payload: res});
-    console.log(res)
+export const getQuestionList = () => async (dispatch) => {
+    const res = await ajax.get('/eval/get/questionlist/id?evalId=1');
+    if(res.code === '200') {
+        dispatch({type: EVT_SET_GETQUESTION_LIST, payload: res.data});
+    } else {
+        const e = new Error(e.msg);
+        e.code = resp.code;
+        throw e;
+    }
+    
+    return res;
 }

@@ -13,7 +13,7 @@ import * as actions from '~actions/evtActions';
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
-        this.props.onToggle4()
+        // this.props.onToggle4()
 
     }
 

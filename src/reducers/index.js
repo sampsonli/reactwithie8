@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
-import toggle from './toggle';
+import evt from './evt';
 
 const rootReducer = combineReducers({
-    toggle
+    evt
 });
 export default rootReducer;

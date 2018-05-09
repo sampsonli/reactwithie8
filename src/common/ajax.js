@@ -15,7 +15,7 @@ let prefix;
 if (process.env.NODE_ENV === 'production') {
     prefix = 'http://172.16.211.87:8701'
 } else {
-    prefix = 'http://172.16.211.87:8701'
+    prefix = ''
 }
 const _axios = axios.create({baseURL: prefix})
 

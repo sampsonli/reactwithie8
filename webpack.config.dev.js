@@ -60,7 +60,7 @@ module.exports = {
         },
     },
     debug: true,
-    devtool: 'source-map',
+    // devtool: 'source-map',
     module: {
         loaders: [
             {
@@ -106,8 +106,8 @@ module.exports = {
     devServer: {
         disableHostCheck: true,
         proxy: {
-            '/test1': {
-                target: 'http://192.168.31.8:9000',
+            '/eval/*': {
+                target: 'http://172.16.211.87:8701',
                 secure: false,
             },
         },
