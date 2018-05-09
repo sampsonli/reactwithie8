@@ -5,8 +5,8 @@
   "main": "./server.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production port=3000 node server.js",
-    "dev": "webpack-dev-server --history-api-fallback --config webpack.config.dev.js --hot --inline --progress --host 0.0.0.0 --port 3000 ",
-    "prod": "webpack-dev-server --history-api-fallback --config webpack.config.prod.js --progress --port 3000",
+    "dev": "webpack-dev-server --config webpack.config.dev.js --hot --inline --progress --host 0.0.0.0 --port 3000 ",
+    "prod": "webpack-dev-server --config webpack.config.prod.js --progress --port 3000",
     "build": "npm run clean && webpack --config webpack.config.prod.js",
     "clean": "rimraf dist",
     "test": "eslint src && echo \"Error: no test specified\" && exit 1"
