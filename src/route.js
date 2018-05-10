@@ -5,10 +5,14 @@ import { Provider } from 'react-redux';
 
 
 import TestPage from '~containers/evt';
-import TestStartPage from '~containers/evt/start';
+import TestInfoPage from '~containers/evt/info';
 import TestQuestionPage from '~containers/evt/question';
 import TestHomePage from '~containers/evt/home';
 import TestErrorPage from '~containers/evt/error';
+
+import ReportClasses from '~containers/report/classes';
+import ReportGrade from '~containers/report/grade';
+import ReportStudent from '~containers/report/student';
 
 const configureStore = require('./store/configureStore');
 
@@ -33,13 +37,33 @@ const routeConfig = {
 
                 },
                 {
-                    path: 'start',
-                    component: TestStartPage,
+                    path: 'info',
+                    component: TestInfoPage,
 
                 },
                 {
                     path: 'question',
                     component: TestQuestionPage,
+
+                },
+
+            ]
+        },
+        {
+            path: 'report',
+            childRoutes: [
+                {
+                    path: 'grade',
+                    component: ReportGrade,
+                },
+                {
+                    path: 'classes',
+                    component: ReportClasses,
+
+                },
+                {
+                    path: 'student',
+                    component: ReportStudent,
 
                 },
 

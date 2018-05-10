@@ -16,52 +16,37 @@
 }
 .options {
     margin-top: 50px;
+   
 
     
 }
 .option {
     line-height: 35px;
     font-size: 16px;
-
-
-
-}
-.sopt::before {
-    content: '';
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border: 1px solid gray;
-    border-radius: 6px;
-    margin-right: 5px;
-
-}
-.soopt::before {
-    content: '1';
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    // border: 1px solid gray;
-    border-radius: 10px;
-    margin-right: 5px;
+    cursor: pointer;
+    // float: left;
 }
 
-.one::before ,.two::before,.three::before, .four::before, .five::before {
-    content: '1';
+.option:hover {
+    background: #eee;
+}
+.circle {
     display: inline-block;
-    width: 15px;
-    height: 15px;
-    background-color: #4095EF;
-    color: white;
-    // border: 1px solid gray;
-    border-radius: 10px;
     margin-right: 5px;
-    font-size: 12px;
-    line-height: 15px;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
     text-align: center;
+    background-color: red;
+    border-radius: 11px;
+    color: white;
     vertical-align: middle;
+
 }
 
+.option input{
+    margin-right: 10px;
+}
 .pre {
     position: absolute;
     width: 100px;
@@ -73,6 +58,7 @@
     border-radius: 5px;
     line-height: 30px;
     text-align: center;
+    cursor: pointer;
     
 }
 
@@ -80,14 +66,14 @@
     position: absolute;
     width: 100px;
     height: 30px;
-    background-color: blue;
+    background-color:  #0387FF;
     color: white;
     bottom: 60px;
     right: 240px;
     border-radius: 5px;
     line-height: 30px;
     text-align: center;
-    
+    cursor: pointer;
 }
 
 .barwrap {
