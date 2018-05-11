@@ -13,20 +13,35 @@ if (browser == "Microsoft Internet Explorer" && (trim_Version == "MSIE8.0" || tr
 
 let prefix;
 if (process.env.NODE_ENV === 'production') {
-    prefix = 'http://172.16.211.87:8701'
+    prefix = 'http://10.0.11.28:8768/api/evaluation'
 } else {
-    prefix = ''
+    prefix = 'http://10.0.11.28:8768/api/evaluation'
 }
 const _axios = axios.create({baseURL: prefix})
-
+function getToken() {
+    let arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+    if(arr=document.cookie.match(reg)) {
+        return unescape(arr[2]); 
+    } else {
+        return ~location.search.indexOf('token=') && location.search.split('token=')[1].split('&')[0]||sessionStorage.getItem('token')||'';
+    }
+    
+}
 
 export default {
     get(url) {
+        let config = {
+            headers: {
+                timestamp: Date.now(),
+                token: getToken(),
+            }
+        }
         if(isie89) {
             return new Promise((resolve, reject) => {
                 $.ajax({
                     method: 'GET',
                     url: prefix + url,
+                    headers: config.headers,
                     success (resp) {
                         resolve(resp)
                     },
@@ -36,7 +51,8 @@ export default {
                 })
             })
         } else {
-            return _axios.get(...arguments).then(response => {
+            
+            return _axios.get(url, config).then(response => {
                 if (response.status === 200) {
                     return response.data
                 } else  {
@@ -46,11 +62,18 @@ export default {
         }
     },
     post(url, data) {
+        let config = {
+            headers: {
+                timestamp: Date.now(),
+                token: getToken(),
+            }
+        }
         if(isie89) {
             return new Promise((resolve, reject) => {
                 $.ajax({
                     method: 'GET',
                     url,
+                    headers: config.headers,
                     contentType: 'application/json',
                     data: JSON.stringify(data),
                     success (resp) {
@@ -62,7 +85,8 @@ export default {
                 })
             })
         } else {
-            return _axios.post(...arguments).then(response => {
+           
+            return _axios.post(url, data, config).then(response => {
                 if (response.status === 200) {
                     return response.data
                 } else  {
