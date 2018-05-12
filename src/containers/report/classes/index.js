@@ -18,12 +18,30 @@ class ClassesPage extends React.Component {
 
 
 
+
+
     render() {
 
         return (
 
 
-            <div>
+            <div className={css.content}>
+                <header className={css.header}>
+                    <div className={css.title}>中学生<br />压力测试<br /><span className={css.subtitle}>年级分析报告</span></div>
+                    <div className={css.info}>
+                        <span className={css.igrade}>年级：  高一</span><br />
+                        <span>学校：  安庆一中
+                            <br />
+                            报告编号：  293840<br />
+                            报告日期：  2017-08-08
+
+
+                        </span>
+
+                    </div>
+                    <div className={css.btips}>本报告为保密资料，仅供相关个人参考，请妥善保管</div>
+                </header>
+                <iframe className={css.iframe} src={"http://wx.diggme.cn/channel/report?channel_id=22&test_id=95&in_code=shudanc2295505959e48075f86-7hLsNOIo"} />
                 <div>
                     <div className={css.assist}><span className={css.sums}>共12人</span><span className={css.fenx}>风险由高到低</span><span className={css.default}>默认排序</span></div>
                     <table className={css.table}>
@@ -64,9 +82,9 @@ class ClassesPage extends React.Component {
                         </tbody>
                     </table>
                     <div className={css.tips}>
-                            <span className={css.yzwt}><i/>存在较严重问题</span>
-                            <span className={css.czyb}><i/>存在一定问题</span>
-                            <span className={css.normal}><i/>正常</span>
+                        <span className={css.yzwt}><i />存在较严重问题</span>
+                        <span className={css.czyb}><i />存在一定问题</span>
+                        <span className={css.normal}><i />正常</span>
                     </div>
                     <div className={css.ftips}>分数越大表示学生在这方面的问题越严重，负数表示在此方面正常或无发生此问题的风险。可以按照总体风险由高到低排序。</div>
 
