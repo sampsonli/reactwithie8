@@ -15,7 +15,8 @@ let prefix;
 if (process.env.NODE_ENV === 'production') {
     prefix = 'http://10.0.11.28:8768/api/evaluation'
 } else {
-    prefix = 'http://10.0.11.28:8768/api/evaluation'
+    // prefix = 'http://10.0.11.28:8768/api/evaluation'
+    prefix = ''
 }
 const _axios = axios.create({baseURL: prefix})
 function getToken() {

@@ -18,10 +18,54 @@ class QuestionPage extends React.Component {
             select: [],
             preIdx: 0,
             // select: [2],
-            answers: [],
+            answers: [],//[{currentIdx: 1, select: [1], preIdx: 0}]
+            order: [],
+            selectOk: false,
+            islast: false,
+            showConfirm: false,
         }
         this.fetchData()
 
+    }
+    // 排序选择
+    selItem = (idx) => {
+        let select = this.state.select;
+        const max = select.filter(i=>i!==undefined).reduce((i,c)=>i>c?i:c, -1);
+        let nselect = [...select]
+        if(nselect[idx] === undefined) {
+            nselect[idx] = (max + 1);
+        } else {
+            let cval = nselect[idx];
+            nselect[idx] = undefined;
+            nselect.forEach((o,i) => {
+                if(o>cval) {
+                    nselect[i]--
+                }
+            })
+        }
+        let selectOk = nselect.filter(s => s!==undefined).length === this.props.qlist[this.state.currentIdx].optionsList.length;
+        this.setState({select:nselect, selectOk})
+
+    }
+    next = () => {
+        if(!this.state.selectOk) {
+            return;
+        }
+    
+        const answers = [...this.state.answers]
+
+        let islast = false;
+        if (this.state.currentIdx+1 === this.props.qlist.length - 1) {
+            islast = true;
+        }
+        answers.push({
+            currentIdx: this.state.currentIdx,
+            select: [...this.state.select],
+            // preIdx: this.state.preIdx
+        })
+        this.setState({ answers, currentIdx:  this.state.currentIdx + 1 , select: [], selectOk: false , islast})
+
+       
     }
     fetchData = async () => {
         const qlist = await this.props.getQuestionList();
@@ -35,36 +79,51 @@ class QuestionPage extends React.Component {
     pre = () => {
         if (this.state.answers.length) {
             let answers = [...this.state.answers];
-            // this.setState({...this.state, ...answers.pop(), answers})
             let options = answers.pop()
             if (answers.length) {
-                let state = { ...this.state, ...options, answers }
+                let state = { ...this.state, ...options, answers, selectOk: true, islast: false }
                 this.setState(state)
             } else {
-                this.setState({ answers: [], select: options.select, preIdx: 0, currentIdx: 0, })
+                this.setState({ answers: [], select: options.select, preIdx: 0, currentIdx: 0, selectOk: true, islast: false})
             }
         }
 
-
     }
     doSubmit = () => {
+        
+
+        let usanswers  = [...this.state.answers, {select: this.state.select, currentIdx: this.state.currentIdx}];
+        let params = usanswers.filter(answer => answer.select.length).map((answer) => {
+            const question = this.props.qlist[answer.currentIdx];
+            return {
+                question_id: question.id,
+                option_ids: answer.select.map(idx => question.optionsList[idx].id),
+                type: question.questionType,
+            }
+        })
+        console.log(params)
+
 
     }
+    // 单选
     selectOne = (idx) => {
+        if(this.state.islast) {
+            return this.setState({select: [idx], selectOk: true,showConfirm: true})
+        }
         const answers = [...this.state.answers]
         const nextqid = this.props.qlist[this.state.currentIdx].optionsList[idx].optionsJumpQuestionId;
-        if (!nextqid && this.state.currentIdx === this.props.qlist.length - 1) {
-            return this.doSubmit();
-        }
+        // if (!nextqid && this.state.currentIdx === this.props.qlist.length - 1) {
+        //     return this.doSubmit();
+        // }
         const nextcurrentIdx = nextqid || (this.state.currentIdx + 1)
 
 
         answers.push({
-            currentIdx: nextcurrentIdx,
+            currentIdx: this.state.currentIdx,
             select: [idx],
-            preIdx: this.state.currentIdx
+            // preIdx: answers[answers.length-1].currentIdx
         })
-        this.setState({ answers, currentIdx: nextcurrentIdx, select: [] })
+        this.setState({ answers, currentIdx: nextcurrentIdx, select: [], selectOk: false, islast:  nextcurrentIdx === this.props.qlist.length - 1})
 
     }
 
@@ -74,17 +133,10 @@ class QuestionPage extends React.Component {
             const question = this.props.qlist[this.state.currentIdx];
             return (
                 <div>
-                    <div className={style.header}>{this.state.currentIdx+1}.  {question.questionTitle}【排序题】</div>
+                    <div className={style.header}>{this.state.currentIdx+1}.  {question.questionTitle}【{classNames({'排序题':question.questionType === 'orderr_text', '单选题': question.questionType === 'radio_text'})}】</div>
                     <div className={style.ct}>
-                        {/* <ul>
-                            <li className={classNames(style.option, style.sopt)}><i className={style.circle}>1</i>没有， 我很容易感到很沮丧或郁闷。</li>
-                            <li className={classNames(style.option, style.one)}><i className={style.circle}>2</i>没有， 我很容易感到很沮丧或郁闷。</li>
-                            <li className={classNames(style.option, style.sopt)}><i className={style.circle}>3</i>没有， 我很容易感到很沮丧或郁闷。</li>
-                            <li className={classNames(style.option, style.sopt)}><i className={style.circle}>4</i>没有， 我很容易感到很沮丧或郁闷。</li>
-                        </ul> */}
-
-
-                        {question.questionType === 0 && (<ul>
+                    
+                        {question.questionType === 'radio_text' && (<ul>
                             {question.optionsList.map((option, idx) => (
                                 <li className={style.option} key={option.id} onClick={() => this.selectOne(idx)}>
                                     <input className={style.radio} type="radio" name="sel" checked={this.state.select[0] === idx}/>
@@ -93,12 +145,21 @@ class QuestionPage extends React.Component {
                         </ul>)}
 
 
-                        <div className={style.next}>下一题</div>
+                          {question.questionType === 'order_text' && (<ul>
+                            {question.optionsList.map((option, idx) => (
+                                <li className={style.option} key={option.id} onClick={() => this.selItem(idx)}>
+                                    <i className={classNames({ [style.circl_f]: this.state.select[idx] !== undefined, [style.circl_e]: this.state.select[idx] === undefined })}>{this.state.select[idx] === undefined || (this.state.select[idx]+1)}</i>
+                                    <span>{option.optionName}</span>
+                                </li>))}
+                        </ul>)}
+
+
+                         {question.questionType === 'order_text' &&<div className={style.next}>下一题</div>}
                         <div className={style.pre} onClick={this.pre}>上一题</div>
 
                     </div>
                     <div className={style.barwrap}>
-                        <div className={style.bar}><i></i></div>
+                        <div className={style.bar}><i style={{width: (this.state.currentIdx + 1) / this.props.qlist.length * 100 + '%'}}></i></div>
 
 
 

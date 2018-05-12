@@ -1,0 +1,76 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="format-detection" content="telephone=no">
+    <title>demo</title>
+    <style>
+        body {
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+        }
+        .header{
+            height: 30px;
+            width: 100%;
+            background-color: #ccc;
+        }
+        .something{
+            height: 100px;
+            width: 100%;
+            background-color: #eee;
+        }
+        #mainframe{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        LOGO
+    </div>
+
+    <iframe id="mainframe" frameborder="0" width="100%" height="100%" style="overflow-x:hidden;margin:0;" src="http://wx.diggme.cn/channel/report?channel_id=22&test_id=95&in_code=shudanc2295505959e48075f86-7hLsNOIo"></iframe>
+
+    <div class="something">
+        <ul>
+            <li>1</li>
+            <li>2</li>    
+        </ul>
+    </div>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/iframe-resizer/3.5.14/iframeResizer.min.js"></script>
+<script>
+        var currentPage = '';
+        
+        iFrameResize({
+            checkOrigin: false, 
+            messageCallback:function(iframe){
+                if(iframe.message === currentPage) return false;
+
+                // 入口页面
+                if(iframe.message === 'channel.entry'){
+                    currentPage = 'channel.entry';
+                    console.log('channel.entry');
+                // 答题页面
+                } else if (iframe.message === 'channel.process') {
+                    currentPage = 'channel.process';
+                    console.log('channel.process');
+                // 报告页面
+                } else if (iframe.message === 'channel.report') {
+                    currentPage = 'channel.report';
+                    console.log('channel.report');
+                }
+            },
+        }, "#mainframe");
+</script>
+
+</body>
+</html>

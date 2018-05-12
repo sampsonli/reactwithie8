@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import TestPage from '~containers/evt';
 import TestInfoPage from '~containers/evt/info';
 import TestQuestionPage from '~containers/evt/question';
-import TestHomePage from '~containers/evt/home';
+import TestStarterPage from '~containers/evt/starter';
 import TestErrorPage from '~containers/evt/error';
 
 import ReportClasses from '~containers/report/classes';
@@ -28,8 +28,8 @@ const routeConfig = {
             component: TestPage,
             childRoutes: [
                 {
-                    path: 'home',
-                    component: TestHomePage,
+                    path: 'starter',
+                    component: TestStarterPage,
                 },
                 {
                     path: 'error',

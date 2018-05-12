@@ -44,6 +44,33 @@
 
 }
 
+.circl_f {
+    display: inline-block;
+    margin-right: 5px;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    color: white;
+    vertical-align: middle;
+    background: url(~assets/images/oval_8q.png) no-repeat center;
+
+}
+
+.circl_e {
+    display: inline-block;
+    margin-right: 5px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    color: white;
+    vertical-align: middle;
+    background: url(~assets/images/oval_8.png) no-repeat center;
+
+}
+
+
 .option input{
     margin-right: 10px;
 }

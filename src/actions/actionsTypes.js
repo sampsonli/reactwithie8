@@ -2,3 +2,4 @@
 // export const INCREMENT_COUNTER = Symbol(1);
 
 export const EVT_SET_GETQUESTION_LIST = Symbol(1);
+export const EVT_GETINFO = Symbol(1);

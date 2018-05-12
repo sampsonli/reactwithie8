@@ -10,11 +10,13 @@ import * as actions from '~actions/evtActions';
 
 // import Dialog from '~components/test/dialog';
 
-class HomePage extends React.Component {
-    constructor(props) {
-        super(props);
-        // this.props.onToggle4()
-
+class StarterPage extends React.Component {
+    static contextTypes = {
+        router: Object
+    };
+    constructor(props, context) {
+        super(props, context);
+        this.router = context.router;
     }
 
 
@@ -37,7 +39,7 @@ class HomePage extends React.Component {
 
 
                     </div>
-                    <div className={style.nextstep}>下一题</div>
+                    <div className={style.nextstep} onClick={() => this.router.push('/evt/info')}>下一题</div>
                 </div>
             </div>
         );
@@ -46,7 +48,7 @@ class HomePage extends React.Component {
 
 
 const mapStateToProps = state => ({
-    status: state.toggle,
+
 });
 
 
@@ -56,4 +58,4 @@ const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(HomePage);
+)(StarterPage);
