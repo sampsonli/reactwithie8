@@ -89,7 +89,7 @@
     
 }
 
-.next {
+.next, .submit {
     position: absolute;
     width: 100px;
     height: 30px;
@@ -102,6 +102,12 @@
     text-align: center;
     cursor: pointer;
 }
+
+.next.gray, .submit.gray {
+    background-color: gray;
+}
+
+
 
 .barwrap {
     height: 120px;

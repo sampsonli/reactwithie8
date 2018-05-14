@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+import {ajaxbaseurl} from './config';
 
 const browser = navigator.appName
 const b_version=navigator.appVersion 
@@ -11,14 +12,7 @@ if (browser == "Microsoft Internet Explorer" && (trim_Version == "MSIE8.0" || tr
 }
 
 
-let prefix;
-if (process.env.NODE_ENV === 'production') {
-    prefix = 'http://10.0.11.28:8768/api/evaluation'
-} else {
-    // prefix = 'http://10.0.11.28:8768/api/evaluation'
-    prefix = ''
-}
-const _axios = axios.create({baseURL: prefix})
+const _axios = axios.create({baseURL: ajaxbaseurl})
 function getToken() {
     let arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
     if(arr=document.cookie.match(reg)) {
@@ -41,7 +35,7 @@ export default {
             return new Promise((resolve, reject) => {
                 $.ajax({
                     method: 'GET',
-                    url: prefix + url,
+                    url: ajaxbaseurl + url,
                     headers: config.headers,
                     success (resp) {
                         resolve(resp)
@@ -73,7 +67,7 @@ export default {
             return new Promise((resolve, reject) => {
                 $.ajax({
                     method: 'GET',
-                    url,
+                    url: ajaxbaseurl + url,
                     headers: config.headers,
                     contentType: 'application/json',
                     data: JSON.stringify(data),

@@ -1,20 +1,31 @@
+import axios from 'axios';
+import {
+    EVT_GETINFO,
+    EVT_SET_GETQUESTION_LIST,
+    EVT_SET_SUBMIT_RESULT,
+    EVT_SET_SUBMIT_INFO_RESULT,
+} from './actionsTypes';
+
+
 
 import ajax from '../common/ajax';
-import {EVT_SET_GETQUESTION_LIST, EVT_GETINFO} from './actionsTypes';
-
+import { loginbaseurl } from '../common/config';
 
 
 /**
  * 用户出题并给出基准答案
  */
-export const getBaseInfo = (args) => async (dispatch) => {
-    
-    const resp = await ajax.get('/eval/get/basicinfo/id?evalId=1', args);
-    if(resp.code === '200') {
-        dispatch({type: EVT_GETINFO, payload: resp.data});
+export const getBaseInfo = (evtid) => async (dispatch) => {
+
+    const resp = await ajax.get(`/eval/get/basicinfo/id?evalId=${evtid}`);
+    if (resp.code === '200') {
+        dispatch({ type: EVT_GETINFO, payload: resp.data });
         return resp.data;
+    } else if (resp.code === '2001106') {
+        location.href = `${loginbaseurl}?fromurl=${location.href}`;
+
     } else {
-        const err =  new Error(resp.msg);
+        const err = new Error(resp.msg);
         err.code = resp.code;
         throw err;
     }
@@ -22,16 +33,59 @@ export const getBaseInfo = (args) => async (dispatch) => {
 };
 
 
+/**
+ * 用户出题并给出基准答案
+ */
 export const getQuestionList = () => async (dispatch) => {
-    const res = await ajax.get('/eval/get/questionlist/id?evalId=1');
-    if(res.code === '200') {
-        dispatch({type: EVT_SET_GETQUESTION_LIST, payload: res.data});
-        return res.data;
-    } else {
-        const e = new Error(e.msg);
-        e.code = resp.code;
-        throw e;
-    }
 
+    const resp = await ajax.get('/eval/get/questionlist/id?evalId=1');
+    if (resp.code === '200') {
+        dispatch({ type: EVT_SET_GETQUESTION_LIST, payload: resp.data });
+        return resp.data;
+    } else if (resp.code === '2001106') {
+        location.href = `${loginbaseurl}?fromurl=${location.href}`;
+
+    } else {
+        const err = new Error(resp.msg);
+        err.code = resp.code;
+        throw err;
+    }
+};
+
+/**
+ * 提交用户答题
+ * @param {答题记录} answerList 
+ */
+export const submitRecord = ({ answerList, evalId }) => async (dispatch) => {
+    const resp = await ajax.post('/eval/post/user/record', { answerList, evalId });
+    if (resp.code === '200') {
+        dispatch({ type: EVT_SET_SUBMIT_RESULT, payload: resp.data });
+        return resp.data;
+    } else if (resp.code === '2001106') {
+        location.href = `${loginbaseurl}?fromurl=${location.href}`;
+
+    } else {
+        const err = new Error(resp.msg);
+        err.code = resp.code;
+        throw err;
+    }
 }
 
+/**
+ * 提交用户基本信息
+ * @param {答题记录} settings 
+ */
+export const submitInfo = ({ settings, evalId }) => async (dispatch) => {
+    const resp = await ajax.post('/eval/post/user/basicinfo', { settings, evalId });
+    if (resp.code === '200') {
+        dispatch({ type: EVT_SET_SUBMIT_INFO_RESULT, payload: resp.data });
+        return resp.data;
+    } else if (resp.code === '2001106') {
+        location.href = `${loginbaseurl}?fromurl=${location.href}`;
+
+    } else {
+        const err = new Error(resp.msg);
+        err.code = resp.code;
+        throw err;
+    }
+}
