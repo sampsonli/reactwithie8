@@ -40,10 +40,8 @@ class StarterPage extends React.Component {
                             <li>3. 请认真回答没一套题</li>
                         </ul>
 
-
-
                     </div>
-                    <div className={style.nextstep} onClick={() => this.router.push('/evt/info')}>下一题</div>
+                    <div className={style.nextstep} onClick={() => this.router.push({pathname: 'evt/info', search: this.props.location.search })}>下一题</div>
                 </div>
             </div>
         );
