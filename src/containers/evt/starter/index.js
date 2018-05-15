@@ -27,6 +27,10 @@ class StarterPage extends React.Component {
     }
 
     render() {
+        if(!this.props.metaInfo) {
+            return <div/>
+        }
+
 
         return (
             <div>

@@ -1,10 +1,10 @@
 
 import axios from 'axios';
-import {ajaxbaseurl} from './config';
+import { ajaxbaseurl } from './config';
 
 const browser = navigator.appName
-const b_version=navigator.appVersion 
-const version=b_version.split(";"); 
+const b_version = navigator.appVersion
+const version = b_version.split(";");
 const trim_Version = version[1].replace(/[ ]/g, "");
 let isie89 = false
 if (browser == "Microsoft Internet Explorer" && (trim_Version == "MSIE8.0" || trim_Version == "MSIE9.0")) {
@@ -12,15 +12,15 @@ if (browser == "Microsoft Internet Explorer" && (trim_Version == "MSIE8.0" || tr
 }
 
 
-const _axios = axios.create({baseURL: ajaxbaseurl})
+const _axios = axios.create({ baseURL: ajaxbaseurl })
 function getToken() {
-    let arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-    if(arr=document.cookie.match(reg)) {
-        return unescape(arr[2]); 
+    let arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+    if (arr = document.cookie.match(reg)) {
+        return unescape(arr[2]);
     } else {
         return ~location.hash.indexOf('token=') && location.hash.split('token=')[1].split('&')[0] || sessionStorage.getItem('token') || '';
     }
-    
+
 }
 
 export default {
@@ -31,29 +31,31 @@ export default {
                 token: getToken(),
             }
         }
-        if(isie89) {
+        if (isie89) {
             return new Promise((resolve, reject) => {
+                url = `${url}${~url.indexOf('?')?'&':'?'}timestamp=${config.headers.timestamp}&token=${config.headers.token}`
+
                 $.ajax({
-                    method: 'GET',
+                    type: 'GET',
                     url: ajaxbaseurl + url,
                     headers: config.headers,
-                    success (resp) {
+                    success(resp) {
                         resolve(resp)
                     },
-                    error (e) {
+                    error(e) {
                         reject(e)
                     }
                 })
             })
         } else {
-            
+
             return _axios.get(url, config).then(response => {
                 if (response.status === 200) {
                     return response.data
-                } else  {
+                } else {
                     throw new Error(response.message)
                 }
-            }) 
+            })
         }
     },
     post(url, data) {
@@ -63,31 +65,33 @@ export default {
                 token: getToken(),
             }
         }
-        if(isie89) {
+        if (isie89) {
             return new Promise((resolve, reject) => {
+                url = `${url}${~url.indexOf('?') ? '&' : '?'}timestamp=${config.headers.timestamp}&token=${config.headers.token}`
+
                 $.ajax({
-                    method: 'GET',
+                    type: 'POST',
                     url: ajaxbaseurl + url,
                     headers: config.headers,
                     contentType: 'application/json',
                     data: JSON.stringify(data),
-                    success (resp) {
+                    success(resp) {
                         resolve(resp)
                     },
-                    error (e) {
+                    error(e) {
                         reject(e)
                     }
                 })
             })
         } else {
-           
+
             return _axios.post(url, data, config).then(response => {
                 if (response.status === 200) {
                     return response.data
-                } else  {
+                } else {
                     throw new Error(response.message)
                 }
-            }) 
+            })
         }
     }
 }
