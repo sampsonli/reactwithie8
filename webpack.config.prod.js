@@ -43,6 +43,7 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production'),
+                EWT_ENV: JSON.stringify(process.env.EWT_ENV || 'online'),
             },
         }),
         // new AssetsPlugin({

@@ -8,6 +8,7 @@
     "dev": "webpack-dev-server --config webpack.config.dev.js --hot --inline --progress --host 0.0.0.0 --port 3000 ",
     "prod": "webpack-dev-server --config webpack.config.prod.js --progress --port 3000",
     "build": "npm run clean && webpack --config webpack.config.prod.js",
+    "build:235": "npm run clean && cross-env EWT_ENV=235  webpack --config webpack.config.prod.js",
     "clean": "rimraf dist",
     "test": "eslint src && echo \"Error: no test specified\" && exit 1"
   },
