@@ -18,7 +18,7 @@ function getToken() {
     if(arr=document.cookie.match(reg)) {
         return unescape(arr[2]); 
     } else {
-        return ~location.search.indexOf('token=') && location.search.split('token=')[1].split('&')[0]||sessionStorage.getItem('token')||'';
+        return ~location.hash.indexOf('token=') && location.hash.split('token=')[1].split('&')[0] || sessionStorage.getItem('token') || '';
     }
     
 }
