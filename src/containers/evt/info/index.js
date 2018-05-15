@@ -33,9 +33,9 @@ class StartPage extends React.Component {
             if (basicInfo) {
                 basicInfo.forEach((item) => {
                     if (item.type === 'radio') {
-                        uselect[item.id] = item.options[0].id
+                        uselect[item.code] = item.options[0].value
                     } else if (item.type === 'date') {
-                        uselect[item.id] = '2018-01-01';
+                        uselect[item.code] = '2018-01-01';
                     }
                 })
                 this.setState({ uselect })
@@ -60,7 +60,7 @@ class StartPage extends React.Component {
         this.setState({ uselect })
     }
     nextTest = async () => {
-        // await this.props.submitInfo({ settings: null, evalId: this.props.qsparams.evalid });
+        await this.props.submitInfo({ settings: this.state.uselect, evalId: this.props.qsparams.evalid });
         this.router.push({ pathname: 'evt/question', search: this.props.location.search });
 
     }
@@ -75,12 +75,12 @@ class StartPage extends React.Component {
                         {this.props.info && this.props.info.basicInfo.map(item => (
                             <li key={item.id} className={style.item}>
                                 <span>{item.name}</span>
-                                {item.type === 'radio' && <select placeholder="请选择" onChange={(e) => this.changeItem(item.id, e.target.value)}>
+                                {item.type === 'radio' && <select placeholder="请选择" onChange={(e) => this.changeItem(item.code, e.target.value)}>
 
-                                    {item.options.map(opt => <option value={opt.id} key={opt.id}>{opt.name}</option>)}
+                                    {item.options.map(opt => <option value={opt.value} key={opt.id}>{opt.name}</option>)}
 
                                 </select>}
-                                {item.type === 'date' && <DateInput value={this.state.uselect[item.id]} onChange={(value) => this.changeItem(item.id, value)} />}
+                                {item.type === 'date' && <DateInput value={this.state.uselect[item.value]} onChange={(value) => this.changeItem(item.code, value)} />}
                             </li>
                         ))}
 

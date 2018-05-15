@@ -6,10 +6,12 @@ import {
     EVT_SET_SUBMIT_INFO_RESULT,
 } from './actionsTypes';
 
-
-
 import ajax from '../common/ajax';
 import { loginbaseurl } from '../common/config';
+
+function jumpLogin() {
+    location.href = loginbaseurl + '&fromurl=' + encodeURIComponent(location.href);
+}
 
 
 /**
@@ -22,7 +24,7 @@ export const getBaseInfo = (evtid) => async (dispatch) => {
         dispatch({ type: EVT_GETINFO, payload: resp.data });
         return resp.data;
     } else if (resp.code === '2001106') {
-        location.href = `${loginbaseurl}?fromurl=${location.href}`;
+        jumpLogin();
 
     } else {
         const err = new Error(resp.msg);
@@ -43,7 +45,8 @@ export const getQuestionList = () => async (dispatch) => {
         dispatch({ type: EVT_SET_GETQUESTION_LIST, payload: resp.data });
         return resp.data;
     } else if (resp.code === '2001106') {
-        location.href = `${loginbaseurl}?fromurl=${location.href}`;
+        jumpLogin();
+
 
     } else {
         const err = new Error(resp.msg);
@@ -62,7 +65,8 @@ export const submitRecord = ({ answerList, evalId }) => async (dispatch) => {
         dispatch({ type: EVT_SET_SUBMIT_RESULT, payload: resp.data });
         return resp.data;
     } else if (resp.code === '2001106') {
-        location.href = `${loginbaseurl}?fromurl=${location.href}`;
+        jumpLogin();
+
 
     } else {
         const err = new Error(resp.msg);
@@ -81,7 +85,7 @@ export const submitInfo = ({ settings, evalId }) => async (dispatch) => {
         dispatch({ type: EVT_SET_SUBMIT_INFO_RESULT, payload: resp.data });
         return resp.data;
     } else if (resp.code === '2001106') {
-        location.href = `${loginbaseurl}?fromurl=${location.href}`;
+        jumpLogin();
 
     } else {
         const err = new Error(resp.msg);
