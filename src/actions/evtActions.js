@@ -4,6 +4,7 @@ import {
     EVT_SET_GETQUESTION_LIST,
     EVT_SET_SUBMIT_RESULT,
     EVT_SET_SUBMIT_INFO_RESULT,
+    EVT_GET_META_INFO,
 } from './actionsTypes';
 
 import ajax from '../common/ajax';
@@ -13,6 +14,25 @@ function jumpLogin() {
     location.href = loginbaseurl + '&fromurl=' + encodeURIComponent(location.href);
 }
 
+/**
+ * 获取基本信息
+ */
+export const getMetaInfo = (evtid) => async (dispatch) => {
+
+    const resp = await ajax.get(`/evaluation/get/evaluation/id?id=${evtid}`);
+    if (resp.code === '200') {
+        // resp.data.basicContent = JSON.parse(resp.data.basicContent);
+        dispatch({ type: EVT_GET_META_INFO, payload: resp.data });
+        return resp.data;
+    } else if (resp.code === '2001106') {
+        jumpLogin();
+    } else {
+        const err = new Error(resp.msg);
+        err.code = resp.code;
+        throw err;
+    }
+    return resp;
+};
 
 /**
  * 用户出题并给出基准答案

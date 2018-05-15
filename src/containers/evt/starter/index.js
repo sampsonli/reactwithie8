@@ -17,15 +17,19 @@ class StarterPage extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.router = context.router;
+        this.fetchData();
     }
 
+    fetchData = async () => {
+        await this.props.getMetaInfo(this.props.qsparams.evalid)
 
+
+    }
 
     render() {
 
         return (
             <div>
-                {/* <Dialog></Dialog> */}
                 <div className={style.header}>高中生心里健康诊断</div>
                 <div className={style.ct}>
                     <div className={style.zhidao}>
@@ -47,9 +51,7 @@ class StarterPage extends React.Component {
 }
 
 
-const mapStateToProps = state => ({
-
-});
+const mapStateToProps = state => ({ metaInfo: state.evt.metaInfo, qsparams: state.evt.qsparams });
 
 
 //bindActionCreators is just a potting for dispatch single action

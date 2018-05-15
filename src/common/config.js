@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'production') {
 } else {
     // 开发环境自己随意配置
 
-    baseURL = '';
+    // baseURL = 'http://172.16.211.87:8701';
     loginUrl = 'http://my.235.mistong.com/sso?sid=14'
 }
 export const ajaxbaseurl = baseURL;

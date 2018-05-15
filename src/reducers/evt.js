@@ -3,6 +3,7 @@ import {
     EVT_SET_GETQUESTION_LIST,
     EVT_SET_SUBMIT_RESULT,
     EVT_SET_SUBMIT_INFO_RESULT,
+    EVT_GET_META_INFO,
 } from '../actions/actionsTypes';
 const initState = {
     info: null,
@@ -10,6 +11,7 @@ const initState = {
     record: null,
     basInfResu: null,
     qsparams: null,
+    metaInfo: null,
 }
 
 export default function evt(state = initState, action) {
@@ -33,6 +35,11 @@ export default function evt(state = initState, action) {
         case EVT_SET_SUBMIT_INFO_RESULT: {
             const result = { ...state };
             result.basInfResu = action.payload;
+            return result;
+        }
+        case EVT_GET_META_INFO: {
+            const result = { ...state };
+            result.metaInfo = action.payload;
             return result;
         }
         case 'EVT_SET_SEARCH_PARAMS': {

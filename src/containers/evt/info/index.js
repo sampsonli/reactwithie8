@@ -41,10 +41,25 @@ class StartPage extends React.Component {
                 this.setState({ uselect })
 
             }
+        } else {
+
+            let basicInfo = this.props.info.basicInfo;
+            let uselect = {};
+            if (basicInfo) {
+                basicInfo.forEach((item) => {
+                    if (item.type === 'radio') {
+                        uselect[item.code] = item.options[0].value
+                    } else if (item.type === 'date') {
+                        uselect[item.code] = '2018-01-01';
+                    }
+                })
+                this.state.uselect = uselect
+            }
+
         }
     }
     componentWillMount() {
-        
+
     }
 
     componentDidMount() {
