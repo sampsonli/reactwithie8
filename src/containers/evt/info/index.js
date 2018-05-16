@@ -27,20 +27,25 @@ class InfoPage extends React.Component {
 
     initState = async () => {
         if (!this.props.info) {
-            let info = await this.props.getBaseInfo(this.props.qsparams.orderNo);
-            let basicInfo = info.basicInfo;
-            let uselect = {};
-            if (basicInfo) {
-                basicInfo.forEach((item) => {
-                    if (item.type === 'radio') {
-                        uselect[item.code] = item.options[0].value
-                    } else if (item.type === 'date') {
-                        uselect[item.code] = '2018-01-01';
-                    }
-                })
-                this.setState({ uselect })
-
+            try {
+                let info = await this.props.getBaseInfo(this.props.qsparams.orderNo);
+                let basicInfo = info.basicInfo;
+                let uselect = {};
+                if (basicInfo) {
+                    basicInfo.forEach((item) => {
+                        if (item.type === 'radio') {
+                            uselect[item.code] = item.options[0].value
+                        } else if (item.type === 'date') {
+                            uselect[item.code] = '2018-01-01';
+                        }
+                    })
+                    this.setState({ uselect })
+    
+                }
+            } catch(e) {
+                alert(e.message)
             }
+            
         } else {
 
             let basicInfo = this.props.info.basicInfo;
@@ -75,9 +80,14 @@ class InfoPage extends React.Component {
         this.setState({ uselect })
     }
     nextTest = async () => {
-        await this.props.submitInfo({ settings: this.state.uselect, orderNo: this.props.qsparams.orderNo });
-        this.router.push({ pathname: 'evt/question', search: this.props.location.search });
-
+        try {
+            await this.props.submitInfo({ settings: this.state.uselect, orderNo: this.props.qsparams.orderNo });
+            this.router.push({ pathname: 'evt/question', search: this.props.location.search });
+    
+        } catch(e) {
+            alert(e.message)
+        }
+        
     }
 
     render() {

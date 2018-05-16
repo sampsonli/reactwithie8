@@ -20,7 +20,7 @@ class EvtPage extends React.Component {
                         { this.props.children}
                     </div>
     
-                    <div className={style.reports}>* 个人报告／年级报告／班级报告</div>
+                    {/* <div className={style.reports}>* 个人报告／年级报告／班级报告</div> */}
     
     
     

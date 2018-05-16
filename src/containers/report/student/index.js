@@ -22,9 +22,14 @@ class StudentPage extends React.Component {
 
     getReport = async ()  => {
         if(~this.props.location.search.indexOf('orderNo')) {
-            let orderNo = this.props.location.search.split('orderNo=')[1].split('&')[0]
-            let report = await this.props.getPersonalReport(orderNo)
-            this.setState({report, orderNo})
+            try {
+                let orderNo = this.props.location.search.split('orderNo=')[1].split('&')[0]
+                let report = await this.props.getPersonalReport(orderNo)
+                this.setState({report, orderNo})
+            } catch(e) {
+                alert(e.message);
+            }
+            
         }
        
 

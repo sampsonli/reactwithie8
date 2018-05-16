@@ -39,12 +39,12 @@ class QuestionPage extends React.Component {
 
     }
     routerWillLeave = (nextLocation) => {
-        if(this.state.prompt) {
+        if (this.state.prompt) {
             return '确认要离开？';
         }
     }
 
-   
+
     // 排序选择
     selItem = (idx) => {
         let select = this.state.select;
@@ -86,12 +86,17 @@ class QuestionPage extends React.Component {
 
     }
     fetchData = async () => {
-        const qlist = await this.props.getQuestionList({orderNo: this.props.qsparams.orderNo});
-        const questionMap = {}
-        qlist.forEach((q, idx) => {
-            questionMap[q.id] = idx;
-        })
-        this.questionMap = questionMap;
+        try {
+            const qlist = await this.props.getQuestionList({ orderNo: this.props.qsparams.orderNo });
+            const questionMap = {}
+            qlist.forEach((q, idx) => {
+                questionMap[q.id] = idx;
+            })
+            this.questionMap = questionMap;
+        } catch (e) {
+            alert(e.message)
+        }
+
 
     }
     pre = () => {
@@ -108,7 +113,7 @@ class QuestionPage extends React.Component {
 
     }
     doSubmit = async () => {
-        if(!this.state.select.length && this.props.qlist[this.state.currentIdx].type!=='intro') {
+        if (!this.state.select.length && this.props.qlist[this.state.currentIdx].type !== 'intro') {
             return
         }
         let select = this.state.select;
@@ -130,6 +135,7 @@ class QuestionPage extends React.Component {
             this.setState({ prompt: false })
             this.router.replace({ pathname: 'report/classes', search: this.props.location.search });
         } catch (e) {
+            alert(e.message)
 
         }
 

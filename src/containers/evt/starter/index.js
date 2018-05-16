@@ -22,22 +22,31 @@ class StarterPage extends React.Component {
     }
 
     fetchData = async () => {
-        await this.props.getMetaInfo(this.props.qsparams.evalid)
+        try {
+            await this.props.getMetaInfo(this.props.qsparams.evalid)
+        } catch(e) {
+            alert(e.message)
+        }
+        
 
 
     }
 
 
     beginTest = async () => {
-
-        let orderNoInfo = await this.props.createOrderNo({});
-        console.log(orderNoInfo)
-        let search = this.props.location.search;
-        if(!~search.indexOf('orderNo')) {
-            search = search + (~search.indexOf('?')?'&':'?') + 'orderNo=' + orderNoInfo ;
-            this.props.setSearchParams(parseQueryString('/' + search))
+        try {
+            let orderNoInfo = await this.props.createOrderNo({});
+            let search = this.props.location.search;
+            if(!~search.indexOf('orderNo')) {
+                search = search + (~search.indexOf('?')?'&':'?') + 'orderNo=' + orderNoInfo ;
+                this.props.setSearchParams(parseQueryString('/' + search))
+            }
+            this.router.push({pathname: 'evt/info', search, })
+        } catch(e) {
+            alert(e.massage)
         }
-        this.router.push({pathname: 'evt/info', search, })
+
+       
     }
 
     render() {
