@@ -65,15 +65,17 @@ export default {
                 token: getToken(),
             }
         }
-        if (isie89) {
+        if (true) {
             return new Promise((resolve, reject) => {
                 url = `${url}${~url.indexOf('?') ? '&' : '?'}timestamp=${config.headers.timestamp}&token=${config.headers.token}`
 
+                console.log('begin post...')
                 $.ajax({
                     type: 'POST',
                     url: ajaxbaseurl + url,
-                    headers: config.headers,
-                    contentType: 'application/json',
+                    contentType: 'text/plain',
+                    // contentType: 'application/json',
+                    dataType: 'json',
                     data: JSON.stringify(data),
                     success(resp) {
                         resolve(resp)
