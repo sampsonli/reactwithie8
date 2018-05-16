@@ -133,3 +133,18 @@ export const submitInfo = ({ settings, orderNo }) => async (dispatch) => {
         throw err;
     }
 }
+
+
+export const getPersonalReport = (orderNo) => async (orderNo) => {
+    const resp = await ajax.post('/eval/get/user/reporturl', { orderNo });
+    if (resp.code === '200') {
+        return resp.data;
+    } else if (resp.code === '2001106') {
+        jumpLogin();
+
+    } else {
+        const err = new Error(resp.msg);
+        err.code = resp.code;
+        throw err;
+    }
+}
