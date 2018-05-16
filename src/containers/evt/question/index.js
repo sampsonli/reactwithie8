@@ -31,8 +31,20 @@ class QuestionPage extends React.Component {
         }
         this.fetchData()
 
+        this.router.setRouteLeaveHook(
+            this.props.route,
+            this.routerWillLeave
+        )
+
 
     }
+    routerWillLeave = (nextLocation) => {
+        if(this.state.prompt) {
+            return '确认要离开？';
+        }
+    }
+
+   
     // 排序选择
     selItem = (idx) => {
         let select = this.state.select;
