@@ -55,8 +55,8 @@ class StudentPage extends React.Component {
                         <span>班级：  {this.state.report.className}
                             <br />
                             学校：  {this.state.report.schoolName}<br />
-                            报告编号： {this.state.orderNo}<br/>
-                            报告日期：  2017-08-08
+                            报告编号： {this.state.report.reportNo}<br/>
+                            报告日期：  {this.state.report.reportDate}
 
 
                         </span>

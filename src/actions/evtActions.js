@@ -99,8 +99,8 @@ export const getQuestionList = ({orderNo = '0173781541945344'}) => async (dispat
  * 提交用户答题
  * @param {答题记录} answerList 
  */
-export const submitRecord = ({ answerList, evalId }) => async (dispatch) => {
-    const resp = await ajax.post('/eval/post/user/record', { answerList, evalId });
+export const submitRecord = ({ answerList, orderNo, answerTime }) => async (dispatch) => {
+    const resp = await ajax.post('/eval/post/user/record', { answerList, orderNo, answerTime });
     if (resp.code === '200') {
         dispatch({ type: EVT_SET_SUBMIT_RESULT, payload: resp.data });
         return resp.data;

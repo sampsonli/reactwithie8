@@ -29,6 +29,7 @@ class QuestionPage extends React.Component {
             islast: false,
             showConfirm: false,
         }
+        this.startTime = Date.now();
         this.fetchData()
 
         this.router.setRouteLeaveHook(
@@ -130,10 +131,10 @@ class QuestionPage extends React.Component {
         })
 
         try {
-            let report = await this.props.submitRecord({ answerList, evalId: this.props.qsparams.evalid })
-            console.log(report);
+            let answerTime = Math.floor((Date.now() - this.startTime)/1000);
+            let report = await this.props.submitRecord({ answerList, orderNo: this.props.qsparams.orderNo, answerTime })
             this.setState({ prompt: false })
-            this.router.replace({ pathname: 'report/classes', search: this.props.location.search });
+            this.router.replace({ pathname: 'report/student', search: this.props.location.search });
         } catch (e) {
             alert(e.message)
 
