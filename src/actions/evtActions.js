@@ -39,7 +39,7 @@ export const getMetaInfo = (evtid) => async (dispatch) => {
  */
 export const getBaseInfo = (evtid) => async (dispatch) => {
 
-    const resp = await ajax.get(`/eval/get/basicinfo/id?evalId=${evtid}`);
+    const resp = await ajax.get(`/eval/get/basicinfo?evalId=${evtid}`);
     if (resp.code === '200') {
         dispatch({ type: EVT_GETINFO, payload: resp.data });
         return resp.data;
@@ -58,9 +58,9 @@ export const getBaseInfo = (evtid) => async (dispatch) => {
 /**
  * 用户出题并给出基准答案
  */
-export const getQuestionList = () => async (dispatch) => {
+export const getQuestionList = ({evalId}) => async (dispatch) => {
 
-    const resp = await ajax.get('/eval/get/questionlist/id?evalId=1');
+    const resp = await ajax.get(`/eval/get/questionlist/id?evalId=${evalId}`);
     if (resp.code === '200') {
         dispatch({ type: EVT_SET_GETQUESTION_LIST, payload: resp.data });
         return resp.data;

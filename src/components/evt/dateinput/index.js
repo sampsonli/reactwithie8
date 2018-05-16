@@ -44,6 +44,7 @@ export default class DateInput extends React.Component {
 
     }
     updateValue = (type, newValue) => {
+        if(!newValue) return;
         this.setState({[type]: newValue});
         this.props.onChange && this.props.onChange([this.state.year, this.state.month, this.state.day].join('-'))
     }

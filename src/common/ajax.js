@@ -34,7 +34,7 @@ export default {
         if (isie89) {
             return new Promise((resolve, reject) => {
                 url = `${url}${~url.indexOf('?')?'&':'?'}timestamp=${config.headers.timestamp}&token=${config.headers.token}`
-
+                jQuery.support.cors = true;
                 $.ajax({
                     type: 'GET',
                     url: ajaxbaseurl + url,
@@ -65,11 +65,10 @@ export default {
                 token: getToken(),
             }
         }
-        if (true) {
+        if (isie89) {
             return new Promise((resolve, reject) => {
                 url = `${url}${~url.indexOf('?') ? '&' : '?'}timestamp=${config.headers.timestamp}&token=${config.headers.token}`
-
-                console.log('begin post...')
+                jQuery.support.cors = true;
                 $.ajax({
                     type: 'POST',
                     url: ajaxbaseurl + url,

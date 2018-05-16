@@ -73,7 +73,7 @@ class QuestionPage extends React.Component {
 
     }
     fetchData = async () => {
-        const qlist = await this.props.getQuestionList();
+        const qlist = await this.props.getQuestionList({evalId: this.props.qsparams.evalid});
         const questionMap = {}
         qlist.forEach((q, idx) => {
             questionMap[q.id] = idx;
