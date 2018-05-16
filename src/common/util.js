@@ -12,3 +12,14 @@ export function parseQueryString(url) {
      }
      return ret;
 }
+
+
+export function getToken() {
+    let arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+    if (arr = document.cookie.match(reg)) {
+        return unescape(arr[2]);
+    } else {
+        return ~location.hash.indexOf('token=') && location.hash.split('token=')[1].split('&')[0] || sessionStorage.getItem('token') || '';
+    }
+
+}

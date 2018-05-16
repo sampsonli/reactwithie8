@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import { ajaxbaseurl } from './config';
+import {getToken} from './util';
 
 const browser = navigator.appName
 const b_version = navigator.appVersion
@@ -11,17 +12,8 @@ if (browser == "Microsoft Internet Explorer" && (trim_Version == "MSIE8.0" || tr
     isie89 = true;
 }
 
-
 const _axios = axios.create({ baseURL: ajaxbaseurl })
-function getToken() {
-    let arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-    if (arr = document.cookie.match(reg)) {
-        return unescape(arr[2]);
-    } else {
-        return ~location.hash.indexOf('token=') && location.hash.split('token=')[1].split('&')[0] || sessionStorage.getItem('token') || '';
-    }
 
-}
 
 export default {
     get(url) {

@@ -101,7 +101,7 @@ class StartPage extends React.Component {
 
 
                     </ul>
-                    <div className={style.nextstep} onClick={() => this.nextTest()}>下一题</div>
+                    <div className={style.nextstep} onClick={this.nextTest}>下一题</div>
                 </div>
             );
         } else {
