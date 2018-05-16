@@ -5,7 +5,7 @@ import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { parseQueryString } from '../../common/util';
-class TestPage extends React.Component {
+class EvtPage extends React.Component {
     constructor(props) {
         super(props);
         this.props.setSearchParams(parseQueryString('/' + this.props.location.search))
@@ -47,4 +47,4 @@ const mapDispatchToProps = dispatch => (bindActionCreators({
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(TestPage);
+)(EvtPage);

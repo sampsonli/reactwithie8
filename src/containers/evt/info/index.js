@@ -10,7 +10,7 @@ import DateInput from '~components/evt/dateinput';
 import * as actions from '~actions/evtActions';
 
 
-class StartPage extends React.Component {
+class InfoPage extends React.Component {
     static contextTypes = {
         router: Object
     };
@@ -120,4 +120,4 @@ const mapDispatchToProps = dispatch => (bindActionCreators(actions, dispatch));
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(StartPage);
+)(InfoPage);
