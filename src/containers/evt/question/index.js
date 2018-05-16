@@ -136,7 +136,7 @@ class QuestionPage extends React.Component {
             select: [idx],
             // preIdx: answers[answers.length-1].currentIdx
         })
-        this.setState({ answers, currentIdx: nextcurrentIdx, select: [], selectOk: false, islast: nextcurrentIdx === this.props.qlist.length - 1 || nextcurrentIdx === 3 })
+        this.setState({ answers, currentIdx: nextcurrentIdx, select: [], selectOk: false, islast: nextcurrentIdx === this.props.qlist.length - 1 })
 
     }
 
