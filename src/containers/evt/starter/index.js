@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '~actions/evtActions';
+import { parseQueryString } from '../../../common/util';
 
 // import Dialog from '~components/test/dialog';
 
@@ -24,6 +25,15 @@ class StarterPage extends React.Component {
         await this.props.getMetaInfo(this.props.qsparams.evalid)
 
 
+    }
+
+    beginTest = () => {
+        let search = this.props.location.search;
+        if(!~search.indexOf('orderNo')) {
+            search = search + (~search.indexOf('?')?'&':'?') + 'orderNo=' + '0173781541945344' ;
+            this.props.setSearchParams(parseQueryString('/' + search));
+        }
+        this.router.push({pathname: 'evt/info', search, })
     }
 
     render() {
@@ -45,7 +55,7 @@ class StarterPage extends React.Component {
                         </ul>
 
                     </div>
-                    <div className={style.nextstep} onClick={() => this.router.push({pathname: 'evt/info', search: this.props.location.search })}>下一题</div>
+                    <div className={style.nextstep} onClick={this.beginTest}>下一题</div>
                 </div>
             </div>
         );
@@ -57,7 +67,7 @@ const mapStateToProps = state => ({ metaInfo: state.evt.metaInfo, qsparams: stat
 
 
 //bindActionCreators is just a potting for dispatch single action
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({...actions , setSearchParams: (params) => ({ type: 'EVT_SET_SEARCH_PARAMS', payload: params })}, dispatch);
 
 export default connect(
     mapStateToProps,

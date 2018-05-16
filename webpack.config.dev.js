@@ -107,7 +107,7 @@ module.exports = {
         disableHostCheck: true,
         proxy: {
             '/eval/*': {
-                target: 'http://172.16.211.87:8701',
+                target: 'http://10.0.11.87:8701',
                 secure: false,
             },
         },

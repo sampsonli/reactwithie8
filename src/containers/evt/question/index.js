@@ -17,7 +17,8 @@ class QuestionPage extends React.Component {
         this.router = context.router;
         this.state = {
             prompt: true,
-            dialog: false,
+            isStop: false,
+            isFinished: true,
             currentIdx: 0,
             select: [],
             preIdx: 0,
@@ -73,7 +74,7 @@ class QuestionPage extends React.Component {
 
     }
     fetchData = async () => {
-        const qlist = await this.props.getQuestionList({evalId: this.props.qsparams.evalid});
+        const qlist = await this.props.getQuestionList({orderNo: this.props.qsparams.orderNo});
         const questionMap = {}
         qlist.forEach((q, idx) => {
             questionMap[q.id] = idx;
@@ -95,7 +96,11 @@ class QuestionPage extends React.Component {
 
     }
     doSubmit = async () => {
-        let select = this.state.select.length || [0]
+        if(!this.state.select.length && this.props.qlist[this.state.currentIdx].type!=='intro') {
+            return
+        }
+        let select = this.state.select;
+
 
         let usanswers = [...this.state.answers, { select, currentIdx: this.state.currentIdx }];
         let answerList = usanswers.filter(answer => answer.select.length).map((answer) => {

@@ -27,7 +27,7 @@ class StartPage extends React.Component {
 
     initState = async () => {
         if (!this.props.info) {
-            let info = await this.props.getBaseInfo(this.props.qsparams.evalid);
+            let info = await this.props.getBaseInfo(this.props.qsparams.orderNo);
             let basicInfo = info.basicInfo;
             let uselect = {};
             if (basicInfo) {
@@ -75,7 +75,7 @@ class StartPage extends React.Component {
         this.setState({ uselect })
     }
     nextTest = async () => {
-        await this.props.submitInfo({ settings: this.state.uselect, evalId: this.props.qsparams.evalid });
+        await this.props.submitInfo({ settings: this.state.uselect, orderNo: this.props.qsparams.orderNo });
         this.router.push({ pathname: 'evt/question', search: this.props.location.search });
 
     }
