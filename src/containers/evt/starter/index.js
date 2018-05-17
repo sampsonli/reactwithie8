@@ -24,10 +24,10 @@ class StarterPage extends React.Component {
     fetchData = async () => {
         try {
             await this.props.getMetaInfo(this.props.qsparams.evalid)
-        } catch(e) {
+        } catch (e) {
             alert(e.message)
         }
-        
+
 
 
     }
@@ -37,23 +37,27 @@ class StarterPage extends React.Component {
         try {
             const token = getToken();
             const uid = token.split('-')[0]
-            let orderNoInfo = await this.props.createOrderNo({userId: uid});
+            let orderNoInfo = await this.props.createOrderNo({ userId: uid });
             let search = this.props.location.search;
-            if(!~search.indexOf('orderNo')) {
-                search = search + (~search.indexOf('?')?'&':'?') + 'orderNo=' + orderNoInfo ;
+            if (~search.indexOf('orderNo')) {
+                search = search.replace(/(orderNo=)([^&]*)(&?.*$)/, ($0, $1, $2, $3) => {
+                    return [$1, orderNoInfo, $3].join()
+                })
+            } else {
+                search = search + (~search.indexOf('?') ? '&' : '?') + 'orderNo=' + orderNoInfo;
                 this.props.setSearchParams(parseQueryString('/' + search))
             }
-            this.router.push({pathname: 'evt/info', search, })
-        } catch(e) {
+            this.router.push({ pathname: 'evt/info', search, })
+        } catch (e) {
             alert(e.massage)
         }
 
-       
+
     }
 
     render() {
-        if(!this.props.metaInfo) {
-            return <div/>
+        if (!this.props.metaInfo) {
+            return <div />
         }
 
 
@@ -61,8 +65,8 @@ class StarterPage extends React.Component {
             <div>
                 <div className={style.header}>高中生心里健康诊断</div>
                 <div className={style.ct}>
-                    <div className={style.zhidao} dangerouslySetInnerHTML={{__html: this.props.metaInfo.detailDescription}}>
-                    
+                    <div className={style.zhidao} dangerouslySetInnerHTML={{ __html: this.props.metaInfo.detailDescription }}>
+
                     </div>
                     <div className={style.nextstep} onClick={this.beginTest}>下一题</div>
                 </div>
@@ -76,7 +80,7 @@ const mapStateToProps = state => ({ metaInfo: state.evt.metaInfo, qsparams: stat
 
 
 //bindActionCreators is just a potting for dispatch single action
-const mapDispatchToProps = dispatch => bindActionCreators({...actions , setSearchParams: (params) => ({ type: 'EVT_SET_SEARCH_PARAMS', payload: params })}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...actions, setSearchParams: (params) => ({ type: 'EVT_SET_SEARCH_PARAMS', payload: params }) }, dispatch);
 
 export default connect(
     mapStateToProps,
