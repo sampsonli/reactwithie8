@@ -36,8 +36,8 @@ class StarterPage extends React.Component {
     beginTest = async () => {
         try {
             const token = getToken();
-            const uid = token.split('-')[0]
-            let orderNoInfo = await this.props.createOrderNo({ userId: uid });
+            const userId = token.split('-')[0];
+            let orderNoInfo = await this.props.createOrderNo({ userId });
             let search = this.props.location.search;
             if (~search.indexOf('orderNo')) {
                 search = search.replace(/(orderNo=)([^&]*)(&?.*$)/, ($0, $1, $2, $3) => {

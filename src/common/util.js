@@ -15,11 +15,13 @@ export function parseQueryString(url) {
 
 
 export function getToken() {
-    let arr, reg = new RegExp("(^| )" + 'tk' + "=([^;]*)(;|$)");
-    if (arr = document.cookie.match(reg)) {
-        return unescape(arr[2]);
+    if( ~location.hash.indexOf('token=')) {
+        return location.hash.split('token=')[1].split('&')[0]
     } else {
-        return ~location.hash.indexOf('token=') && location.hash.split('token=')[1].split('&')[0] || sessionStorage.getItem('token') || '';
+        let arr, reg = new RegExp("(^| )" + 'tk' + "=([^;]*)(;|$)");
+        if (arr = document.cookie.match(reg)) {
+            return unescape(arr[2]);
+        } 
     }
 
 }

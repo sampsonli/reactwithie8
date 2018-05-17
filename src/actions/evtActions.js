@@ -15,7 +15,7 @@ function jumpLogin() {
 }
 
 
-export const createOrderNo = ({evalId = 1, userId = '80020312', clientId = 1, taskId = 1, sourcePlatform = 1, schoolId = 1, classId = 1, grade = 1}) => async (dispatch) => {
+export const createOrderNo = ({evalId = 1, userId, clientId = 1, taskId = 1, sourcePlatform = 1, schoolId = 1, classId = 1, grade = 1}) => async (dispatch) => {
 
     const resp = await ajax.post(`/eval/create/orderno`, {evalId, userId, clientId, taskId, sourcePlatform, schoolId, classId, grade});
     if (resp.code === '200') {
@@ -37,7 +37,7 @@ export const createOrderNo = ({evalId = 1, userId = '80020312', clientId = 1, ta
  */
 export const getMetaInfo = (evtid) => async (dispatch) => {
 
-    const resp = await ajax.get(`/evaluation/get/evaluation/id?id=${evtid}`);
+    const resp = await ajax.get(`/admin/evaluation/get/evaluation/id?id=${evtid}`);
     if (resp.code === '200') {
         // resp.data.basicContent = JSON.parse(resp.data.basicContent);
         dispatch({ type: EVT_GET_META_INFO, payload: resp.data });
