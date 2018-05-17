@@ -41,12 +41,12 @@ class StarterPage extends React.Component {
             let search = this.props.location.search;
             if (~search.indexOf('orderNo')) {
                 search = search.replace(/(orderNo=)([^&]*)(&?.*$)/, ($0, $1, $2, $3) => {
-                    return [$1, orderNoInfo, $3].join()
+                    return [$1, orderNoInfo, $3].join('')
                 })
             } else {
                 search = search + (~search.indexOf('?') ? '&' : '?') + 'orderNo=' + orderNoInfo;
-                this.props.setSearchParams(parseQueryString('/' + search))
             }
+            this.props.setSearchParams(parseQueryString('/' + search))
             this.router.push({ pathname: 'evt/info', search, })
         } catch (e) {
             alert(e.massage)

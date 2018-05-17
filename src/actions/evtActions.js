@@ -78,7 +78,7 @@ export const getBaseInfo = (orderNo) => async (dispatch) => {
 /**
  * 用户出题并给出基准答案
  */
-export const getQuestionList = ({orderNo = '0173781541945344'}) => async (dispatch) => {
+export const getQuestionList = ({orderNo}) => async (dispatch) => {
 
     const resp = await ajax.get(`/eval/get/user/questionlist?orderNo=${orderNo}`);
     if (resp.code === '200') {

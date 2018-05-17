@@ -30,7 +30,7 @@ class QuestionPage extends React.Component {
             showConfirm: false,
         }
         this.startTime = Date.now();
-        this.fetchData()
+        this.fetchData();
 
         this.router.setRouteLeaveHook(
             this.props.route,
@@ -136,7 +136,7 @@ class QuestionPage extends React.Component {
             this.setState({ prompt: false })
             this.router.replace({ pathname: 'report/student', search: this.props.location.search });
         } catch (e) {
-            alert(e.message)
+            alert(e.message);
 
         }
 
