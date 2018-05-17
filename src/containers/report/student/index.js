@@ -25,6 +25,13 @@ class StudentPage extends React.Component {
             try {
                 let orderNo = this.props.location.search.split('orderNo=')[1].split('&')[0]
                 let report = await this.props.getPersonalReport(orderNo)
+                if(report.reportDate) {
+                    let time = new Date(report.reportDate);
+                    let year  = time.getFullYear();
+                    let month = time.getMonth() + 1;
+                    let day = time.getDate()
+                    report.reportDate = [year, month, day].join('-')
+                }
                 this.setState({report, orderNo})
             } catch(e) {
                 alert(e.message);
