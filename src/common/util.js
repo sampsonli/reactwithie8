@@ -15,7 +15,7 @@ export function parseQueryString(url) {
 
 
 export function getToken() {
-    let arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+    let arr, reg = new RegExp("(^| )" + 'tk' + "=([^;]*)(;|$)");
     if (arr = document.cookie.match(reg)) {
         return unescape(arr[2]);
     } else {
