@@ -35,7 +35,7 @@ class StarterPage extends React.Component {
 
     beginTest = async () => {
         try {
-            const token = getToken();
+            const token = getToken() || '-';
             const userId = token.split('-')[0];
             let orderNoInfo = await this.props.createOrderNo({ userId });
             let search = this.props.location.search;
