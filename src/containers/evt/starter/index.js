@@ -46,6 +46,8 @@ class StarterPage extends React.Component {
             } else {
                 search = search + (~search.indexOf('?') ? '&' : '?') + 'orderNo=' + orderNoInfo;
             }
+
+            // console.log(search)
             this.props.setSearchParams(parseQueryString('/' + search))
             this.router.push({ pathname: 'evt/info', search, })
         } catch (e) {
