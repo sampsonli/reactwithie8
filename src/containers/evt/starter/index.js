@@ -51,7 +51,7 @@ class StarterPage extends React.Component {
             this.props.setSearchParams(parseQueryString('/' + search))
             this.router.push({ pathname: 'evt/info', search, })
         } catch (e) {
-            alert(e.massage)
+            alert(e.message)
         }
 
 
