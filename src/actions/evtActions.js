@@ -14,20 +14,19 @@ function jumpLogin() {
     location.href = loginbaseurl + '&fromurl=' + encodeURIComponent(location.href);
 }
 
+export const createOrderNo = ({ evalId = 1, userId, clientId = 1, taskId = 1, sourcePlatform = 1, schoolId = 1, classId = 1, grade = 1 }) => async (dispatch) => {
 
-export const createOrderNo = ({evalId = 1, userId, clientId = 1, taskId = 1, sourcePlatform = 1, schoolId = 1, classId = 1, grade = 1}) => async (dispatch) => {
-
-    const resp = await ajax.post(`/eval/create/orderno`, {evalId, userId, clientId, taskId, sourcePlatform, schoolId, classId, grade});
+    const resp = await ajax.post(`/eval/create/orderno`, { evalId, userId: userId, clientId, taskId, sourcePlatform, schoolId, classId, grade });
     if (resp.code === '200') {
         return resp.data;
-    } else if (resp.code === '2001106') {
-        jumpLogin();
     } else {
+        if (resp.code === '2001106') {
+            jumpLogin();
+        }
         const err = new Error(resp.msg);
         err.code = resp.code;
         throw err;
     }
-    return resp;
 };
 
 
@@ -42,16 +41,15 @@ export const getMetaInfo = (evtid) => async (dispatch) => {
         // resp.data.basicContent = JSON.parse(resp.data.basicContent);
         dispatch({ type: EVT_GET_META_INFO, payload: resp.data });
         return resp.data;
-    } else if (resp.code === '2001106') {
-        jumpLogin();
     } else {
+        if (resp.code === '2001106') {
+            jumpLogin();
+        }
         const err = new Error(resp.msg);
         err.code = resp.code;
         throw err;
     }
-    return resp;
 };
-
 
 /**
  * 用户出题并给出基准答案
@@ -62,39 +60,35 @@ export const getBaseInfo = (orderNo) => async (dispatch) => {
     if (resp.code === '200') {
         dispatch({ type: EVT_GETINFO, payload: resp.data });
         return resp.data;
-    } else if (resp.code === '2001106') {
-        jumpLogin();
-
     } else {
+        if (resp.code === '2001106') {
+            jumpLogin();
+        }
         const err = new Error(resp.msg);
         err.code = resp.code;
         throw err;
     }
-    return resp;
 };
-
 
 
 /**
  * 用户出题并给出基准答案
  */
-export const getQuestionList = ({orderNo}) => async (dispatch) => {
+export const getQuestionList = ({ orderNo }) => async (dispatch) => {
 
     const resp = await ajax.get(`/eval/get/user/questionlist?orderNo=${orderNo}`);
     if (resp.code === '200') {
         dispatch({ type: EVT_SET_GETQUESTION_LIST, payload: resp.data });
         return resp.data;
-    } else if (resp.code === '2001106') {
-        jumpLogin();
-
-
     } else {
+        if (resp.code === '2001106') {
+            jumpLogin();
+        }
         const err = new Error(resp.msg);
         err.code = resp.code;
         throw err;
     }
 };
-
 /**
  * 提交用户答题
  * @param {答题记录} answerList 
@@ -104,16 +98,16 @@ export const submitRecord = ({ answerList, orderNo, answerTime }) => async (disp
     if (resp.code === '200') {
         dispatch({ type: EVT_SET_SUBMIT_RESULT, payload: resp.data });
         return resp.data;
-    } else if (resp.code === '2001106') {
-        jumpLogin();
-
-
     } else {
+        if (resp.code === '2001106') {
+            jumpLogin();
+        }
         const err = new Error(resp.msg);
         err.code = resp.code;
         throw err;
     }
 }
+
 
 /**
  * 提交用户基本信息
@@ -124,10 +118,10 @@ export const submitInfo = ({ settings, orderNo }) => async (dispatch) => {
     if (resp.code === '200') {
         dispatch({ type: EVT_SET_SUBMIT_INFO_RESULT, payload: resp.data });
         return resp.data;
-    } else if (resp.code === '2001106') {
-        jumpLogin();
-
     } else {
+        if (resp.code === '2001106') {
+            jumpLogin();
+        }
         const err = new Error(resp.msg);
         err.code = resp.code;
         throw err;
@@ -135,14 +129,15 @@ export const submitInfo = ({ settings, orderNo }) => async (dispatch) => {
 }
 
 
+
 export const getPersonalReport = (orderNo) => async () => {
     const resp = await ajax.get(`/eval/get/user/reporturl?orderNo=${orderNo}`);
     if (resp.code === '200') {
         return resp.data;
-    } else if (resp.code === '2001106') {
-        jumpLogin();
-
     } else {
+        if (resp.code === '2001106') {
+            jumpLogin();
+        }
         const err = new Error(resp.msg);
         err.code = resp.code;
         throw err;
