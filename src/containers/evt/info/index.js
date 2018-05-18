@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import DateInput from '~components/evt/dateinput';
+import Select from '~components/evt/select';
 import * as actions from '~actions/evtActions';
 
 
@@ -42,7 +43,7 @@ class InfoPage extends React.Component {
                 this.setState({ uselect })
 
             }
-        } catch(e) {
+        } catch (e) {
             alert(e.message)
         }
     }
@@ -59,31 +60,29 @@ class InfoPage extends React.Component {
     changeItem = (id, value) => {
         let uselect = { ...this.state.uselect };
         uselect[id] = value;
-
         let ok = true;
-        console.log(uselect)
-        Object.keys(uselect).some((key)=> {
+        Object.keys(uselect).some((key) => {
 
-            if(!uselect[key]) {
+            if (!uselect[key]) {
                 ok = false;
                 return true;
             }
-        
+
         })
-        this.setState({ uselect , ok })
+        this.setState({ uselect, ok })
     }
     nextTest = async () => {
         try {
-            if(this.state.ok) {
+            if (this.state.ok) {
                 await this.props.submitInfo({ settings: this.state.uselect, orderNo: this.props.qsparams.orderNo });
                 this.router.push({ pathname: 'evt/question', search: this.props.location.search });
             }
-            
-    
-        } catch(e) {
+
+
+        } catch (e) {
             alert(e.message)
         }
-        
+
     }
 
     render() {
@@ -96,18 +95,17 @@ class InfoPage extends React.Component {
                         {this.props.info && this.props.info.basicInfo.map(item => (
                             <li key={item.id} className={style.item}>
                                 <span>{item.name}</span>
-                                {item.type === 'radio' && <select placeholder="请选择" onChange={(e) => this.changeItem(item.code, e.target.value)}>
-                                    <option value={''}>请选择</option>
-                                    {item.options.map(opt => <option value={opt.value} key={opt.id}>{opt.name}</option>)}
 
-                                </select>}
-                                {item.type === 'date' && <DateInput value={this.state.uselect[item.value]} onChange={(value) => this.changeItem(item.code, value)} />}
+                                {item.type === 'radio' && <Select placeholder="请选择"  options={item.options} value={this.state.uselect[item.code]}
+                                    onChange={(newValue) => this.changeItem(item.code, newValue)} />}
+
+                                {item.type === 'date' && <DateInput value={this.state.uselect[item.code]} onChange={(value) => this.changeItem(item.code, value)} />}
                             </li>
                         ))}
 
 
                     </ul>
-                    <div className={classNames(style.nextstep, {[style.gray]: !this.state.ok})} onClick={this.nextTest}>下一题</div>
+                    <div className={classNames(style.nextstep, { [style.gray]: !this.state.ok })} onClick={this.nextTest}>下一题</div>
                 </div>
             );
         } else {
