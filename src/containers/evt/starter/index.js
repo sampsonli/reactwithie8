@@ -65,7 +65,7 @@ class StarterPage extends React.Component {
 
         return (
             <div>
-                <div className={style.header}>高中生心里健康诊断</div>
+                <div className={style.header}>{this.props.metaInfo.title}</div>
                 <div className={style.ct}>
                     <div className={style.zhidao} dangerouslySetInnerHTML={{ __html: this.props.metaInfo.detailDescription }}>
 

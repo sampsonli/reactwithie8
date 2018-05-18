@@ -1,10 +1,11 @@
 
 import React from 'react';
-import { Link } from 'react-router'
+import { withRouter } from 'react-router'
 import style from './style.scss';
 import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import {isIE89} from '~/common/util';
 
 import * as actions from '~actions/evtActions';
 
@@ -32,7 +33,7 @@ class QuestionPage extends React.Component {
         this.startTime = Date.now();
         this.fetchData();
 
-        this.router.setRouteLeaveHook(
+        isIE89 || this.router.setRouteLeaveHook(
             this.props.route,
             this.routerWillLeave
         )
@@ -134,7 +135,9 @@ class QuestionPage extends React.Component {
             let answerTime = Math.floor((Date.now() - this.startTime)/1000);
             let report = await this.props.submitRecord({ answerList, orderNo: this.props.qsparams.orderNo, answerTime })
             this.setState({ prompt: false })
-            this.router.replace({ pathname: 'report/student', search: this.props.location.search });
+
+            this.router.push({ pathname: 'report/student', search: this.props.location.search });
+            
         } catch (e) {
             alert(e.message);
 
