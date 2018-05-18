@@ -19,7 +19,8 @@ class InfoPage extends React.Component {
         this.router = context.router;
         this.state = {
             // info: null,
-            uselect: {}
+            uselect: {},
+            ok: false,
         }
         this.initState();
 
@@ -33,9 +34,9 @@ class InfoPage extends React.Component {
             if (basicInfo) {
                 basicInfo.forEach((item) => {
                     if (item.type === 'radio') {
-                        uselect[item.code] = item.options[0].value
+                        uselect[item.code] = ''
                     } else if (item.type === 'date') {
-                        uselect[item.code] = '2018-01-01';
+                        uselect[item.code] = '';
                     }
                 })
                 this.setState({ uselect })
@@ -58,13 +59,26 @@ class InfoPage extends React.Component {
     changeItem = (id, value) => {
         let uselect = { ...this.state.uselect };
         uselect[id] = value;
+
+        let ok = true;
         console.log(uselect)
-        this.setState({ uselect })
+        Object.keys(uselect).some((key)=> {
+
+            if(!uselect[key]) {
+                ok = false;
+                return true;
+            }
+        
+        })
+        this.setState({ uselect , ok })
     }
     nextTest = async () => {
         try {
-            await this.props.submitInfo({ settings: this.state.uselect, orderNo: this.props.qsparams.orderNo });
-            this.router.push({ pathname: 'evt/question', search: this.props.location.search });
+            if(this.state.ok) {
+                await this.props.submitInfo({ settings: this.state.uselect, orderNo: this.props.qsparams.orderNo });
+                this.router.push({ pathname: 'evt/question', search: this.props.location.search });
+            }
+            
     
         } catch(e) {
             alert(e.message)
@@ -83,7 +97,7 @@ class InfoPage extends React.Component {
                             <li key={item.id} className={style.item}>
                                 <span>{item.name}</span>
                                 {item.type === 'radio' && <select placeholder="请选择" onChange={(e) => this.changeItem(item.code, e.target.value)}>
-
+                                    <option value={''}>请选择</option>
                                     {item.options.map(opt => <option value={opt.value} key={opt.id}>{opt.name}</option>)}
 
                                 </select>}
@@ -93,7 +107,7 @@ class InfoPage extends React.Component {
 
 
                     </ul>
-                    <div className={style.nextstep} onClick={this.nextTest}>下一题</div>
+                    <div className={classNames(style.nextstep, {[style.gray]: !this.state.ok})} onClick={this.nextTest}>下一题</div>
                 </div>
             );
         } else {

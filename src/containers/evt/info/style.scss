@@ -14,6 +14,8 @@
 }
 .item select {
     min-width: 100px;
+    height: 34px;
+    border-radius: 4px;
 }
 
 .item>span {
@@ -31,4 +33,8 @@
     font-size: 16px;
     color: #FFFFFF;
     cursor: pointer;
+}
+
+.nextstep.gray {
+    background: gray;
 }
