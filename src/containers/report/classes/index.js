@@ -5,15 +5,15 @@ import css from './style.scss';
 import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import {isIE89} from '~/common/util';
 
 
 class ClassesPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rows: [0, 1, 2, 3, 4]
+            rows: [0, 1, 2, 3, 4, 5, 6, 7]
         }
-
     }
 
 
@@ -27,7 +27,7 @@ class ClassesPage extends React.Component {
 
             <div className={css.content}>
                 <header className={css.header}>
-                    <div className={css.title}>中学生<br />压力测试<br /><span className={css.subtitle}>年级分析报告</span></div>
+                    <div className={css.title}>中学生<br />压力测试<br /><span className={css.subtitle}>集体分析报告</span></div>
                     <div className={css.info}>
                         <span className={css.igrade}>年级：  高一</span><br />
                         <span>学校：  安庆一中

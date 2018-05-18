@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '~actions/evtActions';
-import { parseQueryString, getToken } from '../../../common/util';
+import { parseQueryString, getToken } from '~/common/util';
 
 // import Dialog from '~components/test/dialog';
 
