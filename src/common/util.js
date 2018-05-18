@@ -23,6 +23,7 @@ export const isIE89 = (() => {
     if (browser == "Microsoft Internet Explorer" && (trim_Version == "MSIE8.0" || trim_Version == "MSIE9.0")) {
         isie89 = true;
     }
+    return isie89;
 })()
 
 export function getToken() {
