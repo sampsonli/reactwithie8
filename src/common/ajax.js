@@ -1,16 +1,8 @@
 
 import axios from 'axios';
 import { ajaxbaseurl } from './config';
-import {getToken} from './util';
+import { getToken, isIE89 } from './util';
 
-const browser = navigator.appName
-const b_version = navigator.appVersion
-const version = b_version.split(";");
-const trim_Version = version[1].replace(/[ ]/g, "");
-let isie89 = false
-if (browser == "Microsoft Internet Explorer" && (trim_Version == "MSIE8.0" || trim_Version == "MSIE9.0")) {
-    isie89 = true;
-}
 
 const _axios = axios.create({ baseURL: ajaxbaseurl })
 
@@ -23,19 +15,27 @@ export default {
                 token: getToken(),
             }
         }
-        if (isie89) {
+        if (isIE89) {
             return new Promise((resolve, reject) => {
-                url = `${url}${~url.indexOf('?')?'&':'?'}timestamp=${config.headers.timestamp}&token=${config.headers.token}`
-                jQuery.support.cors = true;
+
+
+                url = `${url}${~url.indexOf('?') ? '&' : '?'}timestamp=${config.headers.timestamp}&token=${config.headers.token}`
                 $.ajax({
                     type: 'GET',
                     url: ajaxbaseurl + url,
-                    headers: config.headers,
+                    // headers: config.headers,
                     success(resp) {
                         resolve(resp)
                     },
                     error(e) {
-                        reject(e)
+                        if (e.statusText) {
+                            let err = new Error(e.statusText);
+                            err.code = e.status
+                            reject(err)
+                        } else {
+                            reject(e)
+                        }
+
                     }
                 })
             })
@@ -57,10 +57,10 @@ export default {
                 token: getToken(),
             }
         }
-        if (isie89) {
+        if (isIE89) {
             return new Promise((resolve, reject) => {
                 url = `${url}${~url.indexOf('?') ? '&' : '?'}timestamp=${config.headers.timestamp}&token=${config.headers.token}`
-                jQuery.support.cors = true;
+                // jQuery.support.cors = true;
                 $.ajax({
                     type: 'POST',
                     url: ajaxbaseurl + url,
@@ -72,7 +72,13 @@ export default {
                         resolve(resp)
                     },
                     error(e) {
-                        reject(e)
+                        if (e.statusText) {
+                            let err = new Error(e.statusText);
+                            err.code = e.status
+                            reject(err)
+                        } else {
+                            reject(e)
+                        }
                     }
                 })
             })
