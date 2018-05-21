@@ -169,6 +169,12 @@ class QuestionPage extends React.Component {
             this.router.push({ pathname: 'report/student', search: this.props.location.search });
 
         } catch (e) {
+            if(e.code === "1002204") {
+                // console.error(e.message);
+                this.setState({error: true});
+                return;
+
+            }
             alert(e.message);
 
         }
