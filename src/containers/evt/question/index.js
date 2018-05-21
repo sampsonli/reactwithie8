@@ -91,7 +91,7 @@ class QuestionPage extends React.Component {
                 }
             })
         }
-        let selectOk = nselect.filter(s => s !== undefined).length === this.props.qlist[this.state.currentIdx].optionsList.length;
+        let selectOk = nselect.filter(s => s !== undefined).length === this.props.qlist[this.state.currentIdx].options.length;
         this.setState({ select: nselect, selectOk })
 
     }
@@ -188,7 +188,7 @@ class QuestionPage extends React.Component {
             return this.setState({ select: [idx], selectOk: true, showConfirm: true })
         }
         const answers = [...this.state.answers]
-        const nextqid = this.props.qlist[this.state.currentIdx].options[idx].jump_question_id;
+        const nextqid = this.questionMap[this.props.qlist[this.state.currentIdx].options[idx].jump_question_id];
         // if (!nextqid && this.state.currentIdx === this.props.qlist.length - 1) {
         //     return this.doSubmit();
         // }
@@ -225,16 +225,16 @@ class QuestionPage extends React.Component {
                             {question.options.map((option, idx) => (
                                 <li className={style.option} key={option.id} onClick={() => this.selectOne(idx)}>
                                     <input className={style.radio} type="radio" name="sel" checked={this.state.select[0] === idx} />
-                                    <span>{option.title}</span>
+                                    <span>{option.label}</span>
                                 </li>))}
                         </ul>)}
 
 
-                        {question.type === 'order_text' && (<ul>
+                        {question.type === 'sort_text' && (<ul>
                             {question.options.map((option, idx) => (
                                 <li className={style.option} key={option.id} onClick={() => this.selItem(idx)}>
                                     <i className={classNames({ [style.circl_f]: this.state.select[idx] !== undefined, [style.circl_e]: this.state.select[idx] === undefined })}>{this.state.select[idx] === undefined || (this.state.select[idx] + 1)}</i>
-                                    <span>{option.title}</span>
+                                    <span>{option.label}</span>
                                 </li>))}
                         </ul>)}
 
@@ -245,7 +245,7 @@ class QuestionPage extends React.Component {
                         {/* {question.questionType === 'order_text' &&<div className={style.next}>下一题</div>} */}
                         <div className={style.pre} onClick={this.pre}>上一题</div>
 
-                        {(question.type === "order_text" || question.type === 'intro') && !this.state.islast && <div className={classNames(style.next, { [style.gray]: !this.state.selectOk && question.type !== 'intro' })} onClick={this.next}>下一题</div>}
+                        {(question.type === "sort_text" || question.type === 'intro') && !this.state.islast && <div className={classNames(style.next, { [style.gray]: !this.state.selectOk && question.type !== 'intro' })} onClick={this.next}>下一题</div>}
                         {this.state.islast && <div className={classNames(style.submit, { [style.gray]: !this.state.selectOk })} onClick={this.doSubmit}>提交</div>}
 
 
