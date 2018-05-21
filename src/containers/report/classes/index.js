@@ -6,14 +6,68 @@ import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {isIE89} from '~/common/util';
-
+import { getGroupReport } from '~actions/evtActions';
 
 class ClassesPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rows: [0, 1, 2, 3, 4, 5, 6, 7]
+            rows: [0, 1, 2, 3, 4, 5, 6, 7],
+            report: null,
         }
+        this.getData();
+        
+
+    }
+    getData = async () => {
+        let report = null;
+    
+        try {
+            report = await this.props.getGroupReport({
+                decodeStr: 'aVVirHkJHFXccGYJMVpfKRXLWKgWr0qHMr6JyhfcNKgdI5rpDCZc2w==',
+                type: 2,
+                clientId: 1,
+            })
+        } catch(e) {
+
+        }
+        
+        report = {
+            warning_data: {
+                '': {
+                    Zah: {
+                        name: '攻击行为',
+                        code: 'Zah',
+                        value: -0.6363636,
+                    },
+                    Zaa: {
+                        name: '违纪行为',
+                        code: 'Zaa',
+                        value: -0.42234555
+                    }
+                }
+            }
+        }
+        let warning_data = report.warning_data;
+
+        let nwdata = []
+
+
+        Object.keys(warning_data).forEach((stu) => {
+            
+            nwdata.push({
+                name: stu,
+                spec: [
+                    warning_data[stu].Zah.value, 
+                ]
+            })
+        })
+        console.log(nwdata)
+
+
+
+        this.setState({report})
+
     }
 
 
@@ -21,6 +75,9 @@ class ClassesPage extends React.Component {
 
 
     render() {
+        if(!this.state.report) {
+            return <div></div>
+        }
 
         return (
 
@@ -104,10 +161,11 @@ const mapStateToProps = state => ({
 
 
 //bindActionCreators is just a potting for dispatch single action
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => bindActionCreators({
+    getGroupReport
 
 
-});
+}, dispatch);
 
 export default connect(
     mapStateToProps,

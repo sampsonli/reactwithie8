@@ -67,7 +67,7 @@ class StarterPage extends React.Component {
             <div>
                 <div className={style.header}>{this.props.metaInfo.title}</div>
                 <div className={style.ct}>
-                    <div className={style.zhidao} dangerouslySetInnerHTML={{ __html: this.props.metaInfo.detailDescription }}>
+                    <div className={style.zhidao} dangerouslySetInnerHTML={{ __html: this.props.metaInfo.webguidecontent }}>
 
                     </div>
                     <div className={style.nextstep} onClick={this.beginTest}>下一题</div>

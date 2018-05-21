@@ -143,3 +143,17 @@ export const getPersonalReport = (orderNo) => async () => {
         throw err;
     }
 }
+
+export const getGroupReport = ({decodeStr,clientId, type}) => async () => {
+    const resp = await ajax.get(`/eval/get/group/report?clientId=${clientId}&type=${type}&decodeStr=${decodeStr}`);
+    if (resp.code === '200') {
+        return resp.data;
+    } else {
+        if (resp.code === '2001106') {
+            jumpLogin();
+        }
+        const err = new Error(resp.msg);
+        err.code = resp.code;
+        throw err;
+    }
+}
