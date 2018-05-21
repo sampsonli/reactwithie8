@@ -67,7 +67,7 @@ class ClassesPage extends React.Component {
                 </header>
                 <iframe className={css.iframe} src={this.state.report.reportUrl} />
                 <div>
-                    <div className={css.assist}><span className={css.sums}>共12人</span><span className={css.fenx}>风险由高到低</span><span className={css.default}>默认排序</span></div>
+                    <div className={css.assist}><span className={css.sums}>共{this.state.report.warnStudentList.length}人</span><span className={css.fenx}>风险由高到低</span><span className={css.default}>默认排序</span></div>
                     <table className={css.table}>
                         <thead>
                             <tr className={css.t_header}>
