@@ -37,7 +37,14 @@ class StarterPage extends React.Component {
         try {
             const token = getToken() || '-';
             const userId = token.split('-')[0];
-            let orderNoInfo = await this.props.createOrderNo({ userId, evalId: this.props.qsparams.evalid });
+            let orderNoInfo = await this.props.createOrderNo({ 
+                userId, evalId: this.props.qsparams.evalid, 
+                taskId: this.props.qsparams.taskId,
+                sourcePlatform: 1,
+                clientId: this.props.qsparams.clientId,
+                realName: this.props.qsparams.realName,
+                encodeStr: this.props.qsparams.encodeStr,
+             });
             let search = this.props.location.search;
             if (~search.indexOf('orderNo')) {
                 search = search.replace(/(orderNo=)([^&]*)(&?.*$)/, ($0, $1, $2, $3) => {

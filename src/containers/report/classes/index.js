@@ -5,98 +5,33 @@ import css from './style.scss';
 import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {isIE89} from '~/common/util';
+import { isIE89 } from '~/common/util';
 import { getGroupReport } from '~actions/evtActions';
+import NoSuport from '~components/nosuport';
+
+import { parseQueryString } from '~/common/util';
 
 class ClassesPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rows: [0, 1, 2, 3, 4, 5, 6, 7],
             report: null,
+            qsparams: parseQueryString('/' + this.props.location.search)
         }
         this.getData();
-        
+
 
     }
     getData = async () => {
-        let report = null;
-    
-        try {
-            report = await this.props.getGroupReport({
-                decodeStr: 'aVVirHkJHFXccGYJMVpfKRXLWKgWr0qHMr6JyhfcNKgdI5rpDCZc2w==',
-                type: 2,
-                clientId: 1,
-            })
-        } catch(e) {
-
-        }
-        
-        report = {
-            warning_data: {
-                "": {
-                    "Zah": {
-                        "name": "攻击行为",
-                        "code": "Zah",
-                        "value": 1.2727272727273
-                    },
-                    "Zag": {
-                        "name": "行为退宿",
-                        "code": "Zag",
-                        "value": 0
-                    },
-                    "Zaa": {
-                        "name": "违纪行为",
-                        "code": "Zaa",
-                        "value": -1.5714285714286
-                    },
-                    "Zad": {
-                        "name": "思维问题",
-                        "code": "Zad",
-                        "value": -0.4
-                    },
-                    "Zac": {
-                        "name": "社交问题",
-                        "code": "Zac",
-                        "value": -1.2
-                    },
-                    "Zfx": {
-                        "name": "总体风险",
-                        "code": "Zfx",
-                        "value": 0
-                    },
-                    "Zaf": {
-                        "name": "焦虑抑郁",
-                        "code": "Zaf",
-                        "value": 0
-                    },
-                    "Zae": {
-                        "name": "躯体反应",
-                        "code": "Zae",
-                        "value": -0.33333333333333
-                    }
-                }
-            }
-        }
-        let warning_data = report.warning_data;
-
-        let nwdata = []
-
-
-        Object.keys(warning_data).forEach((stu) => {
-            
-            nwdata.push({
-                name: stu,
-                spec: [
-                    warning_data[stu].Zah.value, 
-                ]
-            })
+        let report = await this.props.getGroupReport({
+            decodeStr: this.state.qsparams.decodeStr || 'aVVirHkJHFXccGYJMVpfKRXLWKgWr0qHMr6JyhfcNKgdI5rpDCZc2w==',
+            type: 2,
+            clientId: this.state.qsparams.clientId || 1,
         })
-        console.log(nwdata)
 
 
 
-        this.setState({report})
+        this.setState({ report })
 
     }
 
@@ -105,7 +40,10 @@ class ClassesPage extends React.Component {
 
 
     render() {
-        if(!this.state.report) {
+        if (isIE89) {
+            return <NoSuport />
+        }
+        if (!this.state.report) {
             return <div></div>
         }
 
@@ -116,19 +54,18 @@ class ClassesPage extends React.Component {
                 <header className={css.header}>
                     <div className={css.title}>中学生<br />压力测试<br /><span className={css.subtitle}>集体分析报告</span></div>
                     <div className={css.info}>
-                        <span className={css.igrade}>年级：  高一</span><br />
-                        <span>学校：  安庆一中
-                            <br />
-                            报告编号：  293840<br />
-                            报告日期：  2017-08-08
+                        {this.state.report.gradeName && (<span className={css.igrade}>年级：  {this.state.report.gradeName}</span>)}<br />
+                        {this.state.report.schoolName && <span>学校：  {this.state.report.schoolName}</span>}
+                        <br />
+                        {/* {this.state.report.schoolName && <span> 报告编号：  293840</span>} */}
+                        <br />
+                        {this.state.report.schoolName &&<span>报告日期：  2017-08-08</span>}
 
-
-                        </span>
 
                     </div>
                     <div className={css.btips}>本报告为保密资料，仅供相关个人参考，请妥善保管</div>
                 </header>
-                <iframe className={css.iframe} src={"http://wx.diggme.cn/channel/report?channel_id=22&test_id=95&in_code=shudanc2295505959e48075f86-7hLsNOIo"} />
+                <iframe className={css.iframe} src={this.state.report.reportUrl} />
                 <div>
                     <div className={css.assist}><span className={css.sums}>共12人</span><span className={css.fenx}>风险由高到低</span><span className={css.default}>默认排序</span></div>
                     <table className={css.table}>
@@ -144,25 +81,27 @@ class ClassesPage extends React.Component {
                                 <th>焦虑抑郁</th>
                                 <th>行为退缩</th>
                                 <th>攻击行为</th>
-                                <th>攻击行为</th>
+
                                 <th className={css.t_weix}>总体风险</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.rows.map((row, idx) => (
-                                <tr key={row} className={classNames(css.t_row, { [css.row_odd]: idx % 2 === 0 })}>
-                                    <td>高一（1）班</td>
-                                    <td>张三</td>
-                                    <td>3.24</td>
-                                    <td>3.24</td>
-                                    <td>3.24</td>
-                                    <td>3.24</td>
-                                    <td>3.24</td>
-                                    <td>3.24</td>
-                                    <td>3.24</td>
-                                    <td>3.24</td>
-                                    <td>3.24</td>
-                                    <td>3.24（严重）</td>
+                            {this.state.report.warnStudentList.map((row, idx) => (
+                                <tr key={idx} className={classNames(css.t_row, { [css.row_odd]: idx % 2 === 0 })}>
+                                    <td>{row.className}</td>
+                                    <td>{row.userName}</td>
+                                    <td className={classNames({ [css.c_yz]: row.warningInfos[0].riskLevel === 4, [css.c_warn]: row.warningInfos[0].riskLevel === 3 })}>{row.warningInfos[0].value.toFixed(2)}</td>
+                                    <td className={classNames({ [css.c_yz]: row.warningInfos[1].riskLevel === 4, [css.c_warn]: row.warningInfos[1].riskLevel === 3 })}>{row.warningInfos[1].value.toFixed(2)}</td>
+                                    <td className={classNames({ [css.c_yz]: row.warningInfos[2].riskLevel === 4, [css.c_warn]: row.warningInfos[2].riskLevel === 3 })}>{row.warningInfos[2].value.toFixed(2)}</td>
+                                    <td className={classNames({ [css.c_yz]: row.warningInfos[3].riskLevel === 4, [css.c_warn]: row.warningInfos[3].riskLevel === 3 })}>{row.warningInfos[3].value.toFixed(2)}</td>
+                                    <td className={classNames({ [css.c_yz]: row.warningInfos[4].riskLevel === 4, [css.c_warn]: row.warningInfos[4].riskLevel === 3 })}>{row.warningInfos[4].value.toFixed(2)}</td>
+                                    <td className={classNames({ [css.c_yz]: row.warningInfos[5].riskLevel === 4, [css.c_warn]: row.warningInfos[5].riskLevel === 3 })}>{row.warningInfos[5].value.toFixed(2)}</td>
+                                    <td className={classNames({ [css.c_yz]: row.warningInfos[6].riskLevel === 4, [css.c_warn]: row.warningInfos[6].riskLevel === 3 })}>{row.warningInfos[6].value.toFixed(2)}</td>
+                                    <td className={classNames({ [css.c_yz]: row.warningInfos[7].riskLevel === 4, [css.c_warn]: row.warningInfos[7].riskLevel === 3 })}>{row.warningInfos[7].value.toFixed(2)}</td>
+
+                                    <td>{row.warningInfos[7].value.toFixed(2)}（{classNames({ '正常': row.warningInfos[7].riskLevel === 1, '轻度': row.warningInfos[7].riskLevel === 2, '中度': row.warningInfos[7].riskLevel === 3, '严重': row.warningInfos[7].riskLevel === 4 })}）</td>
+
+
                                 </tr>
                             ))}
 
@@ -186,6 +125,7 @@ class ClassesPage extends React.Component {
 
 
 const mapStateToProps = state => ({
+    qsparams: state.evt.qsparams,
 
 });
 

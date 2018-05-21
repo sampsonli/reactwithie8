@@ -23,7 +23,7 @@ export default class NoSuport extends React.Component {
 
             <div className={css.content}>
                 
-
+wwwwww
             </div>
 
         );

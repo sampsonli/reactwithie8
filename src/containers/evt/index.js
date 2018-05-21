@@ -4,7 +4,7 @@ import style from './style.scss';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { parseQueryString } from '../../common/util';
+import { parseQueryString } from '~/common/util';
 class EvtPage extends React.Component {
     constructor(props) {
         super(props);
