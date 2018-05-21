@@ -36,7 +36,7 @@ export const createOrderNo = ({ evalId = 1, userId, clientId = 1, taskId = 1, so
  */
 export const getMetaInfo = (evtid) => async (dispatch) => {
 
-    const resp = await ajax.get(`/admin/evaluation/get/evaluation/id?id=${evtid}`);
+    const resp = await ajax.get(`/eval/get/evaluation?id=${evtid}`);
     if (resp.code === '200') {
         // resp.data.basicContent = JSON.parse(resp.data.basicContent);
         dispatch({ type: EVT_GET_META_INFO, payload: resp.data });

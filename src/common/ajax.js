@@ -13,13 +13,14 @@ export default {
             headers: {
                 timestamp: Date.now(),
                 token: getToken(),
+                sId: 1,
             }
         }
         if (isIE89) {
             return new Promise((resolve, reject) => {
 
 
-                url = `${url}${~url.indexOf('?') ? '&' : '?'}timestamp=${config.headers.timestamp}&token=${config.headers.token}`
+                url = `${url}${~url.indexOf('?') ? '&' : '?'}timestamp=${config.headers.timestamp}&token=${config.headers.token}&sId=1`
                 $.ajax({
                     type: 'GET',
                     url: ajaxbaseurl + url,
@@ -55,11 +56,12 @@ export default {
             headers: {
                 timestamp: Date.now(),
                 token: getToken(),
+                sId: 1,
             }
         }
         if (isIE89) {
             return new Promise((resolve, reject) => {
-                url = `${url}${~url.indexOf('?') ? '&' : '?'}timestamp=${config.headers.timestamp}&token=${config.headers.token}`
+                url = `${url}${~url.indexOf('?') ? '&' : '?'}timestamp=${config.headers.timestamp}&token=${config.headers.token}&sId=1`
                 // jQuery.support.cors = true;
                 $.ajax({
                     type: 'POST',
