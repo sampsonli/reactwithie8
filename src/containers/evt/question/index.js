@@ -143,6 +143,8 @@ class QuestionPage extends React.Component {
 
     }
     doSubmit = async () => {
+        if(this.requesting) return;
+        this.requesting = true;
         if (!this.state.select.length && this.props.qlist[this.state.currentIdx].type !== 'intro') {
             return
         }
@@ -170,6 +172,7 @@ class QuestionPage extends React.Component {
             alert(e.message);
 
         }
+        this.requesting = false;
 
 
     }
