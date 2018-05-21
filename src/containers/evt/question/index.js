@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {isIE89} from '~/common/util';
+import {maindomain} from '~/common/config';
 
 import * as actions from '~actions/evtActions';
 
@@ -36,10 +37,35 @@ class QuestionPage extends React.Component {
         isIE89 || this.router.setRouteLeaveHook(
             this.props.route,
             this.routerWillLeave
-        )
-
+        );
+        this.keepLogin();
 
     }
+
+    componentWillUnmount() {
+        clearInterval(this.timeid)
+    }
+
+    keepLogin = () => {
+        let script = null;
+        let dokeep = () => {
+            if(script) {
+                document.head.removeChild(script);
+                script = null;
+            }
+            script = document.createElement('script');
+            script.src = `${maindomain}/Ajax/GetUser?type=1`;
+            document.head.appendChild(script);
+
+        }
+        dokeep();
+
+        // this.timeid  = setInterval(dokeep, 2000)
+        this.timeid  = setInterval(dokeep, 60000*10)
+        
+
+    }
+
     routerWillLeave = (nextLocation) => {
         if (this.state.prompt) {
             return '确认要离开？';
