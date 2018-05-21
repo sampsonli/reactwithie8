@@ -57,9 +57,9 @@ class InfoPage extends React.Component {
     componentWillUpdate() {
 
     }
-    changeItem = (id, value) => {
+    changeItem = (code, value) => {
         let uselect = { ...this.state.uselect };
-        uselect[id] = value;
+        uselect[code] = value;
         let ok = true;
         Object.keys(uselect).some((key) => {
 
