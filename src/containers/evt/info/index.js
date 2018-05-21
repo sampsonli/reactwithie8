@@ -88,9 +88,9 @@ class InfoPage extends React.Component {
     render() {
         if (this.props.info && this.props.info.basicInfo) {
             return (
-                <div>
+                <div className={style.wrap}>
                     <div className={style.header}>基本信息填写</div>
-                    <ul>
+                    <ul className={style.content}>
 
                         {this.props.info && this.props.info.basicInfo.map(item => (
                             <li key={item.id} className={style.item}>

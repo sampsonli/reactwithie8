@@ -132,8 +132,8 @@ export const submitInfo = ({ settings, orderNo }) => async (dispatch) => {
 
 
 
-export const getPersonalReport = (orderNo) => async () => {
-    const resp = await ajax.get(`/eval/get/user/reporturl?orderNo=${orderNo}`);
+export const getPersonalReport = ({orderNo, clientId = 1, enCodeStr = ''}) => async () => {
+    const resp = await ajax.get(`/eval/get/user/reporturl?orderNo=${orderNo}&clientId=${clientId}&enCodeStr=${enCodeStr}`);
     if (resp.code === '200') {
         return resp.data;
     } else {
