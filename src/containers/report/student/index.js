@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getPersonalReport } from '~actions/evtActions';
+import { isIE89 } from '~/common/util';
 
 
 class StudentPage extends React.Component {
@@ -14,8 +15,10 @@ class StudentPage extends React.Component {
         this.state = {
             report: null,
             orderNo: null,
+            isIE89,
         }
         this.getReport();
+        console.log(isIE89)
 
     }
 

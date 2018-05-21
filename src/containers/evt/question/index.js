@@ -5,8 +5,9 @@ import style from './style.scss';
 import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {isIE89} from '~/common/util';
-import {maindomain} from '~/common/config';
+import { isIE89 } from '~/common/util';
+import { maindomain } from '~/common/config';
+import Error from '~components/evt/error';
 
 import * as actions from '~actions/evtActions';
 
@@ -30,6 +31,7 @@ class QuestionPage extends React.Component {
             selectOk: false,
             islast: false,
             showConfirm: false,
+            error: false,
         }
         this.startTime = Date.now();
         this.fetchData();
@@ -49,7 +51,7 @@ class QuestionPage extends React.Component {
     keepLogin = () => {
         let script = null;
         let dokeep = () => {
-            if(script) {
+            if (script) {
                 document.head.removeChild(script);
                 script = null;
             }
@@ -61,8 +63,8 @@ class QuestionPage extends React.Component {
         dokeep();
 
         // this.timeid  = setInterval(dokeep, 2000)
-        this.timeid  = setInterval(dokeep, 60000*10)
-        
+        this.timeid = setInterval(dokeep, 60000 * 10)
+
 
     }
 
@@ -158,12 +160,12 @@ class QuestionPage extends React.Component {
         })
 
         try {
-            let answerTime = Math.floor((Date.now() - this.startTime)/1000);
+            let answerTime = Math.floor((Date.now() - this.startTime) / 1000);
             let report = await this.props.submitRecord({ answerList, orderNo: this.props.qsparams.orderNo, answerTime })
             this.setState({ prompt: false })
 
             this.router.push({ pathname: 'report/student', search: this.props.location.search });
-            
+
         } catch (e) {
             alert(e.message);
 
@@ -195,6 +197,14 @@ class QuestionPage extends React.Component {
 
 
     render() {
+
+        if (this.state.error) {
+            return <Error onClick={this.doSubmit}/>
+
+        }
+
+
+
         if (this.props.qlist) {
             const question = this.props.qlist[this.state.currentIdx];
             return (

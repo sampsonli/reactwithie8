@@ -34,16 +34,46 @@ class ClassesPage extends React.Component {
         
         report = {
             warning_data: {
-                '': {
-                    Zah: {
-                        name: '攻击行为',
-                        code: 'Zah',
-                        value: -0.6363636,
+                "": {
+                    "Zah": {
+                        "name": "攻击行为",
+                        "code": "Zah",
+                        "value": 1.2727272727273
                     },
-                    Zaa: {
-                        name: '违纪行为',
-                        code: 'Zaa',
-                        value: -0.42234555
+                    "Zag": {
+                        "name": "行为退宿",
+                        "code": "Zag",
+                        "value": 0
+                    },
+                    "Zaa": {
+                        "name": "违纪行为",
+                        "code": "Zaa",
+                        "value": -1.5714285714286
+                    },
+                    "Zad": {
+                        "name": "思维问题",
+                        "code": "Zad",
+                        "value": -0.4
+                    },
+                    "Zac": {
+                        "name": "社交问题",
+                        "code": "Zac",
+                        "value": -1.2
+                    },
+                    "Zfx": {
+                        "name": "总体风险",
+                        "code": "Zfx",
+                        "value": 0
+                    },
+                    "Zaf": {
+                        "name": "焦虑抑郁",
+                        "code": "Zaf",
+                        "value": 0
+                    },
+                    "Zae": {
+                        "name": "躯体反应",
+                        "code": "Zae",
+                        "value": -0.33333333333333
                     }
                 }
             }

@@ -8,7 +8,7 @@ import TestPage from '~containers/evt';
 import TestInfoPage from '~containers/evt/info';
 import TestQuestionPage from '~containers/evt/question';
 import TestStarterPage from '~containers/evt/starter';
-import TestErrorPage from '~containers/evt/error';
+
 
 import ReportClasses from '~containers/report/classes';
 import ReportGrade from '~containers/report/grade';
@@ -31,11 +31,7 @@ const routeConfig = {
                     path: 'starter',
                     component: TestStarterPage,
                 },
-                {
-                    path: 'error',
-                    component: TestErrorPage,
-
-                },
+               
                 {
                     path: 'info',
                     component: TestInfoPage,
