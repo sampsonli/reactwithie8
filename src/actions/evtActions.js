@@ -14,9 +14,11 @@ function jumpLogin() {
     location.href = loginbaseurl + '&fromurl=' + encodeURIComponent(location.href);
 }
 
-export const createOrderNo = ({ evalId = 1, userId, clientId = 1, taskId = 1, sourcePlatform = 1, schoolId = 1, classId = 1, grade = 1 }) => async (dispatch) => {
 
-    const resp = await ajax.post(`/eval/create/orderno`, { evalId, userId: userId, clientId, taskId, sourcePlatform, schoolId, classId, grade });
+
+export const createOrderNo = ({ evalId = 1, userId, clientId = 1, taskId = 1, sourcePlatform = 2, realName = 1, encodeStr = 1 }) => async (dispatch) => {
+
+    const resp = await ajax.post(`/eval/create/orderno`, { evalId, userId: userId, clientId, taskId, sourcePlatform, realName, encodeStr });
     if (resp.code === '200') {
         return resp.data;
     } else {
