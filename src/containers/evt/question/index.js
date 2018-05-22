@@ -217,7 +217,7 @@ class QuestionPage extends React.Component {
             const question = this.props.qlist[this.state.currentIdx];
             return (
                 <div>
-                    <div className={style.header}>{this.state.currentIdx + 1}.  {question.title}{classNames({ '【排序题】': question.type === 'order_text', '【单选题】': question.questionType === 'radio_text' })}</div>
+                    <div className={style.header}>{this.state.currentIdx + 1}.  {question.title}{classNames({ '【排序题】': question.type === 'sort_text', '【单选题】': question.type === 'radio_text' })}</div>
                     <div className={style.ct}>
 
                         {question.type === 'radio_text' && (<ul>
