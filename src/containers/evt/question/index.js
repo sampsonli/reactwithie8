@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { isIE89 } from '~/common/util';
 import { maindomain } from '~/common/config';
 import Error from '~components/evt/error';
+import Dialog from '~components/evt/dialog';
 
 import * as actions from '~actions/evtActions';
 
@@ -21,7 +22,7 @@ class QuestionPage extends React.Component {
         this.state = {
             prompt: true,
             isStop: false,
-            isFinished: true,
+            isFinished: false,
             currentIdx: 0,
             select: [],
             preIdx: 0,
@@ -173,6 +174,8 @@ class QuestionPage extends React.Component {
             
             if(e.code === "1002204") {
                 this.setState({error: true, loading: false});
+            } else if(e.code === '100205') {
+                this.setState({isFinished: true, loading: false});
             } else {
                 this.setState({loading: false});
                 alert(e.message);
@@ -217,6 +220,8 @@ class QuestionPage extends React.Component {
             const question = this.props.qlist[this.state.currentIdx];
             return (
                 <div>
+                    {this.state.isFinished && <Dialog onclose={()=>this.setState({isFinished: false})}/>}
+
                     <div className={style.header}>{this.state.currentIdx + 1}.  {question.title}{classNames({ '【排序题】': question.type === 'sort_text', '【单选题】': question.type === 'radio_text' })}</div>
                     <div className={style.ct}>
 

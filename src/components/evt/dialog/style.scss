@@ -1,5 +1,6 @@
 .modal {
     position: fixed;
+    z-index: 2;
     top: 0;
     left: 0;
     right: 0;
@@ -15,6 +16,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 3;
 }
 
 .dialog {
@@ -44,7 +46,7 @@
         margin: 10px 20px 0 0;
         width: 16px;
         height: 16px;
-        border: 1px solid red;
+        // border: 1px solid red;
     }
 }
 
@@ -64,4 +66,5 @@
     font-size: 14px;
     color: #FFFFFF;
     text-align: center;
+    cursor: pointer;
 }
