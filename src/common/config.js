@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'production') {
     } else {
         domain = 'http://passport.ewt360.com'
         // 线上接口
-        baseURL = 'http://172.16.188.44:8769/api/evaluation';
+        baseURL = 'http://gateway.ewt360.com/api/evaluation';
         loginUrl = 'http://passport.ewt360.com/sso?sid=16'
 
     }
