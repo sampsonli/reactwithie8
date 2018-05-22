@@ -16,7 +16,7 @@ function jumpLogin() {
 
 
 
-export const createOrderNo = ({ evalId = 1, userId, clientId = 1, taskId = 1, sourcePlatform = 2, realName = 1, encodeStr = 1 }) => async (dispatch) => {
+export const createOrderNo = ({ evalId = 1, userId, clientId = 1, taskId = 1, sourcePlatform = 2, realName = '', encodeStr = '' }) => async (dispatch) => {
 
     const resp = await ajax.post(`/eval/create/orderno`, { evalId, userId: userId, clientId, taskId, sourcePlatform, realName, encodeStr });
     if (resp.code === '200') {
