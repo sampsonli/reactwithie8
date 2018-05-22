@@ -1,3 +1,35 @@
-.content {
-    background: url(~assets/images/topbg.png) no-repeat top center
+
+.wrap {
+    height: 100%;
+    width: 1000px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    position: relative;
+
+}
+
+.logo-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -179px;
+    margin-top: -240px;
+    overflow: hidden;
+}
+
+.logo {
+    width: 359px;
+    height: 377px;
+    background: url(~assets/images/syx_tips_pc.png) no-repeat center;
+    background-size: contain;
+}
+
+.txt {
+    height: 54px;
+    width: 359px;
+    text-align: center;
+    font-size: 16px;
+    color: #666666;
+    line-height: 27px;
+    margin-top: 50px;
 }
