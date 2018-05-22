@@ -29,6 +29,13 @@ class ClassesPage extends React.Component {
             type: this.state.qsparams.type || 2,
             clientId: this.state.qsparams.clientId || 1,
         })
+        if (report.reportDate) {
+            let time = new Date(report.reportDate);
+            let year = time.getFullYear();
+            let month = time.getMonth() + 1;
+            let day = time.getDate()
+            report.reportDate = [year, month, day].join('-')
+        }
         report.warnStudentList.sort((a, b) => {
             if (a.className > b.className) {
                 return 1
@@ -91,14 +98,23 @@ class ClassesPage extends React.Component {
 
             <div className={css.content}>
                 <header className={css.header}>
-                    <div className={css.title}>中学生<br />压力测试<br /><span className={css.subtitle}>集体分析报告</span></div>
+                    <div className={css.title}>{this.state.report.title}<br /><span className={css.subtitle}>集体分析报告</span></div>
                     <div className={css.info}>
-                        {this.state.report.gradeName && (<span className={css.igrade}>年级：  {this.state.report.gradeName}</span>)}<br />
+
+
+                        {this.state.qsparams.type == '2'&&this.state.report.className && (<span className={css.igrade}>班级：  {this.state.report.className}</span>)}
+
+                        {this.state.qsparams.type == '3'&&this.state.report.gradeName && (<span className={css.igrade}>年级：  {this.state.report.gradeName}</span>)}
+                        <br />
+
+                         {this.state.qsparams.type == '3'&&this.state.report.className  && <span>班级：  {this.state.report.className}</span>}
+                         <br/>
+
                         {this.state.report.schoolName && <span>学校：  {this.state.report.schoolName}</span>}
                         <br />
-                        {/* {this.state.report.schoolName && <span> 报告编号：  293840</span>} */}
+                        {this.state.report.reportNo && <span> 报告编号：  {this.state.report.reportNo}</span>}
                         <br />
-                        {this.state.report.schoolName && <span>报告日期：  2017-08-08</span>}
+                        {this.state.report.reportDate && <span>报告日期：  {this.state.report.reportDate}</span>}
 
 
                     </div>

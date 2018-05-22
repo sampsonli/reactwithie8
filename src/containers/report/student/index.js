@@ -62,7 +62,8 @@ class StudentPage extends React.Component {
 
             <div className={css.content}>
                 <header className={css.header}>
-                    <div className={css.title}>中学生<br />压力测试<br /><span className={css.subtitle}>个人分析报告</span></div>
+                    {/* <div className={css.title}>中学生<br />压力测试<br /><span className={css.subtitle}>个人分析报告</span></div> */}
+                    <div className={css.title}>{this.state.report.title}<br /><span className={css.subtitle}>个人分析报告</span></div>
                     <div className={css.info}>
                         {this.state.report.userName && <span className={css.igrade}>姓名：  {this.state.report.userName}</span>}
                         <br />

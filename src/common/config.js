@@ -3,7 +3,7 @@ let loginUrl = '';
 let domain = '';
 if (process.env.NODE_ENV === 'production') {
     if (process.env.EWT_ENV === '235') {
-        domain = 'http://my.233.mistong.com'
+        domain = 'http://my.235.mistong.com'
 
 
         baseURL = 'http://10.0.11.86:8769/api/evaluation';
