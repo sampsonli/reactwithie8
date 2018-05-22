@@ -143,8 +143,7 @@ class QuestionPage extends React.Component {
 
     }
     doSubmit = async () => {
-        if(this.requesting) return;
-        this.requesting = true;
+        
         if (!this.state.select.length && this.props.qlist[this.state.currentIdx].type !== 'intro') {
             return
         }
@@ -160,7 +159,8 @@ class QuestionPage extends React.Component {
                 type: question.type,
             }
         })
-
+        if(this.requesting) return;
+        this.requesting = true;
         try {
             let answerTime = Math.floor((Date.now() - this.startTime) / 1000);
             let report = await this.props.submitRecord({ answerList, orderNo: this.props.qsparams.orderNo, answerTime })
@@ -172,10 +172,12 @@ class QuestionPage extends React.Component {
             if(e.code === "1002204") {
                 // console.error(e.message);
                 this.setState({error: true});
-                return;
+                
 
+            } else {
+                alert(e.message);
             }
-            alert(e.message);
+           
 
         }
         this.requesting = false;
