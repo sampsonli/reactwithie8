@@ -10,8 +10,7 @@ import TestQuestionPage from '~containers/evt/question';
 import TestStarterPage from '~containers/evt/starter';
 
 
-import ReportClasses from '~containers/report/classes';
-import ReportGrade from '~containers/report/grade';
+import ReportGroup from '~containers/report/group';
 import ReportStudent from '~containers/report/student';
 
 const configureStore = require('./store/configureStore');
@@ -49,12 +48,8 @@ const routeConfig = {
             path: 'report',
             childRoutes: [
                 {
-                    path: 'grade',
-                    component: ReportGrade,
-                },
-                {
-                    path: 'classes',
-                    component: ReportClasses,
+                    path: 'group',
+                    component: ReportGroup,
 
                 },
                 {

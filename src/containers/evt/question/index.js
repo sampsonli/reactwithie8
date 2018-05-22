@@ -32,6 +32,7 @@ class QuestionPage extends React.Component {
             islast: false,
             showConfirm: false,
             error: false,
+            loading: false,
         }
         this.startTime = Date.now();
         this.fetchData();
@@ -159,29 +160,25 @@ class QuestionPage extends React.Component {
                 type: question.type,
             }
         })
-        if(this.requesting) return;
-        this.requesting = true;
+        if(this.state.loading) return;
+        this.setState({loading: true});
         try {
             let answerTime = Math.floor((Date.now() - this.startTime) / 1000);
             let report = await this.props.submitRecord({ answerList, orderNo: this.props.qsparams.orderNo, answerTime })
-            this.setState({ prompt: false })
+            this.setState({ prompt: false, loading: false })
 
             this.router.push({ pathname: 'report/student', search: this.props.location.search });
 
         } catch (e) {
+            
             if(e.code === "1002204") {
-                // console.error(e.message);
-                this.setState({error: true});
-                
-
+                this.setState({error: true, loading: false});
             } else {
+                this.setState({loading: false});
                 alert(e.message);
             }
-           
-
+        
         }
-        this.requesting = false;
-
 
     }
     // 单选

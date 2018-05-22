@@ -18,7 +18,7 @@ export default class DateInput extends React.Component {
         super(props);
 
         let years = [];
-        for (let i = 1980; i <= 2018; i++) {
+        for (let i = 1990; i <= 2018; i++) {
             years.push({ value: i, label: i })
         }
         let months = [];

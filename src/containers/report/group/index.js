@@ -25,7 +25,7 @@ class ClassesPage extends React.Component {
     getData = async () => {
         let report = await this.props.getGroupReport({
             decodeStr: this.state.qsparams.decodeStr || 'aVVirHkJHFXccGYJMVpfKRXLWKgWr0qHMr6JyhfcNKgdI5rpDCZc2w==',
-            type: 2,
+            type: this.state.qsparams.type||2,
             clientId: this.state.qsparams.clientId || 1,
         })
 
