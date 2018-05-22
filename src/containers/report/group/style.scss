@@ -72,15 +72,21 @@
 
 .default {
     float: right;
-    color: #00A4EF;
+    // color: #00A4EF;
     margin-right: 21px;
     cursor: pointer;
 }
 
 .fenx {
     float: right;
-    color: #333333;
+    // color: #333333;
     cursor: pointer;
+}
+.gray {
+    color: #333333;
+}
+.darkb {
+    color: #00A4EF;
 }
 
 .table {

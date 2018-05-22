@@ -16,7 +16,8 @@ class ClassesPage extends React.Component {
         super(props);
         this.state = {
             report: null,
-            qsparams: parseQueryString('/' + this.props.location.search)
+            qsparams: parseQueryString('/' + this.props.location.search),
+            sort: 0,
         }
         this.getData();
 
@@ -25,13 +26,51 @@ class ClassesPage extends React.Component {
     getData = async () => {
         let report = await this.props.getGroupReport({
             decodeStr: this.state.qsparams.decodeStr || 'aVVirHkJHFXccGYJMVpfKRXLWKgWr0qHMr6JyhfcNKgdI5rpDCZc2w==',
-            type: this.state.qsparams.type||2,
+            type: this.state.qsparams.type || 2,
             clientId: this.state.qsparams.clientId || 1,
+        })
+        report.warnStudentList.sort((a, b) => {
+            if (a.className > b.className) {
+                return 1
+            } else if (a.className == b.className) {
+                return 0;
+            } else {
+                return -1
+            }
         })
 
 
 
         this.setState({ report })
+
+    }
+    sortBy = (sort) => {
+        let warnStudentList = [...this.state.report.warnStudentList];
+        if (sort === 0) {
+            warnStudentList.sort((a, b) => {
+                if (a.className > b.className) {
+                    return 1
+                } else if (a.className == b.className) {
+                    return 0;
+                } else {
+                    return -1
+                }
+            })
+
+        } else {
+            warnStudentList.sort((a, b) => {
+                if (a.warningInfos[7].value > b.warningInfos[7].value) {
+                    return -1
+                } else if (a.warningInfos[7].value == b.warningInfos[7].value) {
+                    return 0;
+                } else {
+                    return 1
+                }
+            })
+        }
+        let report = {...this.state.report};
+        report.warnStudentList = warnStudentList;
+        this.setState({report, sort})
 
     }
 
@@ -59,7 +98,7 @@ class ClassesPage extends React.Component {
                         <br />
                         {/* {this.state.report.schoolName && <span> 报告编号：  293840</span>} */}
                         <br />
-                        {this.state.report.schoolName &&<span>报告日期：  2017-08-08</span>}
+                        {this.state.report.schoolName && <span>报告日期：  2017-08-08</span>}
 
 
                     </div>
@@ -67,7 +106,9 @@ class ClassesPage extends React.Component {
                 </header>
                 <iframe className={css.iframe} src={this.state.report.reportUrl} />
                 <div>
-                    <div className={css.assist}><span className={css.sums}>共{this.state.report.warnStudentList.length}人</span><span className={css.fenx}>风险由高到低</span><span className={css.default}>默认排序</span></div>
+                    <div className={css.assist}><span className={css.sums}>共{this.state.report.warnStudentList.length}人</span>
+                    <span className={classNames(css.fenx, {[css.gray]: this.state.sort === 0, [css.darkb]: this.state.sort === 1})} onClick={()=>this.sortBy(1)}>风险由高到低</span>
+                    <span className={classNames(css.default, {[css.gray]: this.state.sort === 1, [css.darkb]: this.state.sort === 0})} onClick={()=>this.sortBy(0)}>默认排序</span></div>
                     <table className={css.table}>
                         <thead>
                             <tr className={css.t_header}>
