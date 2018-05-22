@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '~actions/evtActions';
 import { parseQueryString, getToken } from '~/common/util';
+import { maindomain } from '~/common/config';
 
 // import Dialog from '~components/test/dialog';
 
@@ -21,15 +22,25 @@ class StarterPage extends React.Component {
         this.fetchData();
     }
 
+    initUser = () => {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = `${maindomain}/Ajax/GetUser?type=1`;
+            document.head.appendChild(script);
+            script.onload = () => {
+                document.head.removeChild(script);
+                resolve(window.User);
+            }
+        })
+
+    }
+
     fetchData = async () => {
         try {
             await this.props.getMetaInfo(this.props.qsparams.evalid)
         } catch (e) {
             alert(e.message)
         }
-
-
-
     }
 
 
@@ -37,14 +48,19 @@ class StarterPage extends React.Component {
         try {
             const token = getToken() || '-';
             const userId = token.split('-')[0];
-            let orderNoInfo = await this.props.createOrderNo({ 
-                userId, evalId: this.props.qsparams.evalid, 
+            const user = await this.initUser();
+            if(!user.IsLogin) {
+                throw new Error('登陆已过期');
+            }
+            let orderNoInfo = await this.props.createOrderNo({
+                userId: user.UserID,
+                evalId: this.props.qsparams.evalid,
                 taskId: this.props.qsparams.taskId,
                 sourcePlatform: 1,
                 clientId: this.props.qsparams.clientId,
-                realName: this.props.qsparams.realName,
+                realName: user.RealName,
                 encodeStr: this.props.qsparams.encodeStr,
-             });
+            });
             let search = this.props.location.search;
             if (~search.indexOf('orderNo')) {
                 search = search.replace(/(orderNo=)([^&]*)(&?.*$)/, ($0, $1, $2, $3) => {
@@ -76,7 +92,7 @@ class StarterPage extends React.Component {
                 <div className={style.ct}>
                     <div className={style.zhidao} dangerouslySetInnerHTML={{ __html: this.props.metaInfo.webGuideContent }}>
                     </div>
-                   
+
                     <div className={style.nextstep} onClick={this.beginTest}>下一题</div>
                 </div>
             </div>
