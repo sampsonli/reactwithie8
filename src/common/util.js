@@ -27,13 +27,17 @@ export const isIE89 = (() => {
 })()
 
 export function getToken() {
+    let token = ''
+
     if (~location.hash.indexOf('token=')) {
-        return location.hash.split('token=')[1].split('&')[0]
-    } else {
+        token =  location.hash.split('token=')[1].split('&')[0];
+    } 
+    if(!token) {
         let arr, reg = new RegExp("(^| )" + 'tk' + "=([^;]*)(;|$)");
         if (arr = document.cookie.match(reg)) {
-            return unescape(arr[2]);
+            token = unescape(arr[2]);
         }
     }
+    return token;
 
 }
