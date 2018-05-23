@@ -22,10 +22,21 @@
     font-size: 14px;
     color: #333333;
 }
+.tit {
+    margin-bottom: 5px;
+}
 .item select {
     min-width: 100px;
     height: 34px;
     border-radius: 4px;
+}
+.input {
+    line-height: 30px;
+}
+.input input {
+    vertical-align: middle;
+    margin-right: 5px;
+    margin-left: 10px;
 }
 
 .item>span {

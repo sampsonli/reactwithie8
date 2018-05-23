@@ -94,10 +94,14 @@ class InfoPage extends React.Component {
 
                         {this.props.info && this.props.info.basicInfo.map(item => (
                             <li key={item.id} className={style.item}>
-                                <span>{item.name}</span>
+                                <div className={style.tit}>*{item.name}</div>
+                                {item.type === 'radio' && <div className={style.input}>
+                                {item.options.map(opt => (<div><input onClick={(e) => this.changeItem(item.code, opt.value)} type="radio" value={opt.value} key={opt.id} name={item.code} id={opt.id} /><label for={opt.id}>{opt.name}</label></div>))}
 
-                                {item.type === 'radio' && <Select placeholder="请选择"  options={item.options} value={this.state.uselect[item.code]}
-                                    onChange={(newValue) => this.changeItem(item.code, newValue)} />}
+                                </div>}
+
+                                {/* {item.type === 'radio' && <Select placeholder="请选择"  options={item.options} value={this.state.uselect[item.code]}
+                                    onChange={(newValue) => this.changeItem(item.code, newValue)} />} */}
 
                                 {item.type === 'date' && <DateInput value={this.state.uselect[item.code]} onChange={(value) => this.changeItem(item.code, value)} />}
                             </li>

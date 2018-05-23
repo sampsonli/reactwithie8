@@ -30,6 +30,11 @@ if (process.env.NODE_ENV === 'production') {
     // baseURL = 'http://10.0.11.28:8769/api/evaluation';
 
     // loginUrl = 'http://my.233.mistong.com/sso?sid=14'
+
+    domain = 'http://passport.ewt360.com'
+    // 线上接口
+    baseURL = 'http://gateway.ewt360.com/api/evaluation';
+    loginUrl = 'http://passport.ewt360.com/sso?sid=16'
 }
 export const ajaxbaseurl = baseURL;
 export const loginbaseurl = loginUrl;

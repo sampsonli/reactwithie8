@@ -25,8 +25,8 @@ class ClassesPage extends React.Component {
     }
     getData = async () => {
         let report = await this.props.getGroupReport({
-            decodeStr: this.state.qsparams.decodeStr || 'aVVirHkJHFXccGYJMVpfKRXLWKgWr0qHMr6JyhfcNKgdI5rpDCZc2w==',
-            type: this.state.qsparams.type || 2,
+            decodeStr: this.state.qsparams.decodeStr || '', // 加密字符串
+            type: this.state.qsparams.type || 2,  // 2 班级报告， 3 年级报告
             clientId: this.state.qsparams.clientId || 1,
         })
         if (report.reportDate) {
@@ -36,6 +36,8 @@ class ClassesPage extends React.Component {
             let day = time.getDate()
             report.reportDate = [year, month, day].join('-')
         }
+
+        // 默认班级排序
         report.warnStudentList.sort((a, b) => {
             if (a.className > b.className) {
                 return 1
@@ -53,7 +55,7 @@ class ClassesPage extends React.Component {
     }
     sortBy = (sort) => {
         let warnStudentList = [...this.state.report.warnStudentList];
-        if (sort === 0) {
+        if (sort === 0) { // 班级排序
             warnStudentList.sort((a, b) => {
                 if (a.className > b.className) {
                     return 1
@@ -64,7 +66,7 @@ class ClassesPage extends React.Component {
                 }
             })
 
-        } else {
+        } else { // 危险系数倒序
             warnStudentList.sort((a, b) => {
                 if (a.warningInfos[7].value > b.warningInfos[7].value) {
                     return -1

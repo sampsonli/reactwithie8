@@ -45,38 +45,34 @@ class StarterPage extends React.Component {
 
 
     beginTest = async () => {
-        try {
-            const token = getToken() || '-';
-            const userId = token.split('-')[0];
-            const user = await this.initUser();
-            if(!user.IsLogin) {
-                throw new Error('登陆已过期');
-            }
-            let orderNoInfo = await this.props.createOrderNo({
-                userId: user.UserID,
-                evalId: this.props.qsparams.evalid,
-                taskId: this.props.qsparams.taskId,
-                sourcePlatform: 1,
-                clientId: this.props.qsparams.clientId,
-                realName: user.RealName,
-                encodeStr: this.props.qsparams.encodeStr,
-            });
-            let search = this.props.location.search;
-            if (~search.indexOf('orderNo')) {
-                search = search.replace(/(orderNo=)([^&]*)(&?.*$)/, ($0, $1, $2, $3) => {
-                    return [$1, orderNoInfo, $3].join('')
-                })
-            } else {
-                search = search + (~search.indexOf('?') ? '&' : '?') + 'orderNo=' + orderNoInfo;
-            }
 
-            // console.log(search)
-            this.props.setSearchParams(parseQueryString('/' + search))
+        let search = this.props.location.search;
+        if (~search.indexOf('orderNo=')) {
             this.router.push({ pathname: 'evt/info', search, })
-        } catch (e) {
-            alert(e.message)
-        }
+        } else {
+            try {
+                const token = getToken() || '-';
+                const userId = token.split('-')[0];
+                const user = await this.initUser();
+                if (!user.IsLogin) {
+                    throw new Error('登陆已过期');
+                }
+                let orderNoInfo = await this.props.createOrderNo({
+                    userId: user.UserID,
+                    evalId: this.props.qsparams.evalid,
+                    taskId: this.props.qsparams.taskId,
+                    sourcePlatform: 1,
+                    clientId: this.props.qsparams.clientId,
+                    realName: user.RealName,
+                    encodeStr: this.props.qsparams.encodeStr,
+                });
+                let search = this.props.location.search;
+                this.router.push({ pathname: 'evt/info', search, })
 
+            } catch (e) {
+                alert(e.message)
+            }
+        }
 
     }
 
