@@ -129,7 +129,7 @@ class ClassesPage extends React.Component {
                     <div className={css.btips}>本报告为保密资料，仅供相关个人参考，请妥善保管</div>
                 </header>
                 <iframe className={css.iframe} src={this.state.report.reportUrl} />
-                
+                <div className={css.fulu}>附录：预警学生名单</div>
                 <div>
                     <div className={css.assist}><span className={css.sums}>共{this.state.report.warnStudentList.length}人</span>
                         <span className={classNames(css.fenx, { [css.gray]: this.state.sort === 0, [css.darkb]: this.state.sort === 1 })} onClick={() => this.sortBy(1)}>风险由高到低</span>

@@ -58,6 +58,24 @@
     border: none;
 }
 
+.fulu {
+    width: 1000px;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #333333;
+    font-weight: bold;
+    line-height: 50px;
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 5px;
+        height: 14px;
+        background-color: #51C8FF;
+        vertical-align: middle;
+        margin-right: 5px;
+    }
+}
+
 .assist {
     height: 36px;
     line-height: 36px;
@@ -72,20 +90,20 @@
 }
 
 .default {
-    float: right;
-    // color: #00A4EF;
+    float: right; // color: #00A4EF;
     margin-right: 21px;
     cursor: pointer;
 }
 
 .fenx {
-    float: right;
-    // color: #333333;
+    float: right; // color: #333333;
     cursor: pointer;
 }
+
 .gray {
     color: #333333;
 }
+
 .darkb {
     color: #00A4EF;
 }
