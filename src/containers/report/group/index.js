@@ -77,9 +77,9 @@ class ClassesPage extends React.Component {
                 }
             })
         }
-        let report = {...this.state.report};
+        let report = { ...this.state.report };
         report.warnStudentList = warnStudentList;
-        this.setState({report, sort})
+        this.setState({ report, sort })
 
     }
 
@@ -100,17 +100,23 @@ class ClassesPage extends React.Component {
 
             <div className={css.content}>
                 <header className={css.header}>
-                    <div className={css.title}>{this.state.report.title}<br /><span className={css.subtitle}>集体分析报告</span></div>
+                    <div className={css.title}>
+
+                        {this.state.report.title && this.state.report.title.substr(0, 3)}<br />
+                        {this.state.report.title.length > 3 && this.state.report.title.substr(3)}
+
+                        <br /><span className={css.subtitle}>集体分析报告</span>
+                    </div>
                     <div className={css.info}>
 
 
-                        {this.state.qsparams.type == '2'&&this.state.report.className && (<span className={css.igrade}>班级：  {this.state.report.className}</span>)}
+                        {this.state.qsparams.type == '2' && this.state.report.className && (<span className={css.igrade}>班级：  {this.state.report.className}</span>)}
 
-                        {this.state.qsparams.type == '3'&&this.state.report.gradeName && (<span className={css.igrade}>年级：  {this.state.report.gradeName}</span>)}
+                        {this.state.qsparams.type == '3' && this.state.report.gradeName && (<span className={css.igrade}>年级：  {this.state.report.gradeName}</span>)}
                         <br />
 
-                         {this.state.qsparams.type == '3'&&this.state.report.className  && <span>班级：  {this.state.report.className}</span>}
-                         <br/>
+                        {this.state.qsparams.type == '3' && this.state.report.className && <span>班级：  {this.state.report.className}</span>}
+                        <br />
 
                         {this.state.report.schoolName && <span>学校：  {this.state.report.schoolName}</span>}
                         <br />
@@ -125,8 +131,8 @@ class ClassesPage extends React.Component {
                 <iframe className={css.iframe} src={this.state.report.reportUrl} />
                 <div>
                     <div className={css.assist}><span className={css.sums}>共{this.state.report.warnStudentList.length}人</span>
-                    <span className={classNames(css.fenx, {[css.gray]: this.state.sort === 0, [css.darkb]: this.state.sort === 1})} onClick={()=>this.sortBy(1)}>风险由高到低</span>
-                    <span className={classNames(css.default, {[css.gray]: this.state.sort === 1, [css.darkb]: this.state.sort === 0})} onClick={()=>this.sortBy(0)}>默认排序</span></div>
+                        <span className={classNames(css.fenx, { [css.gray]: this.state.sort === 0, [css.darkb]: this.state.sort === 1 })} onClick={() => this.sortBy(1)}>风险由高到低</span>
+                        <span className={classNames(css.default, { [css.gray]: this.state.sort === 1, [css.darkb]: this.state.sort === 0 })} onClick={() => this.sortBy(0)}>默认排序</span></div>
                     <table className={css.table}>
                         <thead>
                             <tr className={css.t_header}>

@@ -25,10 +25,10 @@ class StudentPage extends React.Component {
 
     getReport = async () => {
         try {
-            let orderNo = ~this.props.location.search.indexOf('orderNo=')&&this.props.location.search.split('orderNo=')[1].split('&')[0]||'';
-            let clientId =  ~this.props.location.search.indexOf('clientId=')&&this.props.location.search.split('clientId=')[1].split('&')[0]||1;
-            let enCodeStr =  ~this.props.location.search.indexOf('enCodeStr=')&&this.props.location.search.split('enCodeStr=')[1].split('&')[0]||'';
-            let report = await this.props.getPersonalReport({orderNo, clientId, enCodeStr})
+            let orderNo = ~this.props.location.search.indexOf('orderNo=') && this.props.location.search.split('orderNo=')[1].split('&')[0] || '';
+            let clientId = ~this.props.location.search.indexOf('clientId=') && this.props.location.search.split('clientId=')[1].split('&')[0] || 1;
+            let enCodeStr = ~this.props.location.search.indexOf('enCodeStr=') && this.props.location.search.split('enCodeStr=')[1].split('&')[0] || '';
+            let report = await this.props.getPersonalReport({ orderNo, clientId, enCodeStr })
 
             if (report.reportDate) {
                 let time = new Date(report.reportDate);
@@ -62,8 +62,10 @@ class StudentPage extends React.Component {
 
             <div className={css.content}>
                 <header className={css.header}>
-                    {/* <div className={css.title}>中学生<br />压力测试<br /><span className={css.subtitle}>个人分析报告</span></div> */}
-                    <div className={css.title}>{this.state.report.title}<br /><span className={css.subtitle}>个人分析报告</span></div>
+                    <div className={css.title}>
+                        {this.state.report.title && this.state.report.title.substr(0, 3)}<br />
+                        {this.state.report.title.length > 3 && this.state.report.title.substr(3)}
+                        <br /><span className={css.subtitle}>个人分析报告</span></div>
                     <div className={css.info}>
                         {this.state.report.userName && <span className={css.igrade}>姓名：  {this.state.report.userName}</span>}
                         <br />
