@@ -38,7 +38,7 @@ class ClassesPage extends React.Component {
         }
 
         // 默认班级排序
-        report.warnStudentList.sort((a, b) => {
+        report.warnStudentList && report.warnStudentList.sort((a, b) => {
             if (a.className > b.className) {
                 return 1
             } else if (a.className == b.className) {
@@ -131,9 +131,9 @@ class ClassesPage extends React.Component {
                 <div className={css.warninginfo}>
                     <div className={css.fulu}>附录：预警学生名单</div>
 
-                    {this.state.report.isHideWarningMsg && <div className={css.empty}>
+                    {(this.state.report.isHideWarningMsg||!this.state.report.warnStudentList||this.state.report.warnStudentList.length ===0) && <div className={css.empty}>
                     </div>}
-                    {!this.state.report.isHideWarningMsg && <div>
+                    {!this.state.report.isHideWarningMsg && this.state.report.warnStudentList && this.state.report.warnStudentList.length && <div>
                         <div className={css.assist}><span className={css.sums}>共{this.state.report.warnStudentList.length}人</span>
                             <span className={classNames(css.fenx, { [css.gray]: this.state.sort === 0, [css.darkb]: this.state.sort === 1 })} onClick={() => this.sortBy(1)}>风险由高到低</span>
                             <span className={classNames(css.default, { [css.gray]: this.state.sort === 1, [css.darkb]: this.state.sort === 0 })} onClick={() => this.sortBy(0)}>默认排序</span></div>
