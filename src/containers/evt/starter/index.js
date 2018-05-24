@@ -37,7 +37,36 @@ class StarterPage extends React.Component {
 
     fetchData = async () => {
         try {
-            await this.props.getMetaInfo(this.props.qsparams.evalid)
+            if (!this.props.qsparams.orderNo) {
+                if(this.props.qsparams.assist) { //本地辅助生成订单号， 仅供测试用
+                    const user = await this.initUser();
+                    if (!user.IsLogin) {
+                        throw new Error('登陆已过期');
+                    }
+                    let orderNo = await this.props.createOrderNo({
+                        userId: user.UserID,
+                        evalId: this.props.qsparams.evalId,
+                        taskId: this.props.qsparams.taskId,
+                        sourcePlatform: 1,
+                        clientId: this.props.qsparams.clientId,
+                        realName: user.RealName,
+                        encodeStr: this.props.qsparams.encodeStr,
+                    });
+                    this.props.setSearchParams({orderNo});
+                    this.router.replace({ pathname: this.props.location.pathname, search: '?orderNo=' + orderNo});
+                    await this.props.getMetaInfo(orderNo);
+                } else {
+                    throw new Error('订单号不能为空!!!');
+                }
+                
+            } else {
+                const metaInfo = await this.props.getMetaInfo(this.props.qsparams.orderNo);
+                if(!metaInfo) {
+                    throw new Error('当前订单暂无数据');
+                }
+                
+            }
+
         } catch (e) {
             alert(e.message)
         }
@@ -45,34 +74,8 @@ class StarterPage extends React.Component {
 
 
     beginTest = async () => {
-
-        let search = this.props.location.search;
-        if (~search.indexOf('orderNo=')) {
-            this.router.push({ pathname: 'evt/info', search, })
-        } else {
-            try {
-                const token = getToken() || '-';
-                const userId = token.split('-')[0];
-                const user = await this.initUser();
-                if (!user.IsLogin) {
-                    throw new Error('登陆已过期');
-                }
-                let orderNoInfo = await this.props.createOrderNo({
-                    userId: user.UserID,
-                    evalId: this.props.qsparams.evalid,
-                    taskId: this.props.qsparams.taskId,
-                    sourcePlatform: 1,
-                    clientId: this.props.qsparams.clientId,
-                    realName: user.RealName,
-                    encodeStr: this.props.qsparams.encodeStr,
-                });
-                let search = this.props.location.search;
-                this.router.push({ pathname: 'evt/info', search, })
-
-            } catch (e) {
-                alert(e.message)
-            }
-        }
+        const search = this.props.location.search;
+        this.router.push({ pathname: 'evt/info', search, })
 
     }
 

@@ -15,7 +15,10 @@ function jumpLogin() {
 }
 
 
-
+/**
+ * @deprecated 这个方法用不上了
+ * @param {*} param0 
+ */
 export const createOrderNo = ({ evalId = 1, userId, clientId = 1, taskId = 1, sourcePlatform = 2, realName = '', encodeStr = '' }) => async (dispatch) => {
 
     const resp = await ajax.post(`/eval/create/orderno`, { evalId, userId: userId, clientId, taskId, sourcePlatform, realName, encodeStr });
@@ -36,11 +39,10 @@ export const createOrderNo = ({ evalId = 1, userId, clientId = 1, taskId = 1, so
 /**
  * 获取基本信息
  */
-export const getMetaInfo = (evtid) => async (dispatch) => {
+export const getMetaInfo = (orderNo) => async (dispatch) => {
 
-    const resp = await ajax.get(`/eval/get/evaluation?id=${evtid}`);
+    const resp = await ajax.get(`/eval/get/evaluation/orderno?orderNo=${orderNo}`);
     if (resp.code === '200') {
-        // resp.data.basicContent = JSON.parse(resp.data.basicContent);
         dispatch({ type: EVT_GET_META_INFO, payload: resp.data });
         return resp.data;
     } else {
