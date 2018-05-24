@@ -96,7 +96,7 @@ class InfoPage extends React.Component {
                             <li key={item.id} className={style.item}>
                                 <div className={style.tit}>*{item.name}</div>
                                 {item.type === 'radio' && <div className={style.input}>
-                                {item.options.map(opt => (<div><input onClick={(e) => this.changeItem(item.code, opt.value)} type="radio" value={opt.value} key={opt.id} name={item.code} id={opt.id} /><label for={opt.id}>{opt.name}</label></div>))}
+                                {item.options.map(opt => (<div key={opt.id} className={style.inputItem}><input onClick={(e) => this.changeItem(item.code, opt.value)} type="radio" value={opt.value} name={item.code} id={opt.id} /><label htmlFor={opt.id}>{opt.name}</label></div>))}
 
                                 </div>}
 
