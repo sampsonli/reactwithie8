@@ -47,7 +47,7 @@ export const getMetaInfo = (orderNo) => async (dispatch) => {
         return resp.data;
     } else {
         if (resp.code === '2001106') {
-            return jumpLogin();
+            jumpLogin();
         }
         const err = new Error(resp.msg);
         err.code = resp.code;
@@ -66,7 +66,7 @@ export const getBaseInfo = (orderNo) => async (dispatch) => {
         return resp.data;
     } else {
         if (resp.code === '2001106') {
-            return jumpLogin();
+            jumpLogin();
         }
         const err = new Error(resp.msg);
         err.code = resp.code;
@@ -86,7 +86,7 @@ export const getQuestionList = ({ orderNo }) => async (dispatch) => {
         return resp.data;
     } else {
         if (resp.code === '2001106') {
-            return jumpLogin();
+            jumpLogin();
         }
         const err = new Error(resp.msg);
         err.code = resp.code;
@@ -104,7 +104,7 @@ export const submitRecord = ({ answerList, orderNo, answerTime }) => async (disp
         return resp.data;
     } else {
         if (resp.code === '2001106') {
-            return jumpLogin();
+            jumpLogin();
         }
         const err = new Error(resp.msg);
         err.code = resp.code;
@@ -124,7 +124,7 @@ export const submitInfo = ({ settings, orderNo }) => async (dispatch) => {
         return resp.data;
     } else {
         if (resp.code === '2001106') {
-            return jumpLogin();
+            jumpLogin();
         }
         const err = new Error(resp.msg);
         err.code = resp.code;
@@ -140,7 +140,7 @@ export const getPersonalReport = ({orderNo}) => async () => {
         return resp.data;
     } else {
         if (resp.code === '2001106') {
-            return jumpLogin();
+            jumpLogin();
         }
         const err = new Error(resp.msg);
         err.code = resp.code;
@@ -154,7 +154,7 @@ export const getGroupReport = ({decodeStr,clientId, type}) => async () => {
         return resp.data;
     } else {
         if (resp.code === '2001106') {
-            return jumpLogin();
+            jumpLogin();
         }
         const err = new Error(resp.msg);
         err.code = resp.code;

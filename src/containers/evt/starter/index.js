@@ -68,7 +68,11 @@ class StarterPage extends React.Component {
             }
 
         } catch (e) {
-            alert(e.message)
+            // 未登录情况不跳转
+            if (e.code !== '2001106') {
+                alert(e.message)
+            }
+            
         }
     }
 
