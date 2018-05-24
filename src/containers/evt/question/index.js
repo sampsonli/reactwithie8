@@ -9,6 +9,7 @@ import { isIE89 } from '~/common/util';
 import { maindomain } from '~/common/config';
 import Error from '~components/evt/error';
 import Dialog from '~components/evt/dialog';
+import Loading from '~components/loading';
 
 import * as actions from '~actions/evtActions';
 
@@ -166,15 +167,15 @@ class QuestionPage extends React.Component {
         try {
             let answerTime = Math.floor((Date.now() - this.startTime) / 1000);
             let report = await this.props.submitRecord({ answerList, orderNo: this.props.qsparams.orderNo, answerTime })
-            this.setState({ prompt: false, loading: false })
+            this.setState({ prompt: false, loading: false });
 
-            this.router.push({ pathname: 'report/student', search: this.props.location.search });
+            this.jumpReport();
 
         } catch (e) {
             
             if(e.code === "1002204") {
                 this.setState({error: true, loading: false});
-            } else if(e.code === '100205') {
+            } else if(e.code === '1002205') {
                 this.setState({isFinished: true, loading: false});
             } else {
                 this.setState({loading: false});
@@ -183,6 +184,9 @@ class QuestionPage extends React.Component {
         
         }
 
+    }
+    jumpReport = () => {
+        this.router.push({ pathname: 'report/student', search: this.props.location.search });
     }
     // 单选
     selectOne = (idx) => {
@@ -220,7 +224,11 @@ class QuestionPage extends React.Component {
             const question = this.props.qlist[this.state.currentIdx];
             return (
                 <div>
-                    {this.state.isFinished && <Dialog onclose={()=>this.setState({isFinished: false})}/>}
+                    {this.state.isFinished && <Dialog onclose={()=>{
+                        this.setState({ prompt: false, isFinished: false });
+                        this.jumpReport();
+                    }}/>}
+                    {this.state.loading && <Loading/>}
 
                     <div className={style.header}>{this.state.currentIdx + 1}.  {question.title}{classNames({ '【排序题】': question.type === 'sort_text', '【单选题】': question.type === 'radio_text' })}</div>
                     <div className={style.ct}>

@@ -102,7 +102,7 @@ module.exports = {
                 loader: 'url?limit=1024&name=fonts/[name].[hash].[ext]',
             },
             {
-                test: /\.(jpg|png)$/,
+                test: /\.(jpg|png|gif)$/,
                 loader: 'url?limit=100000',
             },
             {
