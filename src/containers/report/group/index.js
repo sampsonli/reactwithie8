@@ -24,33 +24,39 @@ class ClassesPage extends React.Component {
 
     }
     getData = async () => {
-        let report = await this.props.getGroupReport({
-            decodeStr: this.state.qsparams.decodeStr || '', // 加密字符串
-            type: this.state.qsparams.type || 2,  // 2 班级报告， 3 年级报告
-            clientId: this.state.qsparams.clientId || 1,
-        })
-        if (report.reportTime) {
-            let time = new Date(report.reportTime);
-            let year = time.getFullYear();
-            let month = time.getMonth() + 1;
-            let day = time.getDate()
-            report.reportTime = [year, month, day].join('-')
+        try {
+            let report = await this.props.getGroupReport({
+                decodeStr: this.state.qsparams.decodeStr || '', // 加密字符串
+                type: this.state.qsparams.type || 2,  // 2 班级报告， 3 年级报告
+                clientId: this.state.qsparams.clientId || 1,
+            })
+            if (report.reportTime) {
+                let time = new Date(report.reportTime);
+                let year = time.getFullYear();
+                let month = time.getMonth() + 1;
+                let day = time.getDate()
+                report.reportTime = [year, month, day].join('-')
+            }
+
+            // 默认班级排序
+            report.warnStudentList && report.warnStudentList.sort((a, b) => {
+                if (a.className > b.className) {
+                    return 1
+                } else if (a.className == b.className) {
+                    return 0;
+                } else {
+                    return -1
+                }
+            })
+            this.setState({ report })
+        } catch (e) {
+            alert(e.message)
         }
 
-        // 默认班级排序
-        report.warnStudentList && report.warnStudentList.sort((a, b) => {
-            if (a.className > b.className) {
-                return 1
-            } else if (a.className == b.className) {
-                return 0;
-            } else {
-                return -1
-            }
-        })
 
 
 
-        this.setState({ report })
+
 
     }
     sortBy = (sort) => {
@@ -131,7 +137,7 @@ class ClassesPage extends React.Component {
                 <div className={css.warninginfo}>
                     <div className={css.fulu}>附录：预警学生名单</div>
 
-                    {(this.state.report.isHideWarningMsg||!this.state.report.warnStudentList||this.state.report.warnStudentList.length ===0) && <div className={css.empty}>
+                    {(this.state.report.isHideWarningMsg || !this.state.report.warnStudentList || this.state.report.warnStudentList.length === 0) && <div className={css.empty}>
                     </div>}
                     {!this.state.report.isHideWarningMsg && this.state.report.warnStudentList && this.state.report.warnStudentList.length && <div>
                         <div className={css.assist}><span className={css.sums}>共{this.state.report.warnStudentList.length}人</span>
