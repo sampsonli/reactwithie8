@@ -109,7 +109,7 @@ class InfoPage extends React.Component {
 
 
                     </ul>
-                    <div className={classNames(style.nextstep, { [style.gray]: !this.state.ok })} onClick={this.nextTest}>下一题</div>
+                    <div className={classNames(style.nextstep, { [style.gray]: !this.state.ok })} onClick={this.nextTest}>开始答题</div>
                 </div>
             );
         } else {
