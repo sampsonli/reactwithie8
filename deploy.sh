@@ -1,5 +1,5 @@
 #!/bin/bash
-uri=attainment/evalpc2 
+uri=attainment/evalpc
 pname=evaluation_pc.tag.gz
 yarn
 yarn run build:235
