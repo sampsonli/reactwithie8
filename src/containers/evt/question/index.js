@@ -35,24 +35,10 @@ class QuestionPage extends React.Component {
             showConfirm: false,
             error: false,
             loading: false,
-        }
+        };
+        sessionStorage.removeItem('question_state');
         
-        // this.state = {
-        //     prompt: true,
-        //     isStop: false,
-        //     isFinished: false,
-        //     currentIdx: 0,
-        //     select: [],
-        //     preIdx: 0,
-        //     // select: [2],
-        //     answers: [],//[{currentIdx: 1, select: [1], preIdx: 0}]
-        //     order: [],
-        //     selectOk: false,
-        //     islast: false,
-        //     showConfirm: false,
-        //     error: false,
-        //     loading: false,
-        // }
+        
         this.startTime = Date.now();
         this.fetchData();
 
