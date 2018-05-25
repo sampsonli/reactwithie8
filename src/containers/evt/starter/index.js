@@ -68,9 +68,15 @@ class StarterPage extends React.Component {
             }
 
         } catch (e) {
-            // 未登录情况不跳转
-            if (e.code !== '2001106') {
-                alert(e.message)
+            // 未登录情况不处理
+            if (e.code === '2001106') {
+                
+            } else {
+                alert(e.message);
+                if(e.code === '1002205')  {
+                    this.router.push({ pathname: 'report/student', search: this.props.location.search });
+                }
+
             }
             
         }
