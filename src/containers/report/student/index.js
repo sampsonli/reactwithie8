@@ -65,15 +65,11 @@ class StudentPage extends React.Component {
                         {this.state.report.title.length > 3 && this.state.report.title.substr(3)}
                         <br /><span className={css.subtitle}>个人分析报告</span></div>
                     <div className={css.info}>
-                        {this.state.report.userName && <span className={css.igrade}>姓名：  {this.state.report.userName}</span>}
-                        <br />
-                        {this.state.report.className && <span>班级：  {this.state.report.className}</span>}
-                        <br />
-                        {this.state.report.schoolName && <span>学校：  {this.state.report.schoolName}</span>}
-                        <br />
-                        {this.state.report.reportNo && <span>报告编号： {this.state.report.reportNo}</span>}
-                        <br />
-                        {this.state.report.reportDate && <span>报告日期：  {this.state.report.reportDate}</span>}
+                        {this.state.report.userName && <div className={css.igrade}>姓名：  {this.state.report.userName}</div>}
+                        {this.state.report.className && <div>班级：  {this.state.report.className}</div>}
+                        {this.state.report.schoolName && <div>学校：  {this.state.report.schoolName}</div>}
+                        {this.state.report.reportNo && <div>报告编号： {this.state.report.reportNo}</div>}
+                        {this.state.report.reportDate && <div>报告日期：  {this.state.report.reportDate}</div>}
                     </div>
                     <div className={css.btips}>本报告为保密资料，仅供相关个人参考，请妥善保管</div>
                 </header>

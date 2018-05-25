@@ -116,16 +116,15 @@ class ClassesPage extends React.Component {
                     <div className={css.info}>
 
 
-                        {this.state.qsparams.type == '2' && this.state.report.className && (<span className={css.igrade}>班级：  {this.state.report.className}</span>)}
+                        {this.state.qsparams.type == '2' && this.state.report.className && (<div className={css.igrade}>班级：  {this.state.report.className}</div>)}
 
-                        {this.state.qsparams.type == '3' && this.state.report.gradeName && (<span className={css.igrade}>年级：  {this.state.report.gradeName}</span>)}
-                        <br />
-
-                        {this.state.report.schoolName && <span>学校：  {this.state.report.schoolName}</span>}
-                        <br />
-                        {this.state.report.reportNo && <span> 报告编号：  {this.state.report.reportNo}</span>}
-                        <br />
-                        {this.state.report.reportTime && <span>报告日期：  {this.state.report.reportTime}</span>}
+                        {this.state.qsparams.type == '3' && this.state.report.gradeName && (<div className={css.igrade}>年级：  {this.state.report.gradeName}</div>)}
+             
+                        {this.state.report.schoolName && <div>学校：  {this.state.report.schoolName}</div>}
+                  
+                        {this.state.report.reportNo && <div> 报告编号：  {this.state.report.reportNo}</div>}
+                        
+                        {this.state.report.reportTime && <div>报告日期：  {this.state.report.reportTime}</div>}
 
 
                     </div>
