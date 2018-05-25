@@ -58,12 +58,13 @@ class QuestionPage extends React.Component {
         let script = null;
         let dokeep = () => {
             if (script) {
-                document.head.removeChild(script);
+                document.querySelector('head').removeChild(script);
                 script = null;
             }
             script = document.createElement('script');
             script.src = `${maindomain}/Ajax/GetUser?type=1`;
-            document.head.appendChild(script);
+
+            document.querySelector('head').appendChild(script);
 
         }
         dokeep();
