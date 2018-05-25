@@ -20,7 +20,7 @@ class QuestionPage extends React.Component {
     constructor(args, context) {
         super(args, context);
         this.router = context.router;
-        this.state = {
+        this.state = sessionStorage.getItem('question_state') && JSON.parse(sessionStorage.getItem('question_state')) || {
             prompt: true,
             isStop: false,
             isFinished: false,
@@ -36,6 +36,23 @@ class QuestionPage extends React.Component {
             error: false,
             loading: false,
         }
+        
+        // this.state = {
+        //     prompt: true,
+        //     isStop: false,
+        //     isFinished: false,
+        //     currentIdx: 0,
+        //     select: [],
+        //     preIdx: 0,
+        //     // select: [2],
+        //     answers: [],//[{currentIdx: 1, select: [1], preIdx: 0}]
+        //     order: [],
+        //     selectOk: false,
+        //     islast: false,
+        //     showConfirm: false,
+        //     error: false,
+        //     loading: false,
+        // }
         this.startTime = Date.now();
         this.fetchData();
 
@@ -66,7 +83,7 @@ class QuestionPage extends React.Component {
         dokeep();
 
         // this.timeid  = setInterval(dokeep, 2000)
-        this.timeid = setInterval(dokeep, 60000 * 10)
+        this.timeid = setInterval(dokeep, 30000)
 
 
     }
@@ -179,6 +196,10 @@ class QuestionPage extends React.Component {
                 this.setState({isFinished: true, loading: false});
             } else {
                 this.setState({loading: false});
+
+                if (e.code === '2001106') {
+                    sessionStorage.setItem('question_state', JSON.stringify(this.state))
+                }
                 alert(e.message);
             }
         
