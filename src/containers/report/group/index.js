@@ -134,7 +134,7 @@ class ClassesPage extends React.Component {
                 <iframe className={css.iframe} src={this.state.report.reportUrl} />
 
 
-                {!this.state.report.isHideWarningMsg && <div className={css.warninginfo}>
+                {!this.state.report.hideWarningMsg && <div className={css.warninginfo}>
                     <div className={css.fulu}>附录：预警学生名单</div>
 
                     {( !this.state.report.warnStudentList || this.state.report.warnStudentList.length === 0) && <div className={css.empty}>
