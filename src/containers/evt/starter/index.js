@@ -68,9 +68,9 @@ class StarterPage extends React.Component {
             }
 
         } catch (e) {
-            // 未登录情况不处理
+        
             if (e.code === '2001106') {
-                
+                // 未登录情况不处理
             } else {
                 alert(e.message);
                 if(e.code === '1002205')  {
