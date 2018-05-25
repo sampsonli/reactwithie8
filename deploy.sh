@@ -1,7 +1,8 @@
 #!/bin/bash
-uri=attainment/evalpc
-pname=evaluation_pc.tag.gz
+uri="attainment/evalpc"
+pname="evaluation_pc.tar.gz"
 yarn
+pwd
 if [ "$1"x = "235"x ]
     yarn run build:235
     cd dist
