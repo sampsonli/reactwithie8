@@ -50,7 +50,11 @@ class ClassesPage extends React.Component {
             })
             this.setState({ report })
         } catch (e) {
-            alert(e.message)
+            // 未登录情况不处理
+            if (e.code !== '2001106') {
+                alert(e.message)
+            }
+            
         }
 
 
