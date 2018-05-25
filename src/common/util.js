@@ -15,15 +15,20 @@ export function parseQueryString(url) {
 
 
 export const isIE89 = (() => {
-    const browser = navigator.appName
-    const b_version = navigator.appVersion
-    const version = b_version.split(";");
-    const trim_Version = version[1].replace(/[ ]/g, "");
-    let isie89 = false
-    if (browser == "Microsoft Internet Explorer" && (trim_Version == "MSIE8.0" || trim_Version == "MSIE9.0")) {
-        isie89 = true;
+    try {
+        const browser = navigator.appName
+        const b_version = navigator.appVersion
+        const version = b_version.split(";");
+        const trim_Version = version[1].replace(/[ ]/g, "");
+        let isie89 = false
+        if (browser == "Microsoft Internet Explorer" && (trim_Version == "MSIE8.0" || trim_Version == "MSIE9.0")) {
+            isie89 = true;
+        }
+        return isie89;
+    } catch(e) {
+        return false
     }
-    return isie89;
+    
 })()
 
 export function getToken() {
