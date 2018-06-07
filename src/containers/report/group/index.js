@@ -78,9 +78,9 @@ class ClassesPage extends React.Component {
 
         } else { // 危险系数倒序
             warnStudentList.sort((a, b) => {
-                if (a.warningInfos[7].value > b.warningInfos[7].value) {
+                if (a.warningInfos[8].value > b.warningInfos[8].value) {
                     return -1
-                } else if (a.warningInfos[7].value == b.warningInfos[7].value) {
+                } else if (a.warningInfos[8].value == b.warningInfos[8].value) {
                     return 0;
                 } else {
                     return 1
