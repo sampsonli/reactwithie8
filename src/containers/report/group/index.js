@@ -177,7 +177,7 @@ class ClassesPage extends React.Component {
                                         <td className={classNames({ [css.c_yz]: row.warningInfos[6].riskLevel === 4, [css.c_warn]: row.warningInfos[6].riskLevel === 3 })}>{row.warningInfos[6].value.toFixed(2)}</td>
                                         <td className={classNames({ [css.c_yz]: row.warningInfos[7].riskLevel === 4, [css.c_warn]: row.warningInfos[7].riskLevel === 3 })}>{row.warningInfos[7].value.toFixed(2)}</td>
 
-                                        <td>{row.warningInfos[7].value.toFixed(2)}（{classNames({ '正常': row.warningInfos[7].riskLevel === 1, '轻度': row.warningInfos[7].riskLevel === 2, '中度': row.warningInfos[7].riskLevel === 3, '严重': row.warningInfos[7].riskLevel === 4 })}）</td>
+                                        <td>{row.warningInfos[8].value.toFixed(2)}（{classNames({ '正常': row.warningInfos[8].riskLevel === 1, '轻度': row.warningInfos[8].riskLevel === 2, '中度': row.warningInfos[8].riskLevel === 3, '严重': row.warningInfos[8].riskLevel === 4 })}）</td>
 
 
                                     </tr>

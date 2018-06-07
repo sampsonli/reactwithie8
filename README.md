@@ -1,17 +1,18 @@
-# 可选依赖包
-    "html2canvas": "^1.0.0-alpha.12",
-    "caniuse-db": "^1.0.30000830",
-    "echarts": "^2.2.8",
-    "babel": "^6.23.0",
-    "babel-runtime": "^6.26.0",
-    "eslint-module-utils": "^2.2.0",
-    "js-cookie": "^2.2.0",
-    "uxcore": "^0.14.8",
-    "webpack-core": "^0.6.9",
+# 使用说明
+## 搭建持续集成环境
+1. clone 当前项目
+2. 修改deploy.sh文件中uri, pname两个变量值， 其中uri 代表最终部署到线下访问uri， pname代表构建后的压缩文件名（可以随意取名, 只要不与其它文件名冲突)
+3. 访问jenkins地址[jenkins](http://ci.mistong.com)并登陆
+4. 点击new item, 输入名称（英文），选择Freestyle project并确定
+5. 输入描述信息, source code management选择git， 输入git仓库地址
+6. 在Build Triggers选择Poll scm, 输入 H/3 * * * *  代表每三分钟检测一次git仓库， 可自行调整
+7. 在build 下拉选择execute shell
+8. 在输入框中输入
+~~~
+sh deploy #线上
+# sh deploy "235" #235环境
+~~~
+9. 点击确定新建完成
 
-# 下载安装
-1. git clone **.git yourprojectname
-2. cd yourprojectname
-3. yarn
-4. yarn dev
-5. yarn build
+## 解决ie8/ie9 跨域问题
+
