@@ -3,61 +3,20 @@ import React from 'react';
 import { Router, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
 
-
-import TestPage from '~containers/evt';
-import TestInfoPage from '~containers/evt/info';
-import TestQuestionPage from '~containers/evt/question';
-import TestStarterPage from '~containers/evt/starter';
-
-
-import ReportGroup from '~containers/report/group';
-import ReportStudent from '~containers/report/student';
-
 const configureStore = require('./store/configureStore');
 
 const store = configureStore(window.__INITIAL_STATE__);
+const views = [];
+((r) => {
+    r.keys().forEach((key) => {
+        views.push(r(key));
+    });
+})(require.context('./containers', true, /\.\/[^\/]+\/index.js$/)); // eslint-disable-line
 
 const routeConfig = {
     path: '/',
     childRoutes: [
-        {
-            path: 'evt',
-            component: TestPage,
-            childRoutes: [
-                {
-                    path: 'starter',
-                    component: TestStarterPage,
-                },
-                {
-                    path: 'info',
-                    component: TestInfoPage,
-
-                },
-                {
-                    path: 'question',
-                    component: TestQuestionPage,
-
-                },
-
-            ]
-        },
-        {
-            path: 'report',
-            childRoutes: [
-                {
-                    path: 'group',
-                    component: ReportGroup,
-
-                },
-                {
-                    path: 'student',
-                    component: ReportStudent,
-
-                },
-
-            ],
-        },
-
+        ...views,
     ],
 }
 
