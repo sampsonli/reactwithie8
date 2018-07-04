@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Router, hashHistory, BrowserHistory } from 'react-router';
+import { Router, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
 
 
@@ -15,9 +15,7 @@ import ReportStudent from '~containers/report/student';
 
 const configureStore = require('./store/configureStore');
 
-const store = configureStore(window.__INITIAL_STATE__)
-// const store = configureStore(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
+const store = configureStore(window.__INITIAL_STATE__);
 
 const routeConfig = {
     path: '/',
@@ -30,7 +28,6 @@ const routeConfig = {
                     path: 'starter',
                     component: TestStarterPage,
                 },
-               
                 {
                     path: 'info',
                     component: TestInfoPage,
@@ -58,7 +55,7 @@ const routeConfig = {
 
                 },
 
-            ]
+            ],
         },
 
     ],
@@ -70,6 +67,6 @@ const routeConfig = {
 export default function () {
     return (<Provider store={store}>
         <Router history={hashHistory} routes={routeConfig} />
-    </Provider>)
+    </Provider>);
 }
 

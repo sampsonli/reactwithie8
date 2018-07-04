@@ -29,7 +29,9 @@
     "react/jsx-first-prop-new-line": "off",
     "react/jsx-filename-extension": "off",
     "no-restricted-syntax": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "no-bitwise": "off",
+    "arrow-parens": "off"
   },
   "settings": {
     "import/resolver": {
