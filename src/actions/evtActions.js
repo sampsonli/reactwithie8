@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {
     EVT_GETINFO,
     EVT_SET_GETQUESTION_LIST,

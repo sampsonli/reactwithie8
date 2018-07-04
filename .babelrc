@@ -1,6 +1,6 @@
 {
   "presets": ["es2015", "react", "stage-0"],
   "plugins": [
-    "add-module-exports","transform-runtime", "babel-plugin-transform-regenerator"
+    "add-module-exports","transform-runtime", "babel-plugin-transform-regenerator", "transform-decorators-legacy"
   ]
 }
