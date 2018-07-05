@@ -1,4 +1,6 @@
-
+/**
+ *  此文件不需要做任何修改了
+ */
 import React from 'react';
 import { Router, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
@@ -18,7 +20,7 @@ const routeConfig = {
     childRoutes: [
         ...views,
     ],
-}
+};
 
 // 通过Router配置上hashHistory和route
 // 再用reactRedux.provider将Router包含起来
