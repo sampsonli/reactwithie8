@@ -9,6 +9,12 @@ const getJyez = (nextState, callback) => {
     }, 'jyez');
 };
 
+const getBbx = (nextState, callback) => {
+    require.ensure([], require => {
+        callback(null, require('./jyez/bbx'));
+    }, 'bbx');
+};
+
 export default {
     path: 'home',
     getComponent: getHome,
@@ -16,6 +22,12 @@ export default {
         {
             path: 'jyez',
             getComponent: getJyez,
+            childRoutes: [
+                {
+                    path: 'bbx',
+                    getComponent: getBbx,
+                },
+            ],
         },
 
     ],

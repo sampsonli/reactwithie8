@@ -5,8 +5,8 @@ import SitNav from '../../components/home/sitnav';
 
 // @connect(state => ({}), dispatch => bindActionCreators({}, dispatch))
 export default class Home extends Component {
-    static props = {
-        // children: PropTypes.any,
+    static propTypes = {
+        children: PropTypes.element.isRequired,
     }
 
     render() {

@@ -1,11 +1,33 @@
 // import {connect} from 'react-redux';
-// eslint-disable-next-line
 import React, {Component, PropTypes} from 'react';
 // import {bindActionCreators} from 'redux';
+import classNames from 'classnames';
+import css from './style.css';
 
 // @connect(state => ({}), dispatch => bindActionCreators({}, dispatch))
 export default class Jyez extends Component {
+    static propTypes = {
+        children: PropTypes.element.isRequired,
+    }
+
     render() {
-        return <div>1234www5</div>;
+        return (
+            <div className={css.main}>
+                <div className={css.jyez_ct}>
+
+                    <div className={css.container__header}>
+                        <a href="/GoodPost/BySelf">
+                            <div className={classNames(css.header__title, css.self)}/>
+                        </a>
+                        <a href="http://xinliqa.ewt360.com/QA/Index">
+                            <div className={classNames(css.header__title, css.others)}/>
+                        </a>
+                    </div>
+                    <div>
+                        {this.props.children}
+                    </div>
+                </div>
+            </div>
+        );
     }
 }
