@@ -1,13 +1,14 @@
 // 如果是开发模式，store 采用此配置
 
-import {createStore, applyMiddleware, compose} from 'redux';
+import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
-import rootReducer from '../reducers';
+import initReducers from '../reducers';
+
 
 const configureStore = (preloadedState) => {
     const store = createStore(
-        rootReducer,
+        combineReducers(initReducers),
         preloadedState,
         compose(
             applyMiddleware(thunkMiddleware, createLogger()),
@@ -23,6 +24,9 @@ const configureStore = (preloadedState) => {
         });
     }
 
+    store.asyncReducers = {
+        ...initReducers,
+    };
     return store;
 };
 

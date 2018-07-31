@@ -1,3 +1,5 @@
+import {combineReducers} from 'redux';
+
 const cache = {};
 ((r) => {
     r.keys().forEach((key) => {
@@ -6,5 +8,5 @@ const cache = {};
         }
     });
 })(require.context('./', true, /\.js$/));
-
-export default cache;
+const reducers = combineReducers(cache);
+export default reducers;

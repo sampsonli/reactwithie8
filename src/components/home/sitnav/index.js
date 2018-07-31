@@ -52,7 +52,7 @@ export default class SitNav extends React.Component {
 
                         {
                             this.state.user.IsLogin && (
-                                <div className={css.loginStatus}>
+                                <div className={css.loginStatus} ref={(e) => { this.loginStatus = e; }}>
                                     <a href={`${EWTURL}/member`} className={classNames(css.mrgL5, css.loginStatusName)} target="_blank">
                                         <span>{this.state.user.RealName}</span><span className={css.arrow} />
                                     </a>
