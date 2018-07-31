@@ -3,7 +3,8 @@ import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {injectReducer} from '~/route';
 import reducers from './reducers';
-injectReducer({key: 'demo', reducer: reducers});
+import {path} from './';
+injectReducer({key: path, reducer: reducers});
 
 
 @connect(state => ({demo: state.demo}), dispatch => bindActionCreators({}, dispatch))
@@ -16,7 +17,7 @@ export default class Main extends Component {
                     <h1 className="fl"><a href="/"><img src="http://cdn.ewt360.com/ewt360/images/images/ewt_psylogo.png" className="pngFix" alt="升学e网通"/></a></h1>
                     <div className="studySearch fr psychologySearch">
                         <form action="/Psychology/Search" id="fmPsySearch">
-                            <input type="text" value="" placeholder="搜索心灵板报" name="keyword" id="keyword" className="fmTxt" /><input type="submit" value="搜索" className="fmSubmit" />
+                            <input type="text" value="" placeholder={this.props.demo.ewt.name || "搜索心灵板报"} name="keyword" id="keyword" className="fmTxt" /><input type="submit" value="搜索" className="fmSubmit" />
                         </form>
                     </div>
                 </div>
