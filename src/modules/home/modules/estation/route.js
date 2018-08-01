@@ -1,4 +1,3 @@
-// --///////////////////////下面的内容固定\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const modules = [];
 ((r) => {
     r.keys().forEach((key) => {
@@ -7,19 +6,17 @@ const modules = [];
         modules.push(md);
     });
 })(require.context('./modules', true, /\.\/[^\/]+\/route.js$/)); // eslint-disable-line
-// --\\\\\\\\\\\\\\\\\\\\\\\上面面的内容固定///////////////////////////////
 
-const getHome = (nextState, callback) => {
+const getEstation = (nextState, callback) => {
     require.ensure([], require => {
         callback(null, require('./'));
-    }, 'home');
+    }, 'estation');
 };
 
 export default {
-    path: 'home',
-    getComponent: getHome,
+    path: 'estation',
+    getComponent: getEstation,
     childRoutes: [
         ...modules,
-
     ],
 };

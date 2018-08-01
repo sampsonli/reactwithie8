@@ -26,18 +26,18 @@ export const injectReducer = ({ key, reducer }) => {
     }));
 }
 
-const views = [];
+const modules = [];
 ((r) => {
     r.keys().forEach((key) => {
         const md = r(key);
         md.path = md.path || key.split('/')[1];
-        views.push(md);
+        modules.push(md);
     });
 })(require.context('./modules', true, /\.\/[^\/]+\/route.js$/)); // eslint-disable-line
 
 const routeConfig = {
     path: '/',
-    childRoutes: views,
+    childRoutes: modules,
 };
 
 // 通过Router配置上hashHistory和route
