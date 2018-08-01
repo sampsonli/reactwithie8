@@ -2,7 +2,7 @@
 import React, {Component, PropTypes} from 'react';
 // import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
-import css from './style.css';
+import css from './style/index.css';
 
 // @connect(state => ({}), dispatch => bindActionCreators({}, dispatch))
 export default class Jyez extends Component {

@@ -1,13 +1,12 @@
 const path = require('path');
-const fs = require('fs');
 const webpack = require('webpack');
-// const AssetsPlugin = require('assets-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     entry: {
         entry: './src/index.js',
-        vendor: ['es5-shim', 'es5-shim/es5-sham', 'fetch-ie8', 'console-polyfill', 'react', 'react-router','es6-promise', 'react-redux', 'redux', 'axios']
+        vendor: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', 'react', 'react-router', 'es6-promise', 'react-redux', 'redux', 'axios'],
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -18,8 +17,7 @@ module.exports = {
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest'],
-            // filename: '[name].[chunkhash:8].js'
-            filename: '[name].js'
+            filename: '[name].js',
 
         }),
         new webpack.NoErrorsPlugin(),
@@ -29,26 +27,17 @@ module.exports = {
                 NODE_ENV: JSON.stringify('development'),
             },
         }),
-        // new AssetsPlugin({
-        //     filename: 'dist/webpack-assets.js',
-        //     processOutput(assets) {
-        //         if (!fs.existsSync('dist')) {
-        //             fs.mkdirSync('dist');
-        //         }
-        //         return `window.WEBPACK_ASSETS = ${JSON.stringify(assets)}`;
-        //     },
-        // }),
         new ExtractTextPlugin('style.all.css'),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.resolve(__dirname, 'src/index.ejs'),
-            chunks: ['manifest', 'vendor', 'entry']
-        })
+            chunks: ['manifest', 'vendor', 'entry'],
+        }),
     ],
     resolve: {
         // 实际就是自动添加后缀，默认是当成js文件来查找路径
         // 空字符串在此是为了resolve一些在import文件时不带文件扩展名的表达式
-        extensions: ['', '.js', 'jsx'],
+        extensions: ['', '.js', 'jsx', 'css', 'scss', 'less'],
 
         // 路径别名
         alias: {

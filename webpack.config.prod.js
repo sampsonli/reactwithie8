@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     entry: {
         entry: './src/index.js',
-        vendor: ['es5-shim', 'es5-shim/es5-sham', 'fetch-ie8', 'console-polyfill', 'react', 'react-router','es6-promise', 'react-redux', 'redux', 'axios']
+        vendor: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', 'react', 'react-router', 'es6-promise', 'react-redux', 'redux', 'axios'],
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -22,8 +22,7 @@ module.exports = {
 
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest'],
-            // filename: '[name].[chunkhash:8].js'
-            filename: '[name].[chunkhash:8].js'
+            filename: '[name].[chunkhash:8].js',
 
         }),
 
@@ -46,23 +45,18 @@ module.exports = {
                 EWT_ENV: JSON.stringify(process.env.EWT_ENV || 'online'),
             },
         }),
-        // new AssetsPlugin({
-        //     filename: 'dist/webpack-assets.js',
-        //     processOutput(assets) {
-        //         return `window.WEBPACK_ASSETS = ${JSON.stringify(assets)}`;
-        //     },
-        // }),
+
         new ExtractTextPlugin('style.all.[hash:8].css'),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.resolve(__dirname, 'src/index.ejs'),
-            chunks: ['manifest', 'vendor', 'entry']
-        })
+            chunks: ['manifest', 'vendor', 'entry'],
+        }),
     ],
     resolve: {
         // 实际就是自动添加后缀，默认是当成js文件来查找路径
         // 空字符串在此是为了resolve一些在import文件时不带文件扩展名的表达式
-        extensions: ['', '.js', 'jsx'],
+        extensions: ['', '.js', 'jsx', 'css', 'scss', 'less'],
 
         // 路径别名
         alias: {
@@ -90,7 +84,7 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                loaders: ['babel-loader', /*'eslint-loader'*/],
+                loaders: ['babel-loader'],
             },
             {
                 test: /(fontawesome-webfont|glyphicons-halflings-regular)\.(woff|woff2|ttf|eot|svg)($|\?)/,
@@ -111,15 +105,5 @@ module.exports = {
                 loaders: ['es3ify-loader'],
             },
         ],
-    },
-    // 代理服务器，作用类似nginx
-    devServer: {
-        disableHostCheck: true,
-        proxy: {
-            '/test1': {
-                target: 'http://192.168.31.8:9000',
-                secure: false,
-            },
-        },
     },
 };

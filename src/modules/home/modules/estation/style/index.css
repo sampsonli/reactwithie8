@@ -1,6 +1,6 @@
 .main {
     overflow: hidden;
-    background: url(~assets/images/bodyBg.jpg) no-repeat top;
+    background: url(../assets/images/bodyBg.jpg) no-repeat top;
     background-color: #fee3d2;
 }
 .jyez_ct {
@@ -11,7 +11,7 @@
     text-align: center;
 }
 .header__title.self {
-    background: url(~assets/images/tab_ico_01.png) no-repeat top;
+    background: url(../assets/images/tab_ico_01.png) no-repeat top;
     background-position-y: -4px;
 }
 
@@ -24,6 +24,6 @@
     cursor: pointer;
 }
 .others {
-    background: url(~assets/images/tab_ico_02.png) no-repeat top;
+    background: url(../assets/images/tab_ico_02.png) no-repeat top;
     background-size: 300px 81px;
 }
