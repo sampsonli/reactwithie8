@@ -22,6 +22,12 @@ const getHome = (nextState, callback) => {
 export default {
     mid: Math.floor(Math.random() * 100000000000), // ///////是给当前模块生成唯一的id，主要是给ruducer用的 不需要做任何改动
     getComponent: getHome,
+    indexRoute: {
+        onEnter(ig, replace) {
+            replace('/home/estation/bbx');
+        },
+    },
+
     childRoutes: [
         ...modules,
     ],

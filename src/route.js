@@ -2,7 +2,7 @@
  *  此文件不需要做任何修改了
  */
 import React from 'react';
-import { Router, hashHistory } from 'react-router';
+import { Router, hashHistory} from 'react-router';
 import { Provider } from 'react-redux';
 import {combineReducers} from 'redux';
 
@@ -38,6 +38,11 @@ const modules = [];
 
 const routeConfig = {
     path: '/',
+    indexRoute: {
+        onEnter(ig, replace) {
+            replace('/home');
+        },
+    },
     childRoutes: modules,
 };
 
