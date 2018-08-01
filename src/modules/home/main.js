@@ -1,23 +1,23 @@
-// import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 import React, {Component, PropTypes} from 'react';
-// import {bindActionCreators} from 'redux';
-import SitNav from '../../components/home/sitnav';
+import {bindActionCreators} from 'redux';
+import {injectReducer} from '~/route';
+import reducers from './reducers';
+import {path} from './';
+injectReducer({key: path, reducer: reducers});
 
-// @connect(state => ({}), dispatch => bindActionCreators({}, dispatch))
-export default class Home extends Component {
-    static propTypes = {
-        children: PropTypes.element.isRequired,
-    }
+
+@connect(state => ({home: state.home}), dispatch => bindActionCreators({}, dispatch))
+export default class Main extends Component {
 
     render() {
         return (<div>
-            <SitNav />
             <div className="studyHeader">
                 <div className="W1000 clearfix">
                     <h1 className="fl"><a href="/"><img src="http://cdn.ewt360.com/ewt360/images/images/ewt_psylogo.png" className="pngFix" alt="升学e网通"/></a></h1>
                     <div className="studySearch fr psychologySearch">
                         <form action="/Psychology/Search" id="fmPsySearch">
-                            <input type="text" value="" placeholder="搜索心灵板报" name="keyword" id="keyword" className="fmTxt" /><input type="submit" value="搜索" className="fmSubmit" />
+                            <input type="text" value="" placeholder={this.props.home.ewt.name || "搜索心灵板报"} name="keyword" id="keyword" className="fmTxt" /><input type="submit" value="搜索" className="fmSubmit" />
                         </form>
                     </div>
                 </div>

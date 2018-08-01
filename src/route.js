@@ -30,7 +30,6 @@ const views = [];
 ((r) => {
     r.keys().forEach((key) => {
         const md = r(key);
-        md.path = md.path || key.split('/')[1];
         views.push(md);
     });
 })(require.context('./modules', true, /\.\/[^\/]+\/index.js$/)); // eslint-disable-line

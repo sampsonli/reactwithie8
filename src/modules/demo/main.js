@@ -39,7 +39,7 @@ export default class Main extends Component {
                 </div>
             </div>
 
-            <div></div>
+            <div>{ this.props.children}</div>
         </div>);
     }
 }

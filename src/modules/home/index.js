@@ -1,13 +1,15 @@
-const getMain = (nextState, callback) => {
+const path = 'home';
+
+
+const getHome = (nextState, callback) => {
     require.ensure([], require => {
         callback(null, require('./main'));
-    }, 'demo/main');
+    }, `${path}/home`);
 };
 
-
 export default {
-    path: 'demo',
-    getComponent: getMain,
+    path,
+    getComponent: getHome,
     childRoutes: [
         {
         },
