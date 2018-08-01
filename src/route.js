@@ -24,8 +24,9 @@ export const injectReducer = ({ key, reducer }) => {
     store.replaceReducer(combineReducers({
         ...store.asyncReducers,
     }));
-}
+};
 
+// 自动注入各个子模块
 const modules = [];
 ((r) => {
     r.keys().forEach((key) => {
