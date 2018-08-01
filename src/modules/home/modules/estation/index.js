@@ -1,8 +1,33 @@
-import React, {Component} from 'react';
+// import {connect} from 'react-redux';
+import React, {Component, PropTypes} from 'react';
+// import {bindActionCreators} from 'redux';
+import classNames from 'classnames';
+import css from './style.css';
 
-export default class Estation extends Component {
+// @connect(state => ({}), dispatch => bindActionCreators({}, dispatch))
+export default class Jyez extends Component {
+    static propTypes = {
+        children: PropTypes.element.isRequired,
+    }
 
     render() {
-        return <div style={{fontSize: '50px', color: 'red', marginTop: '100px'}}>hello</div>;
+        return (
+            <div className={css.main}>
+                <div className={css.jyez_ct}>
+
+                    <div className={css.container__header}>
+                        <a href="/GoodPost/BySelf">
+                            <div className={classNames(css.header__title, css.self)}/>
+                        </a>
+                        <a href="http://xinliqa.ewt360.com/QA/Index">
+                            <div className={classNames(css.header__title, css.others)}/>
+                        </a>
+                    </div>
+                    <div>
+                        {this.props.children}
+                    </div>
+                </div>
+            </div>
+        );
     }
 }

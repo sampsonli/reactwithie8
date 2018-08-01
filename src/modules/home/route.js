@@ -15,6 +15,7 @@ const getHome = (nextState, callback) => {
     }, 'home');
 };
 
+
 export default {
     // 给当前模块生成唯一的id
     mid: Math.floor(Math.random() * 100000000000),

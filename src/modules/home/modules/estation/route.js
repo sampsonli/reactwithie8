@@ -15,11 +15,21 @@ const getEstation = (nextState, callback) => {
     }, 'estation');
 };
 
+const getBbx = (nextState, callback) => {
+    require.ensure([], require => {
+        callback(null, require('./views/bbx'));
+    }, 'home/bbx');
+};
+
 export default {
     // 给当前模块生成唯一的id
     mid: Math.floor(Math.random() * 100000000000),
     getComponent: getEstation,
     childRoutes: [
+        {
+            path: 'bbx',
+            getComponent: getBbx,
+        },
         ...modules,
     ],
 };

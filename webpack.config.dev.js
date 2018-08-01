@@ -53,10 +53,6 @@ module.exports = {
         // 路径别名
         alias: {
             '~': path.resolve(__dirname, 'src'),
-            '~containers': path.resolve(__dirname, 'src/containers'),
-            '~components': path.resolve(__dirname, 'src/components'),
-            '~actions': path.resolve(__dirname, 'src/actions'),
-            '~assets': path.resolve(__dirname, 'src/assets'),
         },
     },
     debug: true,
