@@ -1,14 +1,12 @@
-const path = 'home';
-
 
 const getHome = (nextState, callback) => {
     require.ensure([], require => {
         callback(null, require('./main'));
-    }, `${path}/home`);
+    }, 'home/home');
 };
 
 export default {
-    path,
+    path: 'home',
     getComponent: getHome,
     childRoutes: [
         {
