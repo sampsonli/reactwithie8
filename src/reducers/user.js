@@ -1,6 +1,6 @@
 import {
-    EVT_GETINFO,
-} from '../actions/actionsTypes';
+    DEMO
+} from '../actions/types';
 
 const initState = {
     info: null,
@@ -8,7 +8,7 @@ const initState = {
 
 export default function evt(state = initState, action) {
     switch (action.type) {
-        case EVT_GETINFO: {
+        case DEMO: {
             const result = {...state};
             result.info = action.payload;
             return result;
