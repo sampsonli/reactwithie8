@@ -16,6 +16,7 @@ export default class Main extends Component {
     render() {
         return (<div className={css.main}>
             <div className={css.header}></div>
+            <div className={css.content}>移动端页面</div>
 
         </div>);
     }

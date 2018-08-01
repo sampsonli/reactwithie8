@@ -12,3 +12,12 @@
     height: 1rem;
     background-color: red;
 }
+.content {
+    flex: 1;
+    height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .4rem;
+    color: greenyellow;
+}
