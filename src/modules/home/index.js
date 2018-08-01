@@ -3,11 +3,11 @@ import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {injectReducer} from '~/route';
 import reducers from './reducers';
-import {path} from './route';
-injectReducer({key: path, reducer: reducers});
+import {mid} from './route';
+injectReducer({key: mid, reducer: reducers});
 
 
-@connect(state => ({home: state.home}), dispatch => bindActionCreators({}, dispatch))
+@connect(state => ({home: state[mid]}), dispatch => bindActionCreators({}, dispatch))
 export default class Main extends Component {
 
     render() {
