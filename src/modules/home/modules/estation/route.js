@@ -25,6 +25,11 @@ export default {
     // 给当前模块生成唯一的id
     mid: Math.floor(Math.random() * 100000000000),
     getComponent: getEstation,
+    indexRoute: {
+        onEnter({location}, replace) {
+            replace(`${location.pathname}/bbx`);
+        },
+    },
     childRoutes: [
         {
             path: 'bbx',
