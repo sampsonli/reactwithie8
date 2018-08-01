@@ -33,7 +33,7 @@ const views = [];
         md.path = md.path || key.split('/')[1];
         views.push(md);
     });
-})(require.context('./modules', true, /\.\/[^\/]+\/index.js$/)); // eslint-disable-line
+})(require.context('./modules', true, /\.\/[^\/]+\/route.js$/)); // eslint-disable-line
 
 const routeConfig = {
     path: '/',
