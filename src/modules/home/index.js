@@ -4,6 +4,8 @@ import {bindActionCreators} from 'redux';
 import {injectReducer} from '~/route';
 import reducers from './reducers';
 import {mid} from './route';
+
+// 自动注入当前模块的 reducer
 injectReducer({key: mid, reducer: reducers});
 
 
