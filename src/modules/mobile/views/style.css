@@ -1,0 +1,29 @@
+.main {
+    overflow: hidden;
+    background: url(~assets/images/bodyBg.jpg) no-repeat top;
+    background-color: #fee3d2;
+}
+.jyez_ct {
+    width: 1050px;
+    margin: 0 auto;
+}
+.container__header {
+    text-align: center;
+}
+.header__title.self {
+    background: url(~assets/images/tab_ico_01.png) no-repeat top;
+    background-position-y: -4px;
+}
+
+.header__title {
+    width: 312px;
+    height: 103px;
+    margin-top: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.others {
+    background: url(~assets/images/tab_ico_02.png) no-repeat top;
+    background-size: 300px 81px;
+}
