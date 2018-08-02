@@ -11,6 +11,11 @@
 .header {
     height: 1rem;
     background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: wheat;
+    font-size: .2rem;
 }
 .content {
     flex: 1;
