@@ -20,7 +20,7 @@ const getHome = (nextState, callback) => {
 // 异步加载view   end
 
 export default {
-    mid: Math.floor(Math.random() * 100000000000), // ///////是给当前模块生成唯一的id，主要是给reducer用的 不需要做任何改动
+    mid: module.id, // ///////是给当前模块生成唯一的id，主要是给reducer用的 不需要做任何改动
     getComponent: getHome,
     indexRoute: {
         onEnter({location}, replace) {

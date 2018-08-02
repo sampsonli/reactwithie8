@@ -18,7 +18,7 @@ const getHome = (nextState, callback) => {
 
 export default {
     // 给当前模块生成唯一的id
-    mid: Math.floor(Math.random() * 100000000000),
+    mid: module.id,
     getComponent: getHome,
     childRoutes: [
         ...modules,

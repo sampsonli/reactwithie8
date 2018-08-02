@@ -12,8 +12,8 @@ app.set('port', port)
 app.use(compression())
 app.use(express.static(path.join(__dirname, 'dist'), {
     maxAge: '1d',
-    setHeaders(res) {
-        if (~path.indexOf('index.html')) {
+    setHeaders(res, file) {
+        if (~file.indexOf('index.html')) {
             res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=5');
         }
     },
