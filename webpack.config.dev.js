@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        entry: './src/index.js',
+        entry: ['webpack-hot-middleware/client?reload=true', './src/index.js'],
         vendor: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', 'react', 'react-router', 'es6-promise', 'react-redux', 'redux', 'axios'],
     },
     output: {
@@ -15,6 +15,7 @@ module.exports = {
         publicPath: '',
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest'],
             filename: '[name].js',
@@ -86,15 +87,5 @@ module.exports = {
                 loaders: ['es3ify-loader'],
             },
         ],
-    },
-    // 代理服务器，作用类似nginx
-    devServer: {
-        disableHostCheck: true,
-        proxy: {
-            '/eval/*': {
-                target: 'http://10.0.11.87:8701',
-                secure: false,
-            },
-        },
     },
 };

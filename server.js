@@ -9,24 +9,30 @@ const app = express()
 app.set('port', port)
 
 
-app.use(compression())
-app.use(express.static(path.join(__dirname, 'dist'), {
-    maxAge: '1d',
-    setHeaders(res, file) {
-        if (~file.indexOf('index.html')) {
-            res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=5');
-        }
-    },
-}))
-
-// BrowserHistory code
-app.get('*', (request, response) => {
-    response.sendFile(path.resolve(__dirname, 'dist', 'index.html'), {
-        headers: {
-            'Cache-Control': 'public, max-age=0, s-maxage=5',
+if(process.env.NODE_ENV === 'production') {
+    app.use(compression())
+    app.use(express.static(path.join(__dirname, 'dist'), {
+        maxAge: '1d',
+        setHeaders(res, file) {
+            if (~file.indexOf('index.html')) {
+                res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=5');
+            }
         },
-    });
-});
+    }))
+
+} else {
+    const webpack = require('webpack');
+    const config = require('./webpack.config.dev');
+    const compiler = webpack(config);
+    app.use(require('webpack-dev-middleware')(compiler, {
+        noInfo: true,
+        hot: true,
+
+        publicPath: config.output.publicPath
+    }));
+    app.use(require('webpack-hot-middleware')(compiler));
+
+}
 
 app.listen(port, host, (err) => {
     if (err) {
