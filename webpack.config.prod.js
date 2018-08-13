@@ -25,6 +25,10 @@ module.exports = {
             filename: '[name].[chunkhash:8].js',
 
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            children: true,
+            async: 'commons-async'
+        }),
 
         // 压缩js文件，ie8支持插件使用Es3ifyPlugin
         new webpack.optimize.UglifyJsPlugin({
