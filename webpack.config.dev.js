@@ -21,6 +21,10 @@ module.exports = {
             filename: '[name].js',
 
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            children: true,
+            async: 'vendor-async'
+        }),
         new webpack.NoErrorsPlugin(),
         // 定义全局环境变量为开发环境
         new webpack.DefinePlugin({

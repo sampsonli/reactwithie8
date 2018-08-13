@@ -27,7 +27,7 @@ module.exports = {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
-            async: 'commons-async'
+            async: 'vendor-async'
         }),
 
         // 压缩js文件，ie8支持插件使用Es3ifyPlugin
