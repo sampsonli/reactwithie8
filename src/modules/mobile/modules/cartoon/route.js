@@ -9,18 +9,21 @@ const modules = [];
 })(require.context('./', true, /\.\/modules\/[^\/]+\/route.js$/)); // eslint-disable-line
 // --\\\\\\\\\\\\\\\\\\\\\\\上面面的内容固定///////////////////////////////
 
-const getHome = (nextState, callback) => {
+const getList = (nextState, callback) => {
     require.ensure([], require => {
-        callback(null, require('./'));
-    }, 'cartoon');
+        callback(null, require('./views/list'));
+    }, 'cartoon/list');
 };
 
 
 export default {
     // 给当前模块生成唯一的id
     mid: module.id,
-    getComponent: getHome,
     childRoutes: [
+        {
+            path: 'list',
+            getComponent: getList
+        },
         ...modules,
     ],
 };

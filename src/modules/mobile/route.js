@@ -9,17 +9,17 @@ const modules = [];
 })(require.context('./', true, /\.\/modules\/[^\/]+\/route.js$/)); // eslint-disable-line
 // --\\\\\\\\\\\\\\\\\\\\\\\上面面的内容固定///////////////////////////////
 
-const getHome = (nextState, callback) => {
+const getMobile = (nextState, callback) => {
     require.ensure([], require => {
         callback(null, require('./'));
-    }, 'home');
+    }, 'mobile');
 };
 
 
 export default {
     // 给当前模块生成唯一的id
     mid: module.id,
-    getComponent: getHome,
+    getComponent: getMobile,
     childRoutes: [
         ...modules,
     ],

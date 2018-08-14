@@ -8,9 +8,9 @@ const port = process.env.PORT || 3000
 const app = express()
 app.set('port', port)
 
-
+app.use(compression())
 if(process.env.NODE_ENV === 'production') {
-    app.use(compression())
+
     app.use(express.static(path.join(__dirname, 'dist'), {
         maxAge: '1d',
         setHeaders(res, file) {

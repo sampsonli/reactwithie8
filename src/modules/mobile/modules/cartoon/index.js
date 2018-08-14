@@ -20,7 +20,7 @@ export default class Main extends Component {
     }
     render() {
         return (<div className={css.main}>
-            <div className={css.header} onClick={this.handClick}>点击改变内容</div>
+            <div className={css.header} onClick={this.handClick}>点击改变内容222</div>
             <div className={css.content} style={{background: `#${this.props.ewt.rgb}`}}>{this.props.ewt.rgb}</div>
 
         </div>);
