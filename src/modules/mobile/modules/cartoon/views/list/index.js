@@ -26,7 +26,7 @@ export default class List extends Component {
                                 </div>
                             </li>
                             <li className={classNames(css["item"], css['art'])}>
-                                <div className="l-flex-row"><i className={css["s-logo_02"]}></i><img className={css["logo"]}
+                                <div className="l-flex-row"><i className={css["logo_02"]}></i><img className={css["logo"]}
                                                                                             src={require("../../assets/logo.png")}/>
                                     <div className={classNames('l-flex-1 l-relative', css['art-info'])}>
                                         <div className="l-full">
