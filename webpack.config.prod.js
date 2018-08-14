@@ -22,14 +22,16 @@ module.exports = {
 
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest'],
-            filename: '[name].[chunkhash:8].js',
-
         }),
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
-            async: 'vendor-async'
+            async: 'echarts',
+            minChunks (module) {
+                if(/node_module.*echarts/.test(module.resource)){
+                    return true
+                }
+            }
         }),
-
         // 压缩js文件，ie8支持插件使用Es3ifyPlugin
         new webpack.optimize.UglifyJsPlugin({
             mangle: {

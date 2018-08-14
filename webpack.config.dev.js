@@ -18,13 +18,17 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest'],
-            filename: '[name].js',
-
         }),
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
-            async: 'vendor-async'
+            async: 'echarts',
+            minChunks (module) {
+                if(/node_module.*echarts/.test(module.resource)){
+                    return true
+                }
+            }
         }),
+
         new webpack.NoErrorsPlugin(),
         // 定义全局环境变量为开发环境
         new webpack.DefinePlugin({
