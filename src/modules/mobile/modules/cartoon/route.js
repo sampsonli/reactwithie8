@@ -11,8 +11,8 @@ const modules = [];
 
 const getHome = (nextState, callback) => {
     require.ensure([], require => {
-        callback(null, require('./.'));
-    }, 'home');
+        callback(null, require('./'));
+    }, 'cartoon');
 };
 
 

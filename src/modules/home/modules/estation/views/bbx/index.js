@@ -10,7 +10,7 @@ import echarts from 'echarts';
 export default class Jyez extends Component {
     constructor(args)  {
         super(args)
-        console.log(echarts)
+        // console.log(echarts)
     }
     render() {
         return (
