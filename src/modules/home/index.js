@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 
-
+// import echarts from 'echarts'
 
 // //////////////////下面是每个模块入口必须配置的内容，注入reducer的逻辑， 不需要做任何改动\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 import {injectReducer} from '~/route';

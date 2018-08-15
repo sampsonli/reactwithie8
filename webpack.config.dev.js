@@ -22,8 +22,8 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
             async: 'echarts',
-            minChunks (module) {
-                if(/node_module.*echarts/.test(module.resource)){
+            minChunks (module, count) {
+                if(/node_module.*echarts/.test(module.resource) && count > 1){
                     return true
                 }
             }
@@ -82,7 +82,7 @@ module.exports = {
             },
             {
                 test: /\.(jpg|png|gif)$/,
-                loader: 'url?limit=100000',
+                loader: 'url?limit=10000',
             },
             {
                 test: /\.json$/,
