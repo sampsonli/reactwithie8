@@ -19,7 +19,7 @@ const store = configureStore(window.__INITIAL_STATE__);
  * @param reducer
  */
 export const injectReducer = ({ key, reducer }) => {
-    if (Object.hasOwnProperty.call(store.asyncReducers, key)) return;
+    if (!reducer || Object.hasOwnProperty.call(store.asyncReducers, key)) return;
     store.asyncReducers[key] = reducer;
     store.replaceReducer(combineReducers({
         ...store.asyncReducers,

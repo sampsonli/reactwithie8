@@ -8,5 +8,5 @@ const cache = {};
         }
     });
 })(require.context('./', true, /\.js$/));
-const reducers = combineReducers(cache);
-export default reducers;
+export default Object.keys(cache).length > 0 ? combineReducers(cache) : null;
+
