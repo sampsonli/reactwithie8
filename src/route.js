@@ -31,10 +31,11 @@ const modules = [];
 ((r) => {
     r.keys().forEach((key) => {
         const md = r(key);
-        md.path = md.path || key.split('/')[1];
+        md.path = md.path || key.split('/')[2];
         modules.push(md);
     });
-})(require.context('./modules', true, /\.\/[^\/]+\/route.js$/)); // eslint-disable-line
+})(require.context('./', true, /\.\/modules\/[^\/]+\/route\.js$/)); // eslint-disable-line
+require.context('./', true, /^\.\/(common|actions|components).*\.js$/);
 
 const routeConfig = {
     path: '/',
