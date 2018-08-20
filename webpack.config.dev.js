@@ -22,11 +22,11 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
             async: 'echarts',
-            minChunks (module, count) {
-                if(/node_module.*echarts/.test(module.resource) && count > 1){
-                    return true
+            minChunks(module, count) {
+                if (/node_module.*echarts/.test(module.resource) && count > 1) {
+                    return true;
                 }
-            }
+            },
         }),
 
         new webpack.NoErrorsPlugin(),

@@ -12,10 +12,11 @@ import {mid} from './route';
 injectReducer({key: mid, reducer: reducers});
 // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\上面是每个模块入口必须配置的内容， 不需要做任何改动///////////////////////////
 
-
-
 @connect(state => ({home: state[mid]}), dispatch => bindActionCreators({}, dispatch))
 export default class Main extends Component {
+    static propTypes = {
+        children: PropTypes.element.isRequired,
+    }
 
     render() {
         return (<div>

@@ -1,10 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
-// const AssetsPlugin = require('assets-webpack-plugin');
-// css分离
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Es3ifyPlugin = require('es3ify-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -26,11 +24,11 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
             async: 'echarts',
-            minChunks (module) {
-                if(/node_module.*echarts/.test(module.resource)){
-                    return true
+            minChunks(module) {
+                if (/node_module.*echarts/.test(module.resource)) {
+                    return true;
                 }
-            }
+            },
         }),
         // 压缩js文件，ie8支持插件使用Es3ifyPlugin
         new webpack.optimize.UglifyJsPlugin({
