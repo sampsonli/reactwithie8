@@ -14,7 +14,7 @@ const modules = [];
 
 const getMobile = (nextState, callback) => {
     require.ensure([], require => {
-        const reducers = require('./reducers').default;
+        const reducers = require('./reducers');
         injectReducer({key: mid, reducer: reducers});
         callback(null, require('./'));
     }, 'mobile');

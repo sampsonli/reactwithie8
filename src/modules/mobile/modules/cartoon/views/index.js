@@ -1,10 +1,10 @@
-// import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 import React, {Component, PropTypes} from 'react';
-// import {bindActionCreators} from 'redux';
+import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
 import css from './style.css';
 
-// @connect(state => ({}), dispatch => bindActionCreators({}, dispatch))
+@connect(() => ({}), dispatch => bindActionCreators({}, dispatch))
 export default class Jyez extends Component {
     static propTypes = {
         children: PropTypes.element.isRequired,
