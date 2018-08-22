@@ -1,3 +1,6 @@
+import {injectReducer} from '~/route';
+
+const mid = module.id;
 // --///////////////////////下面的内容固定\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const modules = [];
 ((r) => {
@@ -11,18 +14,19 @@ const modules = [];
 
 const getList = (nextState, callback) => {
     require.ensure([], require => {
+        const reducers = require('./reducers');
+        injectReducer({key: mid, reducer: reducers});
         callback(null, require('./views/list'));
     }, 'cartoon/list');
 };
 
 
 export default {
-    // 给当前模块生成唯一的id
-    mid: module.id,
+    mid,
     childRoutes: [
         {
             path: 'list',
-            getComponent: getList
+            getComponent: getList,
         },
         ...modules,
     ],

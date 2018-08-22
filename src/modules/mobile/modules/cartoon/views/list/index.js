@@ -1,19 +1,23 @@
-// import {connect} from 'react-redux';
-// eslint-disable-next-line
+import {connect} from 'react-redux';
+
 import React, {Component, PropTypes} from 'react';
-// import {bindActionCreators} from 'redux';
+import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
 import css from './style.less';
+import {mid} from '../../route';
 
-// @connect(state => ({}), dispatch => bindActionCreators({}, dispatch))
+@connect(state => ({rgb: state[mid].ewt.rgb}), dispatch => bindActionCreators({}, dispatch))
 export default class List extends Component {
+    static propTypes = {
+        rgb: PropTypes.string.isRequired,
+    }
     render() {
         return (
             <div className={classNames('l-full l-flex-column', css.container)}>
                 <div className={css["header"]}>
                     <div className={css["h-ct"]}>
                         <i className={css["h-back"]}></i>
-                        <span className={css["h-title"]}>漫话历史</span>
+                        <span className={css["h-title"]}>漫话历史-{this.props.rgb}</span>
                     </div>
                 </div>
                 <div className="l-flex-1 l-relative">

@@ -12,7 +12,6 @@ import css from './assets/common.css';
 export default class Home extends Component {
     constructor(args) {
         super(args)
-        console.log(css)
     }
     render() {
         return (<div >

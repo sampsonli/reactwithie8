@@ -1,3 +1,6 @@
+import {injectReducer} from '~/route';
+
+const mid = module.id;
 // --///////////////////////下面的内容固定\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const modules = [];
 ((r) => {
@@ -11,6 +14,8 @@ const modules = [];
 
 const getMobile = (nextState, callback) => {
     require.ensure([], require => {
+        const reducers = require('./reducers').default;
+        injectReducer({key: mid, reducer: reducers});
         callback(null, require('./'));
     }, 'mobile');
 };
