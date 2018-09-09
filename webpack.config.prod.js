@@ -3,7 +3,16 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Es3ifyPlugin = require('es3ify-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const fs = require('fs');
 
+const dirs = []
+fs.readdirSync(path.join(__dirname, 'src/modules')).forEach(dir => {
+    const pt = path.join(__dirname, 'src/modules', dir)
+    const stat = fs.statSync(pt)
+    if (stat && stat.isDirectory()) {
+        dirs.push(dir);
+    }
+});
 module.exports = {
     entry: {
         entry: './src/index.js',
@@ -29,6 +38,13 @@ module.exports = {
                 return /node_module.*echarts/.test(module.resource) && count > 1;
             },
         }),
+        ...dirs.map(dir => new webpack.optimize.CommonsChunkPlugin({
+            children: true,
+            async: `${dir}_async`,
+            minChunks(module, count) {
+                return module.resource && module.resource.indexOf(path.join('modules', dir)) > -1 && count > 1;
+            },
+        })),
         // 压缩js文件，ie8支持插件使用Es3ifyPlugin
         new webpack.optimize.UglifyJsPlugin({
             mangle: {

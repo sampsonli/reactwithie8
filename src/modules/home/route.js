@@ -9,8 +9,6 @@ const modules = [];
 })(require.context('./', true, /\.\/modules\/[^\/]+\/route.js$/)); // eslint-disable-line
 // --\\\\\\\\\\\\\\\\\\\\\\\上面面的内容固定///////////////////////////////
 
-
-console.log(modules)
 // 异步加载view   begin
 const getHome = (nextState, callback) => {
     require.ensure([], require => {
