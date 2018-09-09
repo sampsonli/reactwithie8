@@ -20,12 +20,13 @@ module.exports = {
 
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest'],
+            minChunks: Infinity,
         }),
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
             async: 'echarts',
-            minChunks(module) {
-                return /node_module.*echarts/.test(module.resource);
+            minChunks(module, count) {
+                return /node_module.*echarts/.test(module.resource) && count > 1;
             },
         }),
         // 压缩js文件，ie8支持插件使用Es3ifyPlugin

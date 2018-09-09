@@ -23,9 +23,7 @@ module.exports = {
             children: true,
             async: 'echarts',
             minChunks(module, count) {
-                if (/node_module.*echarts/.test(module.resource) && count > 1) {
-                    return true;
-                }
+                return /node_module.*echarts/.test(module.resource) && count > 1;
             },
         }),
 
