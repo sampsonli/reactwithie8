@@ -21,7 +21,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         filename: '[name].[chunkhash:8].bundle.js',
-        chunkFilename: '[name].[chunkhash:8].chunk.js',
+        chunkFilename: '[id].[chunkhash:8].chunk.js',
         publicPath: '',
     },
     plugins: [
