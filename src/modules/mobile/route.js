@@ -1,5 +1,6 @@
 import {injectReducer} from '~/route';
 
+
 const mid = module.id;
 // --///////////////////////下面的内容固定\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const modules = [];
