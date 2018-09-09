@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=development node server.js",
     "dev:nohot": "cross-env NODE_ENV=development HOT=false node server.js",
     "build": "npm run clean && webpack --config webpack.config.prod.js",
-    "build:sit": "npm run clean && cross-env EWT_ENV=235  webpack --config webpack.config.prod.js",
+    "build:sit": "npm run clean && cross-env EWT_ENV=sit  webpack --config webpack.config.prod.js",
     "clean": "rimraf dist/*",
     "test": "eslint src && echo \"Error: no test specified\" && exit 1"
   },

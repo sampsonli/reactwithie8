@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {injectReducer} from '~/route';
+import {injectReducer} from '~/router';
 
 // //////////////////下面是每个模块入口必须配置的内容，注入reducer的逻辑， 不需要做任何改动\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 import reducers from './reducers';

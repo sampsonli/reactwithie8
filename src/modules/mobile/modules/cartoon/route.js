@@ -1,4 +1,4 @@
-import {injectReducer} from '~/route';
+import {injectReducer} from '~/router';
 
 const mid = module.id;
 // --///////////////////////下面的内容固定\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
