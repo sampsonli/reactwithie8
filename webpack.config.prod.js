@@ -103,11 +103,5 @@ module.exports = {
                 loader: 'json',
             },
         ],
-        postLoaders: [
-            {
-                test: /\.js$/,
-                loaders: ['es3ify-loader'],
-            },
-        ],
     },
 };
