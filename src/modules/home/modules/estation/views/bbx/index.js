@@ -18,7 +18,7 @@ export default class Jyez extends Component {
                 <div className={css.group_nav}>
                     <div id="nav1" className={css.nav1}>
                         <ul>
-                            <li data-id="0" className="">全部1222r</li>
+                            <li data-id="0" className="">全部</li>
                             <li data-id="1" className="select">学习提升</li>
                             <li data-id="27" className="">人际交往</li>
                             <li data-id="45" className="">情绪调节</li>
