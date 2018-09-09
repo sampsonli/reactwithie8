@@ -1,3 +1,4 @@
+import asyncComponent from '~/components/asyncComponent';
 // --///////////////////////下面的内容固定\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const modules = [];
 ((r) => {
@@ -9,22 +10,14 @@ const modules = [];
 })(require.context('./', true, /\.\/modules\/[^\/]+\/route.js$/)); // eslint-disable-line
 // --\\\\\\\\\\\\\\\\\\\\\\\上面面的内容固定///////////////////////////////
 
-const getEstation = (nextState, callback) => {
-    require.ensure([], require => {
-        callback(null, require('./'));
-    }, 'estation');
-};
+const Estation = asyncComponent(() => import('./'));
+const Bbx = asyncComponent(() => import('./views/bbx'));
 
-const getBbx = (nextState, callback) => {
-    require.ensure([], require => {
-        callback(null, require('./views/bbx'));
-    }, 'home/bbx');
-};
 
 export default {
     // 给当前模块生成唯一的id
     mid: module.id,
-    getComponent: getEstation,
+    component: Estation,
     indexRoute: {
         onEnter({location}, replace) {
             replace(`${location.pathname}/bbx`);
@@ -33,7 +26,7 @@ export default {
     childRoutes: [
         {
             path: 'bbx',
-            getComponent: getBbx,
+            component: Bbx,
         },
         ...modules,
     ],

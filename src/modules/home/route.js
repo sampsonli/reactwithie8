@@ -1,3 +1,4 @@
+import asyncComponent from '~/components/asyncComponent';
 // --///////////////////////下面的内容固定\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const modules = [];
 ((r) => {
@@ -9,18 +10,11 @@ const modules = [];
 })(require.context('./', true, /\.\/modules\/[^\/]+\/route.js$/)); // eslint-disable-line
 // --\\\\\\\\\\\\\\\\\\\\\\\上面面的内容固定///////////////////////////////
 
-// 异步加载view   begin
-const getHome = (nextState, callback) => {
-    require.ensure([], require => {
-        callback(null, require('./'));
-    }, 'home');
-};
-
-// 异步加载view   end
+const Home = asyncComponent(() => import('./'));
 
 export default {
     mid: module.id, // ///////是给当前模块生成唯一的id，主要是给reducer用的 不需要做任何改动
-    getComponent: getHome,
+    component: Home,
     indexRoute: {
         onEnter({location}, replace) {
             replace(`${location.pathname}/estation`);
