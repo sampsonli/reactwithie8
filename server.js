@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'production') {
     }));
 } else {
     const webpack = require('webpack');
-    const config = require(`./webpack.config${process.env.HOT === 'false' ? '.nohot' : ''}.dev`);
+    const config = require(`./webpack.config${process.env.ES3 === 'true' ? '.es3' : ''}.dev`);
     const compiler = webpack(config);
     app.use(require('webpack-dev-middleware')(compiler, {
         noInfo: true,

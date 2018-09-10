@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production port=3000 node server.js",
     "dev": "cross-env NODE_ENV=development node server.js",
-    "dev:nohot": "cross-env NODE_ENV=development HOT=false node server.js",
+    "dev:es3": "cross-env NODE_ENV=development ES3=true node server.js",
     "build": "npm run clean && webpack --config webpack.config.prod.js",
     "build:sit": "npm run clean && cross-env EWT_ENV=sit  webpack --config webpack.config.prod.js",
     "clean": "rimraf dist/*",
