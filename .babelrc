@@ -20,6 +20,6 @@
     "stage-2"
   ],
   "plugins": [
-    "add-module-exports","transform-runtime", "babel-plugin-transform-regenerator", "transform-decorators-legacy", "dynamic-import-webpack"
+    "add-module-exports","transform-runtime", "transform-regenerator", "transform-decorators-legacy", "dynamic-import-webpack"
   ]
 }
