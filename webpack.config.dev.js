@@ -15,7 +15,7 @@ fs.readdirSync(path.join(__dirname, 'src/modules')).forEach(dir => {
 module.exports = {
     entry: {
         entry: ['webpack-hot-middleware/client?reload=true', './src/index.js'],
-        vendor: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', 'react', 'react-router', 'es6-promise', 'react-redux', 'redux', 'axios', 'classnames'],
+        vendor: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', 'react', 'react-router', 'react-redux', 'redux', 'axios', 'classnames'],
     },
     output: {
         path: path.join(__dirname, 'dist'),

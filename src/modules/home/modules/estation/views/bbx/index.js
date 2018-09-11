@@ -9,10 +9,6 @@ import '../../common';
 import echarts from 'echarts';
 // @connect(state => ({}), dispatch => bindActionCreators({}, dispatch))
 export default class Jyez extends Component {
-    constructor(args) {
-        super(args);
-        // console.log(echarts)
-    }
     render() {
         return (
             <div className={css.bbx_ct}>
