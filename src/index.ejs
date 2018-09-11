@@ -13,29 +13,19 @@
             var deviceWidth = document.documentElement.clientWidth;
             document.documentElement.style.fontSize = deviceWidth / 3.75 + "px";
         }
+
         window.onresize = setFontSize;
         setFontSize();
     </script>
     <link rel="stylesheet" href="http://cdn.ewt360.com/ewt360/css/common.min.css?t=2017061901"/>
-    <!--[if lt IE 9]>
-        <script type="text/javascript">
-            ;(function(global){if(!Array.prototype.indexOf){Array.prototype.indexOf=function(elt){var len=this.length>>>0;var from=Number(arguments[1])||0;from=(from<0)?Math.ceil(from):Math.floor(from);if(from<0){from+=len}for(;from<len;from++){if(from in this&&this[from]===elt){return from}}return -1}}if(!String.prototype.trim){String.prototype.trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"")};String.prototype.ltrim=function(){return this.replace(/(^\s*)/g,"")};String.prototype.rtrim=function(){return this.replace(/(\s*$)/g,"")}}if(!global.console){global.console={}}var con=global.console;var prop,method;var dummy=function(){};var properties=["memory"];var methods=("assert,clear,count,debug,dir,dirxml,error,exception,group,"+"groupCollapsed,groupEnd,info,log,markTimeline,profile,profiles,profileEnd,"+"show,table,time,timeEnd,timeline,timelineEnd,timeStamp,trace,warn").split(",");while(prop=properties.pop()){if(!con[prop]){con[prop]={}}}while(method=methods.pop()){if(!con[method]){con[method]=dummy}}})(window);
-         </script>
-        <script src="http://cdn.ewt360.com/ewt360/js/html5shiv.min.js"></script>
+    <!--[if (IE 8)|(IE 9)]>
+    <script src="http://web.ewt360.com/attainment/common/jquery-1.11.2.min.js"></script>
+    <script src="http://web.ewt360.com/attainment/common/jquery.xdomainrequest.min.js"></script>
     <![endif]-->
-
-
-<!--[if (IE 8)|(IE 9)]><script src="http://web.ewt360.com/attainment/common/jquery-1.11.2.min.js"></script><![endif]-->
-<!--[if (IE 8)|(IE 9)]><script src="http://web.ewt360.com/attainment/common/jquery.xdomainrequest.min.js"></script><![endif]-->
-
-
 </head>
-  <body>
-    <div id="mst-app"></div>
-     <!--[if lt IE 9]>
-        <!--<script src="http://cdn.ewt360.com/ewt360/js/respond.min.js"></script>-->
-    <![endif]-->
-    <!-- <script src="http://passport.ewt360.com/Ajax/GetUser?type=1"></script> -->
-    <!-- <script src="http://static.bigdata.mistong.com/MSTAnalytics.js?version=1.0.0"></script>  -->
-  </body>
+<body>
+<div id="mst-app"></div>
+<!-- <script src="http://passport.ewt360.com/Ajax/GetUser?type=1"></script> -->
+<!-- <script src="http://static.bigdata.mistong.com/MSTAnalytics.js?version=1.0.0"></script>  -->
+</body>
 </html>
