@@ -1,7 +1,6 @@
-
-const React = require('react');
-const ReactDOM = require('react-dom');
-const AppRoute = require('./router');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import AppRoute from './router';
 
 ReactDOM.render(
     <AppRoute />,
