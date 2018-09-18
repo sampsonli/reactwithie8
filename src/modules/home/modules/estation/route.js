@@ -13,10 +13,7 @@ const modules = [];
 const Estation = asyncComponent(() => import('./'));
 const Bbx = asyncComponent(() => import('./views/bbx'));
 
-
 export default {
-    // 给当前模块生成唯一的id
-    mid: module.id,
     component: Estation,
     indexRoute: {
         onEnter({location}, replace) {

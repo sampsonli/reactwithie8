@@ -4,9 +4,8 @@ import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
 import css from './style.less';
-import {mid} from '../../route';
 
-@connect(state => ({rgb: state[mid].ewt.rgb}), dispatch => bindActionCreators({}, dispatch))
+@connect(state => ({rgb: state['mobile/cartoon'].ewt.rgb}), dispatch => bindActionCreators({}, dispatch))
 export default class List extends Component {
     static propTypes = {
         rgb: PropTypes.string.isRequired,

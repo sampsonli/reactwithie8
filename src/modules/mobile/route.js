@@ -13,10 +13,7 @@ const modules = [];
 
 const Mobile = asyncComponent(() => import('./'));
 
-
 export default {
-    // 给当前模块生成唯一的id
-    mid: module.id,
     component: Mobile,
     childRoutes: [
         ...modules,

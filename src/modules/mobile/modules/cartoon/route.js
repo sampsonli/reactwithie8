@@ -1,4 +1,5 @@
-import {injectReducer} from '~/router';
+
+import asyncComponent from '~/components/asyncComponent';
 
 const mid = module.id;
 // --///////////////////////下面的内容固定\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -12,21 +13,16 @@ const modules = [];
 })(require.context('./', true, /\.\/modules\/[^\/]+\/route.js$/)); // eslint-disable-line
 // --\\\\\\\\\\\\\\\\\\\\\\\上面面的内容固定///////////////////////////////
 
-const getList = (nextState, callback) => {
-    require.ensure([], require => {
-        const reducers = require('./reducers');
-        injectReducer({key: mid, reducer: reducers});
-        callback(null, require('./views/list'));
-    }, 'cartoon/list');
-};
-
+const Cartoon = asyncComponent(() => import('./'))
+const List = asyncComponent(() => import('./views/list'))
 
 export default {
     mid,
+    component: Cartoon,
     childRoutes: [
         {
             path: 'list',
-            getComponent: getList,
+            component: List,
         },
         ...modules,
     ],
