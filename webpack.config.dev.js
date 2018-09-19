@@ -2,16 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const fs = require('fs');
+const { getDirs } = require('./util');
 
-const dirs = []
-fs.readdirSync(path.join(__dirname, 'src/modules')).forEach(dir => {
-    const pt = path.join(__dirname, 'src/modules', dir)
-    const stat = fs.statSync(pt)
-    if (stat && stat.isDirectory()) {
-        dirs.push(dir);
-    }
-});
 module.exports = {
     entry: {
         entry: ['webpack-hot-middleware/client?reload=true', './src/index.js'],
@@ -35,7 +27,7 @@ module.exports = {
                 return /node_module.*echarts/.test(module.resource) && count > 1;
             },
         }),
-        ...dirs.map(dir => new webpack.optimize.CommonsChunkPlugin({
+        ...getDirs((path.join(__dirname, 'src/modules'))).map(dir => new webpack.optimize.CommonsChunkPlugin({
             children: true,
             async: `${dir}_async`,
             minChunks(module, count) {
