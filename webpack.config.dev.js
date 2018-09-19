@@ -78,11 +78,11 @@ module.exports = {
             },
             {
                 test: /(fontawesome-webfont|glyphicons-halflings-regular)\.(woff|woff2|ttf|eot|svg)($|\?)/,
-                loader: 'url?limit=1024&name=fonts/[name].[hash].[ext]',
+                loader: 'url?limit=1024&name=assets/[name].[hash:10].[ext]',
             },
             {
                 test: /\.(jpg|png|gif)$/,
-                loader: 'url?limit=10000',
+                loader: 'url?limit=10000&name=assets/[name].[hash:10].[ext]',
             },
             {
                 test: /\.json$/,
