@@ -30,13 +30,13 @@ module.exports = {
                 return /node_module.*echarts/.test(module.resource) && count > 1;
             },
         }),
-        ...getDirs((path.join(__dirname, 'src/modules')).map(dir => new webpack.optimize.CommonsChunkPlugin({
+        ...getDirs((path.join(__dirname, 'src/modules'))).map(dir => new webpack.optimize.CommonsChunkPlugin({
             children: true,
             async: `${dir}_async`,
             minChunks(module, count) {
                 return module.resource && module.resource.indexOf(path.join('modules', dir)) > -1 && count > 1;
             },
-        }))),
+        })),
         // 压缩js文件，ie8支持插件使用Es3ifyPlugin
         new webpack.optimize.UglifyJsPlugin({
             mangle: {
