@@ -12,8 +12,8 @@ const routes = [];
 })(require.context('./', true, /\.\/routes\/[^\/]+\/route.js$/)); // eslint-disable-line
 // --\\\\\\\\\\\\\\\\\\\\\\\上面面的内容固定///////////////////////////////
 
-const Cartoon = asyncComponent(() => import('./'))
-const List = asyncComponent(() => import('./views/list'))
+const Cartoon = asyncComponent(() => import('./'));
+const List = asyncComponent(() => import('./views/list'));
 
 export default {
     component: Cartoon,

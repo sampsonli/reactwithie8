@@ -2,6 +2,7 @@
 
 import {createStore} from 'redux';
 import helper from './helper';
+
 const store = createStore(
     () => {},
     window.__INITIAL_STATE__,

@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import React, {Component, PropTypes as P} from 'react';
 import classNames from 'classnames';
 import css from './style.less';
-import action, {ns} from '../../models'
+import action, {ns} from '../../models';
 
 
 export default
@@ -40,9 +40,7 @@ class List extends Component {
                             </li>
                             <li className={classNames(css.item, css.art)}>
                                 <div className="l-flex-row"><i className={css.logo_02} />
-                                    <img className={css.logo}
-                                        src={require('../../assets/logo.png')}
-                                    />
+                                    <img alt="" className={css.logo} src={require('../../assets/logo.png')} />
                                     <div className={classNames('l-flex-1 l-relative', css['art-info'])}>
                                         <div className="l-full">
                                             <div className={css['art-m']}>

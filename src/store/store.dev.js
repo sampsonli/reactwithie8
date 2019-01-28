@@ -3,6 +3,7 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 import createLogger from 'redux-logger';
 import helper from './helper';
+
 const store = createStore(
     () => {},
     window.__INITIAL_STATE__,
