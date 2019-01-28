@@ -1,13 +1,7 @@
-// import {connect} from 'react-redux';
-// eslint-disable-next-line
+
 import React, {Component, PropTypes} from 'react';
-// import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
 import css from './style.css';
-
-import '../../common';
-import echarts from 'echarts';
-// @connect(state => ({}), dispatch => bindActionCreators({}, dispatch))
 export default class Jyez extends Component {
     render() {
         return (

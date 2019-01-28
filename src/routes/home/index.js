@@ -1,11 +1,7 @@
-import {connect} from 'react-redux';
-import React, {Component, PropTypes} from 'react';
-import './reducers';
-
-@connect(state => ({home: state.home}))
+import React, {Component, PropTypes as P} from 'react';
 export default class Main extends Component {
     static propTypes = {
-        children: PropTypes.element.isRequired,
+        children: P.element.isRequired,
     }
 
     render() {
@@ -15,7 +11,7 @@ export default class Main extends Component {
                     <h1 className="fl"><a href="/"><img src="http://cdn.ewt360.com/ewt360/images/images/ewt_psylogo.png" className="pngFix" alt="升学e网通"/></a></h1>
                     <div className="studySearch fr psychologySearch">
                         <form action="/Psychology/Search" id="fmPsySearch">
-                            <input type="text" value="" placeholder={this.props.home.ewt.name || "搜索心灵板报"} name="keyword" id="keyword" className="fmTxt" /><input type="submit" value="搜索" className="fmSubmit" />
+                            <input type="text" value="" placeholder={"搜索心灵板报"} name="keyword" id="keyword" className="fmTxt" /><input type="submit" value="搜索" className="fmSubmit" />
                         </form>
                     </div>
                 </div>
