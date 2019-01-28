@@ -8,9 +8,17 @@ import action, {ns} from '../../models'
 export default
 @connect(state => ({stat: state[ns]}))
 class List extends Component {
+    static contextTypes = { router: Object };
     static propTypes = {
         stat: P.objectOf(P.any).isRequired,
+        location: P.objectOf(P.any).isRequired,
     }
+    constructor(props, context) {
+        super(props, context);
+        this.router = context.router;
+        // this.router.push({ pathname: 'report/student', search: this.props.location.search });
+    }
+
     render() {
         return (
             <div className={classNames('l-full l-flex-column', css.container)}>
@@ -25,9 +33,9 @@ class List extends Component {
                     <div className="l-full l-scroll-y">
                         <ul>
                             <li className={classNames(css.item, css.period)}>
-                                <div><i className={css.logo_01} /><span className={css['l-title']}>春秋战国</span><span
-                                    className={css['s-title']}
-                                >公元前770年—公元前221年</span>
+                                <div><i className={css.logo_01} />
+                                    <span className={css['l-title']}>春秋战国</span>
+                                    <span className={css['s-title']}>公元前770年—公元前221年22222444</span>
                                 </div>
                             </li>
                             <li className={classNames(css.item, css.art)}>

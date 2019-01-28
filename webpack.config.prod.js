@@ -79,12 +79,12 @@ module.exports = {
             {
                 test: /\.(css|less)$/,
                 include: /(node_modules|assets)/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css?modules&localIdentName=[local]!less-loader'),
+                loader: ExtractTextPlugin.extract('style-loader', 'css?modules&localIdentName=[local]!postcss-loader!less-loader'),
             },
             {
                 exclude: /(node_modules|assets)/,
                 test: /\.(css|less)$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css?modules&localIdentName=[local]-[hash:base64:5]!less-loader'),
+                loader: ExtractTextPlugin.extract('style-loader', 'css?modules&localIdentName=[local]-[hash:base64:5]!postcss-loader!less-loader'),
             },
             {
                 test: /\.(js|jsx)$/,

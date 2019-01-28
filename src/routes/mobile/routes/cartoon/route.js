@@ -9,7 +9,7 @@ const routes = [];
         md.path = md.path || key.split('/')[2];
         routes.push(md);
     });
-})(require.context('./', true, /\.\/modules\/[^\/]+\/route.js$/)); // eslint-disable-line
+})(require.context('./', true, /\.\/routes\/[^\/]+\/route.js$/)); // eslint-disable-line
 // --\\\\\\\\\\\\\\\\\\\\\\\上面面的内容固定///////////////////////////////
 
 const Cartoon = asyncComponent(() => import('./'))

@@ -2,7 +2,7 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import css from './style/index.css';
-// @connect(state => ({}), dispatch => bindActionCreators({}, dispatch))
+// @connect(state => ({}))
 export default class Jyez extends Component {
     static propTypes = {
         children: PropTypes.element.isRequired,
