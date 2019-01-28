@@ -28,7 +28,7 @@ module.exports = {
                 return /node_module.*echarts/.test(module.resource) && count > 1;
             },
         }),
-        ...getDirs((path.join(__dirname, 'src/modules'))).map(dir => new webpack.optimize.CommonsChunkPlugin({
+        ...getDirs((path.join(__dirname, 'src/routes'))).map(dir => new webpack.optimize.CommonsChunkPlugin({
             children: true,
             async: `${dir}_async`,
             minChunks(module, count) {

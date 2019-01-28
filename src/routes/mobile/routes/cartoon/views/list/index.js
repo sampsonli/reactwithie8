@@ -1,22 +1,23 @@
 import {connect} from 'react-redux';
-
-import React, {Component, PropTypes} from 'react';
-import {bindActionCreators} from 'redux';
+import React, {Component, PropTypes as P} from 'react';
 import classNames from 'classnames';
 import css from './style.less';
+import action, {ns} from '../../models'
 
-@connect(state => ({rgb: state['mobile/cartoon'].ewt.rgb}), dispatch => bindActionCreators({}, dispatch))
-export default class List extends Component {
+
+export default
+@connect(state => ({stat: state[ns]}))
+class List extends Component {
     static propTypes = {
-        rgb: PropTypes.string.isRequired,
+        stat: P.objectOf(P.any).isRequired,
     }
     render() {
         return (
             <div className={classNames('l-full l-flex-column', css.container)}>
                 <div className={css.header}>
-                    <div className={css['h-ct']}>
+                    <div className={css['h-ct']} onClick={() => action.getUserInfo()}>
                         <i className={css['h-back']} />
-                        <span className={css['h-title']}>漫话历史-{this.props.rgb}</span>
+                        <span className={css['h-title']}>漫话历史-{this.props.stat.rgb}</span>
                     </div>
                 </div>
                 <div className="l-flex-1 l-relative">

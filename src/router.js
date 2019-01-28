@@ -7,19 +7,19 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 // 自动注入各个子模块
-const modules = [];
+const routes = [];
 ((r) => {
     r.keys().forEach((key) => {
         const md = r(key);
         md.path = md.path || key.split('/')[2];
-        modules.push(md);
+        routes.push(md);
     });
-})(require.context('./', true, /\.\/modules\/[^\/]+\/route\.js$/)); // eslint-disable-line
+})(require.context('./', true, /\.\/routes\/[^\/]+\/route\.js$/)); // eslint-disable-line
 require.context('./', true, /^\.\/(common|components).*\.js$/);
 
 const routeConfig = {
     path: '/',
-    childRoutes: modules,
+    childRoutes: routes,
 };
 // 通过Router配置上hashHistory和route
 // 再用reactRedux.provider将Router包含起来
