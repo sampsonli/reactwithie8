@@ -1,7 +1,7 @@
 {
   "name": "xinli",
-  "version": "1.0.1",
-  "description": "铭师堂",
+  "version": "2.0.1",
+  "description": "春哥",
   "main": "./server.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production port=3000 node server.js",
@@ -12,7 +12,7 @@
     "clean": "rimraf dist/*",
     "test": "eslint src && echo \"Error: no test specified\" && exit 1"
   },
-  "author": "mst-team",
+  "author": "sampson",
   "license": "ISC",
   "dependencies": {
     "antd": "^1.11.6",
