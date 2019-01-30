@@ -23,7 +23,7 @@ export default (store, asyncReducers = {}) => {
         Object.keys(model.mutations).forEach((key) => {
             mutations[`${model.ns}@${key}`] = model.mutations[key];
         });
-        const reducer = (state = model.state, {type, payload}) => {
+        const reducer = (state = model.state || {}, {type, payload}) => {
             if (mutations[type]) {
                 const curr = {...state};
                 return mutations[type](curr, payload) || curr;
