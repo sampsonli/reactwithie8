@@ -12,7 +12,7 @@ export default (store, asyncReducers = {}) => {
 
     store.connect = (model) => {
         if (!model.ns || !model.mutations || !model.actions) {
-            console.error('model 不符合规范，至少需要ns,mutations,actions 字段');
+            console.error('model 不符合规范，至少需要包含ns,mutations,actions 字段');
             return;
         }
         if (asyncReducers[model.ns]) {
@@ -20,8 +20,8 @@ export default (store, asyncReducers = {}) => {
             return;
         }
         const mutations = {};
-        Object.keys(model.mutations).forEach(key => {
-            mutations[`${model.ns}_${key}`] = model.mutations[key];
+        Object.keys(model.mutations).forEach((key) => {
+            mutations[`${model.ns}@${key}`] = model.mutations[key];
         });
         const reducer = (state = model.state, {type, payload}) => {
             if (mutations[type]) {
@@ -33,21 +33,24 @@ export default (store, asyncReducers = {}) => {
         store.injectReducer(model.ns, reducer);
 
         const actions = {};
-        Object.keys(model.actions).forEach(key => {
+        Object.keys(model.actions).forEach((key) => {
             const originFn = model.actions[key];
-            actions[key] = (payload) => originFn({
-                state: model.state,
-                rootState: store.getState(),
-                commit: (mt, pd) => {
-                    if (model.mutations[mt]) {
-                        store.dispatch({type: `${model.ns}_${mt}`, payload: pd});
-                    } else {
-                        store.dispatch({type: mt, payload: pd});
-                    }
-                },
-                actions,
-            }, payload);
+            actions[key] = (payload) => {
+                const state = store.getState();
+                return originFn({
+                    state: state[model.ns],
+                    rootState: state,
+                    commit: (mt, pd) => {
+                        if (model.mutations[mt]) {
+                            store.dispatch({type: `${model.ns}@${mt}`, payload: pd});
+                        } else {
+                            store.dispatch({type: mt, payload: pd});
+                        }
+                    },
+                    actions,
+                }, payload);
+            };
         });
-        return actions;
+        return actions; // eslint-disable-line
     };
 };
