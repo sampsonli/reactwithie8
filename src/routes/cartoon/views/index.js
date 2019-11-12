@@ -1,10 +1,11 @@
-import React, {Component, PropTypes as P} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import css from './style.css';
 
 export default class Jyez extends Component {
     static propTypes = {
-        children: P.element.isRequired,
+        children: PropTypes.element.isRequired,
     }
 
     render() {
