@@ -1,17 +1,16 @@
 import {connect} from 'react-redux';
-import React, {Component, PropTypes as P} from 'react';
+import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import css from './style.less';
-import action, {ns} from '../../models';
+import store from '../../store';
 
 
 export default
-@connect(state => ({stat: state[ns]}))
+@connect(state => ({state: state[store.ns]}))
 class List extends Component {
     static contextTypes = { router: Object };
     static propTypes = {
-        stat: P.objectOf(P.any).isRequired,
-        location: P.objectOf(P.any).isRequired,
+        state: PropTypes.objectOf(PropTypes.any).isRequired,
     }
     constructor(props, context) {
         super(props, context);
@@ -20,12 +19,13 @@ class List extends Component {
     }
 
     render() {
+        const {state} = this.props;
         return (
             <div className={classNames('l-full l-flex-column', css.container)}>
                 <div className={css.header}>
-                    <div className={css['h-ct']} onClick={() => action.getUserInfo()}>
+                    <div className={css['h-ct']} onClick={() => store.getNumber()}>
                         <i className={css['h-back']} />
-                        <span className={css['h-title']}>漫话历史-{this.props.stat.rgb}</span>
+                        <span className={css['h-title']}>漫话历史-{state.number}</span>
                     </div>
                 </div>
                 <div className="l-flex-1 l-relative">

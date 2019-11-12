@@ -1,6 +1,6 @@
 {
-  "name": "xinli",
-  "version": "2.0.1",
+  "name": "reactwithie8",
+  "version": "3.0.1",
   "description": "春哥",
   "main": "./server.js",
   "scripts": {
@@ -15,15 +15,14 @@
   "author": "sampson",
   "license": "ISC",
   "dependencies": {
-    "antd": "^1.11.6",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "console-polyfill": "^0.3.0",
-    "echarts": "^4.1.0",
     "es5-shim": "^4.5.9",
     "es6-promise": "^3.0.2",
     "lodash": "^4.17.4",
     "react": "^0.14.9",
+    "react-deliverer": "^1.0.3",
     "react-dom": "^0.14.9",
     "react-redux": "^5.0.1",
     "react-router": "2.3.0",

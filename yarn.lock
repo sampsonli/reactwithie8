@@ -4879,6 +4879,11 @@ react-base16-styling@^0.5.1:
     lodash.flow "^3.3.0"
     pure-color "^1.2.0"
 
+react-deliverer@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-deliverer/-/react-deliverer-1.0.3.tgz#07bf6fba4587c25724757f9b478cedfc457e92a6"
+  integrity sha512-bhd3eeMjXnXgnZAS34dUKaa0OhIww4PfvRBQTU6F/Qznw6zFSXAXxJ757pOthEEo3zjVN/FZfJgkoT2K0IR+Gg==
+
 react-dock@^0.2.4:
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/react-dock/-/react-dock-0.2.4.tgz#e727dc7550b3b73116635dcb9c0e04d0b7afe17c"

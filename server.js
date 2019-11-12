@@ -4,7 +4,6 @@ const express = require('express');
 const compression = require('compression');
 const path = require('path');
 
-const host = process.env.HOST || '0.0.0.0';
 const port = process.env.PORT || 3000;
 const app = express();
 app.set('port', port);
@@ -31,10 +30,10 @@ if (process.env.NODE_ENV === 'production') {
     app.use(require('webpack-hot-middleware')(compiler));
 }
 
-app.listen(port, host, (err) => {
+app.listen(port, '0.0.0.0', (err) => {
     if (err) {
         console.log(err);
     }
-    console.log(`listen at http://${host}:${port}`);
+    console.log(`listen at http://localhost:${port}`);
 });
 

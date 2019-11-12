@@ -1,12 +1,14 @@
-// import {connect} from 'react-redux';
-// eslint-disable-next-line
+
 import React, {Component, PropTypes} from 'react';
-// import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
 import classNames from 'classnames';
 import css from './style.css';
+import store from '../../store/index';
 
-// @connect(state => ({}), dispatch => bindActionCreators({}, dispatch))
-export default class Jyez extends Component {
+export default
+@connect(state => ({state: state[store.ns]}))
+class Jyez extends Component {
     render() {
         return (
             <div className={css.bbx_ct}>
