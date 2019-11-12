@@ -8,14 +8,12 @@ import store from '../../store';
 export default
 @connect(state => ({state: state[store.ns]}))
 class List extends Component {
-    static contextTypes = { router: Object };
     static propTypes = {
         state: PropTypes.objectOf(PropTypes.any).isRequired,
     }
-    constructor(props, context) {
-        super(props, context);
-        this.router = context.router;
-        // this.router.push({ pathname: 'report/student', search: this.props.location.search });
+    constructor(args) {
+        super(args);
+        console.log(this.props);
     }
 
     render() {
@@ -25,7 +23,7 @@ class List extends Component {
                 <div className={css.header}>
                     <div className={css['h-ct']} onClick={() => store.getNumber()}>
                         <i className={css['h-back']} />
-                        <span className={css['h-title']}>漫话历史-{state.number}</span>
+                        <span className={css['h-title']}>漫话历史4-{state.number}</span>
                     </div>
                 </div>
                 <div className="l-flex-1 l-relative">

@@ -15,7 +15,7 @@
   "author": "sampson",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.19.0",
     "classnames": "^2.2.5",
     "console-polyfill": "^0.3.0",
     "es5-shim": "^4.5.9",
@@ -56,7 +56,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
-    "express": "^4.16.3",
+    "express": "^4.17.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^3.1.0",
@@ -67,12 +67,12 @@
     "redux-devtools": "^3.4.1",
     "redux-devtools-dock-monitor": "^1.1.3",
     "redux-devtools-log-monitor": "^1.4.0",
-    "rimraf": "^2.5.3",
+    "rimraf": "^2.7.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",
-    "webpack-hot-middleware": "^2.6.0"
+    "webpack-hot-middleware": "^2.25.0"
   },
   "browserslist": [
     ">0.2%",
