@@ -15,7 +15,7 @@
   "author": "sampson",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.19.0",
     "classnames": "^2.2.5",
     "console-polyfill": "^0.3.0",
     "es5-shim": "^4.5.9",
