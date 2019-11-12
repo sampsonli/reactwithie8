@@ -13,7 +13,7 @@ class CartoonStore {
         // 模拟接口请求数据
         setTimeout(() => {
             this.setNumber(Math.floor(Math.random() * 1000));
-        }, 1000);
+        }, 300);
     }
 }
 export default new CartoonStore();

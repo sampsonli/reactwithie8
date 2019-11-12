@@ -2,10 +2,12 @@
  *  此文件不需要做任何修改了
  */
 import React from 'react';
-import { Router, hashHistory} from 'react-router';
+import { Router, useRouterHistory} from 'react-router';
+import {createHashHistory} from 'history';
 import { Provider } from 'react-redux';
 import store from './store';
 
+const appHistory = useRouterHistory(createHashHistory)({queryKey: false});
 // 自动注入各个子模块
 const routes = [];
 ((r) => {
@@ -26,7 +28,7 @@ const routeConfig = {
 // 注册再reactRedux.provider上的store将和router中的所有component联系起来
 export default function () {
     return (<Provider store={store}>
-        <Router history={hashHistory} routes={routeConfig} />
+        <Router history={appHistory} routes={routeConfig} />
     </Provider>);
 }
 
