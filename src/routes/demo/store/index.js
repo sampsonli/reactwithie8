@@ -2,20 +2,33 @@ import {connect, action} from 'react-deliverer';
 
 @connect('demo_home')
 class HomeStore {
-    number = 0;
+    number = 3;
+    initData = null;
 
     @action
     setNumber(number) {
-        // console.log('----1233344');
         this.number = number;
     }
 
+    @action
+    setInitData(initData) {
+        this.initData = initData;
+    }
+
+    getInitData() {
+        if (!this.initData) {
+            setTimeout(() => {
+                this.setInitData(`初始数据--${Math.floor(Math.random() * 1000)}`);
+            }, 300);
+        }
+    }
+
     getNumber = () => {
-        console.log(this.number); // 获取实例字段
+        this.setNumber(0);
         // 模拟接口请求数据
         setTimeout(() => {
             this.setNumber(Math.floor(Math.random() * 1000));
-        }, 300);
+        }, 200);
     }
 }
 export default new HomeStore();
