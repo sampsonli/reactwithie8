@@ -1,13 +1,12 @@
 import {connect, action} from 'react-deliverer';
 
-@connect('cartoon')
-class CartoonStore {
+@connect('demo_home')
+class HomeStore {
     number = 0;
 
     @action
     setNumber(number) {
-        console.log('----1233344');
-
+        // console.log('----1233344');
         this.number = number;
     }
 
@@ -19,4 +18,4 @@ class CartoonStore {
         }, 300);
     }
 }
-export default new CartoonStore();
+export default new HomeStore();
