@@ -58,7 +58,7 @@ module.exports = {
         },
     },
     debug: true,
-    // devtool: 'source-map',
+    devtool: 'source-map',
     module: {
         loaders: [
             {

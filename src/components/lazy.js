@@ -1,13 +1,13 @@
 import React from 'react';
 
-export default loadComponent => (
+export default (loadComponent, loadingComp = () => null) => (
     class AsyncComponent extends React.Component {
         state = {
             Component: null,
         }
 
         componentWillMount() {
-            if (this.hasLoadedComponent()) {
+            if (this.state.Component) {
                 return;
             }
 
@@ -16,18 +16,14 @@ export default loadComponent => (
                     this.setState({Component});
                 })
                 .catch((err) => {
-                    console.error('Cannot load component in <AsyncComponent />');
+                    console.error('Cannot load component in async component />');
                     throw err;
                 });
         }
 
-        hasLoadedComponent() {
-            return this.state.Component !== null;
-        }
-
         render() {
             const {Component} = this.state;
-            return (Component) ? <Component {...this.props} /> : null;
+            return (Component) ? <Component {...this.props} /> : loadingComp();
         }
     }
 );

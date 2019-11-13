@@ -3,9 +3,9 @@ uri="attainment/xinli"
 pname="xinli.tar.gz"
 yarn
 pwd
-if [ "$1"x = "235"x ]
+if [ "$1"x = "sit"x ]
 then
-    yarn run build:235
+    yarn run build:sit
     cd dist
     tar -zcf $pname *
     scp $pname buweiqiang@10.0.11.68:/home/wwwroot/frontend/tmp/
