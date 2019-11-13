@@ -6,13 +6,13 @@ class CartoonStore {
 
     @action
     setNumber(number) {
-        console.log('----123334')
+        console.log('----1233344');
 
         this.number = number;
     }
 
     getNumber = () => {
-        console.log(this.number)
+        console.log(this.number); // 获取实例字段
         // 模拟接口请求数据
         setTimeout(() => {
             this.setNumber(Math.floor(Math.random() * 1000));

@@ -1,7 +1,7 @@
 import {Component} from 'react';
 import PropTypes from 'prop-types';
 
-export default class Cartoon extends Component {
+export default class Demo extends Component {
     static propTypes = {
         children: PropTypes.element.isRequired,
     }

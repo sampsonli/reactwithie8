@@ -16,7 +16,7 @@ export default (loadComponent, loadingComp = () => null) => (
                     this.setState({Component});
                 })
                 .catch((err) => {
-                    console.error('Cannot load component in async component />');
+                    console.error('Cannot load component in async component');
                     throw err;
                 });
         }
