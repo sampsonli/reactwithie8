@@ -8,7 +8,7 @@ const { getDirs } = require('./util');
 module.exports = {
     entry: {
         entry: './src/index.js',
-        vendor: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', 'es6-promise', 'react', 'react-router', 'react-redux', 'redux', 'axios', 'classnames'],
+        vendor: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', 'es6-promise', 'react', 'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'react-deliverer'],
     },
     output: {
         path: path.join(__dirname, 'dist'),

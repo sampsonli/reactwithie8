@@ -1,6 +1,5 @@
 import {connect} from 'react-redux';
 import React, {Component} from 'react';
-import classNames from 'classnames';
 import css from './style.less';
 import store from '../../store';
 
