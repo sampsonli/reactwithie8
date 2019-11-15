@@ -17,7 +17,7 @@ const routes = [];
         routes.push(md);
     });
 })(require.context('./', true, /\.\/routes\/[^\/]+\/route\.js$/)); // eslint-disable-line
-require.context('./', true, /^\.\/(common|components).*\.js$/);
+require.context('./', true, /^\.\/(common|components).*\.js$/); // 把common/components 包中的内容打入entry包中
 
 const routeConfig = {
     path: '/',

@@ -12,7 +12,6 @@ const store = createStore(
     ),
 );
 
-const asyncReducers = {
-};
-deliverer(store, asyncReducers)
+store.asyncReducers = {};
+deliverer(store, store.asyncReducers);
 export default store;

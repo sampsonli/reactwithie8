@@ -13,7 +13,8 @@ export default (loadComponent, loadingComp = () => null) => (
 
             loadComponent()
                 .then((Component) => {
-                    this.setState({Component});
+                    // eslint-disable-next-line max-len
+                    this.setState({Component: Component.default ? Component.default : Component}); // 提高兼容性
                 })
                 .catch((err) => {
                     console.error('Cannot load component in async component');

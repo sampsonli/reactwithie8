@@ -18,16 +18,16 @@ class HomeStore {
     getInitData() {
         if (!this.initData) {
             setTimeout(() => {
-                this.setInitData(`初始数据--${Math.floor(Math.random() * 1000)}`);
+                this.setInitData(`初始数据1--${Math.floor(Math.random() * 1000)}`);
             }, 300);
         }
     }
 
     getNumber = () => {
-        this.setNumber(0);
+        const old = this.number;
         // 模拟接口请求数据
         setTimeout(() => {
-            this.setNumber(Math.floor(Math.random() * 1000));
+            this.setNumber(old + 2);
         }, 200);
     }
 }
