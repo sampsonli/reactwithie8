@@ -8,7 +8,7 @@ const { getDirs, distDir, srcDir } = require('./util');
 module.exports = {
     entry: {
         entry: srcDir,
-        vendor: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', 'es6-promise', 'react', 'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'react-deliverer'],
+        vendor: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', 'es6-promise', 'react', 'react-dom', 'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'react-deliverer'],
     },
     output: {
         path: distDir,
