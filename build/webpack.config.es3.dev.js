@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Es3ifyPlugin = require('es3ify-webpack-plugin');
-const { getDirs } = require('./util');
+const { getDirs, distDir, srcDir } = require('./util');
 
 module.exports = {
     entry: {
@@ -11,7 +11,7 @@ module.exports = {
         vendor: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', 'es6-promise', 'react', 'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'react-deliverer'],
     },
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: distDir,
         chunkFilename: '[id].chunk.js',
         filename: '[name].bundle.js',
         publicPath: '',
@@ -28,11 +28,11 @@ module.exports = {
                 return /node_module.*echarts/.test(module.resource) && count > 1;
             },
         }),
-        ...getDirs((path.join(__dirname, 'src/routes'))).map(dir => new webpack.optimize.CommonsChunkPlugin({
+        ...getDirs((path.join(srcDir, 'routes'))).map(dir => new webpack.optimize.CommonsChunkPlugin({
             children: true,
             async: `${dir}_async`,
             minChunks(module, count) {
-                return module.resource && module.resource.indexOf(path.join('modules', dir)) > -1 && count > 1;
+                return module.resource && module.resource.indexOf(path.join('routes', dir)) > -1 && count > 1;
             },
         })),
         new Es3ifyPlugin(),
@@ -46,7 +46,7 @@ module.exports = {
         new ExtractTextPlugin('style.all.css'),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: path.resolve(__dirname, 'src/index.ejs'),
+            template: `${srcDir}/index.ejs`,
         }),
     ],
     resolve: {
@@ -56,7 +56,7 @@ module.exports = {
 
         // 路径别名
         alias: {
-            '~': path.resolve(__dirname, 'src'),
+            '~': srcDir,
         },
     },
     debug: true,

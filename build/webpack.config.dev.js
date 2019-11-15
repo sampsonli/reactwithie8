@@ -1,27 +1,24 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const Es3ifyPlugin = require('es3ify-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { getDirs } = require('./util');
+const { getDirs, distDir, srcDir } = require('./util');
 
 module.exports = {
     entry: {
-        entry: './src/index.js',
-        vendor: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', 'es6-promise', 'react', 'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'react-deliverer'],
+        entry: ['webpack-hot-middleware/client?reload=true', './src/index.js'],
+        vendor: ['es5-shim', 'es5-shim/es5-sham', 'es6-promise', 'react', 'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'react-deliverer'],
     },
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: '[name].[chunkhash:8].bundle.js',
-        chunkFilename: '[id].[chunkhash:8].chunk.js',
+        path: distDir,
+        chunkFilename: '[id].chunk.js',
+        filename: '[name].bundle.js',
         publicPath: '',
     },
     plugins: [
-        new webpack.NoErrorsPlugin(),
-
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest'],
-            minChunks: Infinity,
         }),
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
@@ -30,36 +27,24 @@ module.exports = {
                 return /node_module.*echarts/.test(module.resource) && count > 1;
             },
         }),
-        ...getDirs((path.join(__dirname, 'src/routes'))).map(dir => new webpack.optimize.CommonsChunkPlugin({
+        ...getDirs((path.join(srcDir, 'routes'))).map(dir => new webpack.optimize.CommonsChunkPlugin({
             children: true,
             async: `${dir}_async`,
             minChunks(module, count) {
                 return module.resource && module.resource.indexOf(path.join('modules', dir)) > -1 && count > 1;
             },
         })),
-        // 压缩js文件，ie8支持插件使用Es3ifyPlugin
-        new webpack.optimize.UglifyJsPlugin({
-            mangle: {
-                screw_ie8: false, // 支持ie8
-            }, // 混淆
-            compress: {
-                warnings: false, // 去除警告
-                screw_ie8: false, // 支持ie8
-            }, // 压缩
-            comments: false, // 去除注释
-        }),
-        new Es3ifyPlugin(),
-        // 定义全局环境变量为生产环境
+        new webpack.NoErrorsPlugin(),
+        // 定义全局环境变量为开发环境
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('production'),
-                EWT_ENV: JSON.stringify(process.env.EWT_ENV || 'online'),
+                NODE_ENV: JSON.stringify('development'),
             },
         }),
-        new ExtractTextPlugin('style.all.[hash:8].css'),
+        new ExtractTextPlugin('style.all.css'),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: path.resolve(__dirname, 'src/index.ejs'),
+            template: `${srcDir}/index.ejs`,
         }),
     ],
     resolve: {
@@ -69,13 +54,18 @@ module.exports = {
 
         // 路径别名
         alias: {
-            '~': path.resolve(__dirname, 'src'),
+            '~': srcDir,
         },
     },
-    debug: false,
-    // devtool: 'source-map',
+    debug: true,
+    devtool: 'source-map',
     module: {
         loaders: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                loaders: ['babel-loader'],
+            },
             {
                 test: /\.(css|less)$/,
                 include: /(node_modules|assets)/,
@@ -85,11 +75,6 @@ module.exports = {
                 exclude: /(node_modules|assets)/,
                 test: /\.(css|less)$/,
                 loader: ExtractTextPlugin.extract('style-loader', 'css?modules&localIdentName=[local]-[hash:base64:5]!postcss-loader!less-loader'),
-            },
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                loaders: ['babel-loader'],
             },
             {
                 test: /(fontawesome-webfont|glyphicons-halflings-regular)\.(woff|woff2|ttf|eot|svg)($|\?)/,
