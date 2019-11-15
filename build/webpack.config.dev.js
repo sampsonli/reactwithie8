@@ -6,7 +6,7 @@ const { getDirs, distDir, srcDir } = require('./util');
 
 module.exports = {
     entry: {
-        entry: ['webpack-hot-middleware/client?reload=true', './src/index.js'],
+        entry: ['webpack-hot-middleware/client?reload=true', srcDir],
         vendor: ['es5-shim', 'es5-shim/es5-sham', 'es6-promise', 'react', 'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'react-deliverer'],
     },
     output: {
