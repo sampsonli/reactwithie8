@@ -24,7 +24,6 @@ if (process.env.NODE_ENV === 'production') {
     const compiler = webpack(config);
     app.use(require('webpack-dev-middleware')(compiler, {
         noInfo: true,
-        hot: true,
         publicPath: config.output.publicPath,
     }));
     app.use(require('webpack-hot-middleware')(compiler));

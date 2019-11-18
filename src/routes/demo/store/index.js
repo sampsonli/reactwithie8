@@ -19,7 +19,7 @@ class HomeStore {
         if (!this.initData) {
             setTimeout(() => {
                 this.setInitData(`初始数据1--${Math.floor(Math.random() * 1000)}`);
-            }, 300);
+            }, 16.7);
         }
     }
 
@@ -27,7 +27,7 @@ class HomeStore {
         const old = this.number;
         // 模拟接口请求数据
         setTimeout(() => {
-            this.setNumber(old + 2);
+            this.setNumber(old + 1);
         }, 200);
     }
 }
