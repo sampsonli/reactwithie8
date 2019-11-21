@@ -1,4 +1,4 @@
-import load from '~/components/load';
+import load from '~/common/load';
 
 const Demo = load(() => import('./'));
 const Home = load(() => import('./views/home'));
