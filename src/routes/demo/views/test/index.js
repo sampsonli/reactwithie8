@@ -4,7 +4,7 @@ import css from './style.less';
 import store from '../../store';
 
 
-class Home extends Component {
+class Test extends Component {
     componentDidMount() {
         store.getInitData();
     }
@@ -14,7 +14,7 @@ class Home extends Component {
             <div className={css.container}>
                 <div className={css.header}>
                     <div className={css['h-ct']} onClick={() => store.getNumber()}>
-                        <span className={css['h-title']}>demo12演示deliverer</span>
+                        <span className={css['h-title']}>test演示deliverer</span>
                     </div>
                 </div>
                 <div className={css.content}>
@@ -27,4 +27,4 @@ class Home extends Component {
         );
     }
 }
-export default connect(state => ({state: state[store.ns]}))(Home);
+export default connect(state => ({state: state[store.ns]}))(Test);

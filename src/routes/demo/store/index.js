@@ -18,7 +18,7 @@ class HomeStore {
     getInitData() {
         if (!this.initData) {
             setTimeout(() => {
-                this.setInitData(`初始数据1--${Math.floor(Math.random() * 1000)}`);
+                this.setInitData(`初始数据3--${Math.floor(Math.random() * 1000)}`);
             }, 16.7);
         }
     }
