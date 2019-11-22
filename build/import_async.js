@@ -1,4 +1,3 @@
-
 module.exports = (_ref) => {
     const template = _ref.template;
 
@@ -18,6 +17,17 @@ module.exports = (_ref) => {
         })
     )`);
 
+    const getChunkName = (arg) => {
+        if (arg.trailingComments && arg.trailingComments[0].value.indexOf('webpackChunkName:')) {
+            return arg.trailingComments[0].value.replace('webpackChunkName:', '').replace(/\s/g, '');
+        }
+
+        if (!~arg.value.indexOf('/')) {
+            return arg.value;
+        }
+        return null;
+    }
+
 
     return {
         manipulateOptions: (opts, parserOpts) => {
@@ -27,11 +37,11 @@ module.exports = (_ref) => {
         visitor: {
             Import: (path) => {
                 let newImport;
-                const tcomm = path.parentPath.node.arguments[0].trailingComments;
-                if (tcomm && ~tcomm[0].value.indexOf('webpackChunkName:')) {
+                const trunkName = getChunkName(path.parentPath.node.arguments[0]);
+                if (trunkName) {
                     newImport = buildImport1({
                         SOURCE: path.parentPath.node.arguments,
-                        MODEL: [{ type: 'StringLiteral', value: tcomm[0].value.replace('webpackChunkName:', '').replace(/\s/g, '')}],
+                        MODEL: [{type: 'StringLiteral', value: trunkName}],
                     });
                 } else {
                     newImport = buildImport2({
