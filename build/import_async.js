@@ -19,8 +19,12 @@ module.exports = (_ref) => {
 
     const getChunkName = (arg) => {
         if (arg.trailingComments && arg.trailingComments[0].value.indexOf('webpackChunkName:')) {
-            return arg.trailingComments[0].value.replace('webpackChunkName:', '').replace(/\s/g, '');
+            return arg.trailingComments[0].value.replace('webpackChunkName:', '').replace(/\s/g, '').replace(/["|']/g, '');
         }
+        if (arg.leadingComments && arg.leadingComments[0].value.indexOf('webpackChunkName:')) {
+            return arg.leadingComments[0].value.replace('webpackChunkName:', '').replace(/\s/g, '').replace(/["|']/g, '');
+        }
+
 
         if (!~arg.value.indexOf('/')) {
             return arg.value;
@@ -36,6 +40,7 @@ module.exports = (_ref) => {
 
         visitor: {
             Import: (path) => {
+                console.log(path.parentPath.node.arguments[0])
                 let newImport;
                 const trunkName = getChunkName(path.parentPath.node.arguments[0]);
                 if (trunkName) {
