@@ -40,7 +40,7 @@ module.exports = (_ref) => {
 
         visitor: {
             Import: (path) => {
-                console.log(path.parentPath.node.arguments[0])
+                // console.log(path.parentPath.node.arguments[0])
                 let newImport;
                 const trunkName = getChunkName(path.parentPath.node.arguments[0]);
                 if (trunkName) {
