@@ -1,8 +1,7 @@
-const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { getDirs, distDir, srcDir } = require('./util');
+const { distDir, srcDir } = require('./util');
 
 module.exports = {
     entry: {
@@ -22,18 +21,12 @@ module.exports = {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
-            async: 'echarts',
+            async: 'common_async',
             minChunks(module, count) {
-                return /node_module.*echarts/.test(module.resource) && count > 1;
+                return /node_module/.test(module.resource) && count > 1;
             },
         }),
-        ...getDirs((path.join(srcDir, 'routes'))).map(dir => new webpack.optimize.CommonsChunkPlugin({
-            children: true,
-            async: `${dir}_async`,
-            minChunks(module, count) {
-                return module.resource && module.resource.indexOf(path.join('routes', dir)) > -1 && count > 1;
-            },
-        })),
+
         new webpack.NoErrorsPlugin(),
         // 定义全局环境变量为开发环境
         new webpack.DefinePlugin({
