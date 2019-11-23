@@ -35,7 +35,7 @@
     "jsx-a11y/no-static-element-interactions": "off",
     "arrow-parens": "off",
     "consistent-return": "warn",
-    "max-len": [2, 200]
+    "max-len": [2, 250]
   },
   "settings": {
     "import/resolver": {

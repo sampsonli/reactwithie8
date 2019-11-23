@@ -6,7 +6,7 @@ const { distDir, srcDir } = require('./util');
 module.exports = {
     entry: {
         entry: ['webpack-hot-middleware/client?reload=true', srcDir],
-        vendor: ['es5-shim', 'es5-shim/es5-sham', 'es6-promise', 'react', 'prop-types', 'react-dom', 'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'react-deliverer'],
+        vendor: ['es5-shim', 'es5-shim/es5-sham', 'es6-promise', 'react', 'prop-types', 'react-dom', 'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'react-deliverer', 'moment'],
     },
     output: {
         path: distDir,
@@ -23,7 +23,7 @@ module.exports = {
             children: true,
             async: 'common_async',
             minChunks(module, count) {
-                return /node_module/.test(module.resource) && count > 1;
+                return /node_module/.test(module.resource) && count > 2;
             },
         }),
 
