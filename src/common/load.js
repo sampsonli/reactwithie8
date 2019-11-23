@@ -2,9 +2,16 @@ import React from 'react';
 
 export default (loadComponent, loadingComp = () => null) => (
     class AsyncComponent extends React.Component {
+        static contextTypes = {
+            router: React.PropTypes.object.isRequired,
+        };
+        constructor(args, context) {
+            super(args);
+            this.router = context.router;
+        }
         state = {
             Component: null,
-        }
+        };
 
         componentWillMount() {
             if (this.state.Component) {
@@ -13,7 +20,6 @@ export default (loadComponent, loadingComp = () => null) => (
 
             loadComponent()
                 .then((Component) => {
-                    // eslint-disable-next-line max-len
                     this.setState({Component: Component.default ? Component.default : Component}); // 提高兼容性
                 })
                 .catch((err) => {
@@ -24,7 +30,7 @@ export default (loadComponent, loadingComp = () => null) => (
 
         render() {
             const {Component} = this.state;
-            return (Component) ? <Component {...this.props} /> : loadingComp();
+            return (Component) ? <Component {...this.props} history={this.router} /> : loadingComp();
         }
     }
 );
