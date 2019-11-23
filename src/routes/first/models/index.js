@@ -1,7 +1,7 @@
 import {connect, action} from 'react-deliverer';
 
 @connect('first_home')
-class HomeStore {
+class FirstModel {
     number = 3;
     initData = null;
 
@@ -31,4 +31,4 @@ class HomeStore {
         }, 200);
     }
 }
-export default new HomeStore();
+export default new FirstModel();

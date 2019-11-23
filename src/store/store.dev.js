@@ -1,4 +1,4 @@
-// 如果是开发模式，store 采用此配置
+// 如果是开发模式，models 采用此配置
 
 import {createStore, applyMiddleware, compose} from 'redux';
 import createLogger from 'redux-logger';

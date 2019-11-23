@@ -1,4 +1,4 @@
-// 如果是产品（打包）模式，store 采用此配置
+// 如果是产品（打包）模式，models 采用此配置
 
 import {createStore} from 'redux';
 import deliverer from 'react-deliverer';
