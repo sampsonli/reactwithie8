@@ -1,8 +1,9 @@
+const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Es3ifyPlugin = require('es3ify-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { distDir, srcDir } = require('./util');
+const { getDirs, distDir, srcDir } = require('./util');
 
 module.exports = {
     entry: {
@@ -22,13 +23,13 @@ module.exports = {
             name: ['vendor', 'manifest'],
             minChunks: Infinity,
         }),
-        new webpack.optimize.CommonsChunkPlugin({
+        ...getDirs((path.join(srcDir, 'routes'))).map(dir => new webpack.optimize.CommonsChunkPlugin({
             children: true,
-            async: 'common_async',
+            async: `${dir}_async`,
             minChunks(module, count) {
-                return /node_module/.test(module.resource) && count > 2;
+                return module.resource && module.resource.indexOf(path.join('routes', dir)) > -1 && count > 1;
             },
-        }),
+        })),
         // 压缩js文件，ie8支持插件使用Es3ifyPlugin
         new webpack.optimize.UglifyJsPlugin({
             mangle: {

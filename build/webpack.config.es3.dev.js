@@ -21,13 +21,13 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest'],
         }),
-        new webpack.optimize.CommonsChunkPlugin({
+        ...getDirs((path.join(srcDir, 'routes'))).map(dir => new webpack.optimize.CommonsChunkPlugin({
             children: true,
-            async: 'common_async',
+            async: `${dir}_async`,
             minChunks(module, count) {
-                return /node_module/.test(module.resource) && count > 2;
+                return module.resource && module.resource.indexOf(path.join('routes', dir)) > -1 && count > 1;
             },
-        }),
+        })),
         new Es3ifyPlugin(),
         new webpack.NoErrorsPlugin(),
         // 定义全局环境变量为开发环境
