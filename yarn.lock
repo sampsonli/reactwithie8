@@ -5141,6 +5141,7 @@ react-redux@5.0.1:
 react-router@2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-2.3.0.tgz#6d02385003c68ac8dd260243570897a0e0fe4ead"
+  integrity sha1-bQI4UAPGisjdJgJDVwiXoOD+Tq0=
   dependencies:
     history "^2.0.1"
     invariant "^2.2.1"

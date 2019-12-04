@@ -12,9 +12,10 @@ const Radar = load(() => import('./Radar'));
 class Home extends Component {
     componentDidMount() {
         model.getInitData();
+        console.log(this.props);
     }
-
     render() {
+        const {data} = this.props;
         return (
             <div className={css.container}>
                 <div className={css.header}>
@@ -23,7 +24,7 @@ class Home extends Component {
                     </div>
                 </div>
                 <div className={css.content}>
-                    <div className={css.number} onClick={() => this.props.history.push('/demo/test')}>当前number值： <i>{model.number || '加载中...'}</i></div>
+                    <div className={css.number} onClick={() => this.props.history.push('/demo/test')}>当前number值： <i>{data.number || '加载中...'}</i></div>
                     <Radar />
                 </div>
 
@@ -34,5 +35,6 @@ class Home extends Component {
 }
 Home.propTypes = {
     history: PropTypes.shape({push: PropTypes.func}).isRequired,
+    data: PropTypes.objectOf(PropTypes.any).isRequired,
 }
-export default connect(state => ({state: state[model.ns]}))(Home);
+export default connect(state => ({data: state[model.ns]}))(Home);
