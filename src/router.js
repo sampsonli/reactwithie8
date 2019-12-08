@@ -12,7 +12,7 @@ const appHistory = useRouterHistory(createHashHistory)({queryKey: false});
 const routes = [];
 ((r) => {
     r.keys().forEach((key) => {
-        const md = r(key);
+        const md = r(key).default;
         md.path = md.path || key.split('/')[2];
         routes.push(md);
     });
