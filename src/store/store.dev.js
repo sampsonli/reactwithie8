@@ -8,7 +8,7 @@ const store = createStore(
     () => {},
     window.__INITIAL_STATE__,
     compose(
-        applyMiddleware(createLogger()),
+        // applyMiddleware(createLogger()),
     ),
 );
 

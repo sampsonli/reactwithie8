@@ -82,7 +82,7 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                loaders: ['babel-loader'],
+                loaders: ['babel-loader?cacheDirectory'],
             },
             {
                 test: /(fontawesome-webfont|glyphicons-halflings-regular)\.(woff|woff2|ttf|eot|svg)($|\?)/,
