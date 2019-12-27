@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default (loadComponent, loadingComp = () => null) => (
+export default (loadComp, loadingComp = () => null) => (
     class AsyncComponent extends React.Component {
         static contextTypes = {
             router: React.PropTypes.object.isRequired,
@@ -18,7 +18,7 @@ export default (loadComponent, loadingComp = () => null) => (
                 return;
             }
 
-            loadComponent()
+            loadComp()
                 .then((Component) => {
                     this.setState({Component: Component.default ? Component.default : Component}); // 提高兼容性
                 })

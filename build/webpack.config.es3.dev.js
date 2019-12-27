@@ -17,9 +17,15 @@ module.exports = {
         publicPath: '',
     },
     plugins: [
-        // new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest'],
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            children: true,
+            async: 'modules_async',
+            minChunks(module, count) {
+                return module.resource && module.resource.indexOf('node_modules') > -1 && count > 1;
+            },
         }),
         ...getDirs((path.join(srcDir, 'routes'))).map(dir => new webpack.optimize.CommonsChunkPlugin({
             children: true,
@@ -45,7 +51,7 @@ module.exports = {
     resolve: {
         // 实际就是自动添加后缀，默认是当成js文件来查找路径
         // 空字符串在此是为了resolve一些在import文件时不带文件扩展名的表达式
-        extensions: ['', '.js', 'jsx', 'css', 'less'],
+        extensions: ['', '.js', '.jsx', '.json'],
 
         // 路径别名
         alias: {
@@ -78,10 +84,6 @@ module.exports = {
             {
                 test: /\.(jpg|png|gif)$/,
                 loader: 'url?limit=10000&name=assets/[name].[hash:10].[ext]',
-            },
-            {
-                test: /\.json$/,
-                loader: 'json',
             },
         ],
     },
