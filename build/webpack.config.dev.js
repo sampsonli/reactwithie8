@@ -43,7 +43,7 @@ module.exports = {
     resolve: {
         // 实际就是自动添加后缀，默认是当成js文件来查找路径
         // 空字符串在此是为了resolve一些在import文件时不带文件扩展名的表达式
-        extensions: ['', '.js', 'jsx', 'css', 'less'],
+        extensions: ['', '.js', '.jsx', '.css', '.less'],
 
         // 路径别名
         alias: {
