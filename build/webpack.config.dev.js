@@ -2,7 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { getDirs, distDir, srcDir } = require('./util');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { getDirs, distDir, srcDir, staticDir } = require('./util');
 
 module.exports = {
     entry: {
@@ -46,6 +47,7 @@ module.exports = {
             filename: 'index.html',
             template: `${srcDir}/index.ejs`,
         }),
+        new CopyWebpackPlugin([{ from: staticDir, to: distDir }]),
     ],
     resolve: {
         // 实际就是自动添加后缀，默认是当成js文件来查找路径

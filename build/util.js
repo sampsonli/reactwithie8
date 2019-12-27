@@ -14,3 +14,4 @@ module.exports.getDirs = (pdir) => {
 };
 module.exports.srcDir = path.resolve(__dirname, '../src');
 module.exports.distDir = path.resolve(__dirname, '../dist');
+module.exports.staticDir = path.resolve(__dirname, '../static');
