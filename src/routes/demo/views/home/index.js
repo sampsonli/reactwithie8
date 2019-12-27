@@ -1,17 +1,14 @@
 import {connect} from 'react-redux';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import load from '~/common/load';
 import css from './style.less';
 import model from '../../models';
-
-const Radar = load(() => import('./Radar'));
-
+import Radar from './Radar';
 
 class Home extends Component {
     componentDidMount() {
         model.getInitData();
-        console.log(this.props);
+        // console.log(this.props);
     }
     render() {
         const {data} = this.props;
