@@ -3,10 +3,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import css from './style.less';
 import model from '../../models';
-import Radar from './Radar';
+import Radar from './../../components/Radar';
+import Cookie from 'js-cookie';
+import uuid from 'uuid';
 
 class Home extends Component {
     componentDidMount() {
+        console.log(typeof Cookie);
         model.getInitData();
         // console.log(this.props);
     }
@@ -16,7 +19,7 @@ class Home extends Component {
             <div className={css.container}>
                 <div className={css.header}>
                     <div className={css['h-ct']} onClick={() => model.getNumber()}>
-                        <span className={css['h-title']}>demo演示deliverer</span>
+                        <span className={css['h-title']}>demo2演示deliverer</span>
                     </div>
                 </div>
                 <div className={css.content}>

@@ -31,7 +31,10 @@ module.exports = {
             children: true,
             async: 'modules_async',
             minChunks(module, count) {
-                return module.resource && module.resource.indexOf('node_modules') > -1 && count > 1;
+                return module.resource &&
+                    module.resource.indexOf('babel-runtime') === -1 &&
+                    module.resource.indexOf('node_modules') > -1 &&
+                    count > 1;
             },
         }),
         ...routes.map(route => new webpack.optimize.CommonsChunkPlugin({
@@ -39,6 +42,7 @@ module.exports = {
             async: `${route.dir}_async`,
             minChunks(module, count) {
                 return module.resource && module.resource.indexOf(route.fpath) > -1 && count > 1;
+                // return module.issuer && module.issuer.indexOf(route.fpath) > -1 && count > 1;
             },
         })),
         new webpack.NoErrorsPlugin(),

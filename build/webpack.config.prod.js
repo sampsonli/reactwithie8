@@ -3,7 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Es3ifyPlugin = require('es3ify-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+// const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const { getRoutes, distDir, srcDir, staticDir, ctxDir } = require('./util');
 const bundleConfig = require('../static/bundle-config.json');
 const vendorManifest = require('../static/vendor-manifest.json');
@@ -16,7 +16,7 @@ module.exports = {
     output: {
         path: distDir,
         filename: '[name].[chunkhash:8].bundle.js',
-        chunkFilename: '[id].[chunkhash:8].chunk.js',
+        chunkFilename: '[name].[chunkhash:8].chunk.js',
         publicPath: '',
     },
     plugins: [
@@ -33,7 +33,10 @@ module.exports = {
             children: true,
             async: 'modules_async',
             minChunks(module, count) {
-                return module.resource && module.resource.indexOf('node_modules') > -1 && count > 1;
+                return module.resource &&
+                    module.resource.indexOf('babel-runtime') === -1 &&
+                    module.resource.indexOf('node_modules') > -1 &&
+                    count > 1;
             },
         }),
         ...routes.map(route => new webpack.optimize.CommonsChunkPlugin({
@@ -41,6 +44,7 @@ module.exports = {
             async: `${route.dir}_async`,
             minChunks(module, count) {
                 return module.resource && module.resource.indexOf(route.fpath) > -1 && count > 1;
+                // return module.issuer && module.issuer.indexOf(route.fpath) > -1 && count > 1;
             },
         })),
         // 压缩js文件，ie8支持插件使用Es3ifyPlugin

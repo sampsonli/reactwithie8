@@ -7,7 +7,7 @@ module.exports.getRoutes = () => {
         const pt = path.join(routesDir, dir);
         const stat = fs.statSync(pt);
         if (stat && stat.isDirectory()) {
-            dirs.push({dir, fpath: pt});
+            dirs.push({dir, fpath: pt + path.sep});
         }
     });
     return dirs;
