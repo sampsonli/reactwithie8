@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const Es3ifyPlugin = require('es3ify-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -13,6 +14,11 @@ module.exports = {
     },
 
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production'),
+            },
+        }),
         new webpack.DllPlugin({
             path: path.resolve(__dirname, '../static/[name]-manifest.json'),
             name: '[name]_lib',
@@ -28,5 +34,6 @@ module.exports = {
             }, // 压缩
             comments: false, // 去除注释
         }),
+        new Es3ifyPlugin(),
     ],
 };
