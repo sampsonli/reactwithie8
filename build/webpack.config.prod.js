@@ -5,11 +5,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { getRoutes, distDir, srcDir, staticDir, ctxDir } = require('./util');
 const bundleConfig = require('../static/bundle-config.json');
+const vendorManifest = require('../static/vendor-manifest.json');
 
 const routes = getRoutes();
 module.exports = {
     entry: {
-        app: ['console-polyfill', srcDir],
+        app: [srcDir],
     },
     output: {
         path: distDir,
@@ -21,7 +22,7 @@ module.exports = {
         new webpack.NoErrorsPlugin(),
         new webpack.DllReferencePlugin({
             context: ctxDir,
-            manifest: require('../static/vendor-manifest.json'),
+            manifest: vendorManifest,
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'manifest',
