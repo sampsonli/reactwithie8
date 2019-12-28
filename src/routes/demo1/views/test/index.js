@@ -1,13 +1,10 @@
 import {connect} from 'react-redux';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Cookie from 'js-cookie';
-import uuid from 'uuid';
 import css from './style.less';
 import model from '../../models';
 import Radar from '../../components/Radar.js';
 
-console.log(Cookie.get);
 class Home extends Component {
     componentDidMount() {
         model.getInitData();

@@ -65,7 +65,7 @@ module.exports = {
                 NODE_ENV: JSON.stringify('production'),
             },
         }),
-        new ExtractTextPlugin('style.all.[hash:8].css'),
+        new ExtractTextPlugin('style.all.[contenthash:8].css'),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: `${srcDir}/index.ejs`,

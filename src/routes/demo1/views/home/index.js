@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import css from './style.less';
 import model from '../../models';
 import Radar from './../../components/Radar';
-import Cookie from 'js-cookie';
+import '~/common/ajax';
 
 class Home extends Component {
     componentDidMount() {
