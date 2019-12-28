@@ -1,21 +1,6 @@
 #!/bin/bash
-uri="attainment/xinli"
-pname="xinli.tar.gz"
-yarn
-pwd
-if [ "$1"x = "sit"x ]
-then
-    yarn run build:sit
-    cd dist
-    tar -zcf $pname *
-    scp $pname buweiqiang@10.0.11.68:/home/wwwroot/frontend/tmp/
-    ssh buweiqiang@10.0.11.68 "cd /home/wwwroot/frontend/ && rm -rf $uri && mkdir -p $uri && tar zxf tmp/$pname -C $uri"
-else
-    yarn run build
-    cd dist
-    tar -zcf $pname *
-    scp $pname buweiqiang@10.0.11.68:/home/wwwroot/frontend_release/tmp/
-    ssh buweiqiang@10.0.11.68 "cd /home/wwwroot/frontend_release/ && rm -rf $uri && mkdir -p $uri && tar zxf tmp/$pname -C $uri"
-fi
-
-
+cd dist
+tar -czf app.tar.gz *
+scp app.tar.gz root@111.231.188.160:tmp/
+ssh root@111.231.188.160 "cd /www/wwwroot/a.sinwai.cn && rm -rf * && tar -zxf ~/tmp/app.tar.gz"
+rm -f app.tar.gz
