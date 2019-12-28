@@ -9,7 +9,7 @@ const bundleConfig = require('../static/bundle-config.json');
 const routes = getRoutes();
 module.exports = {
     entry: {
-        app: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', srcDir],
+        app: ['console-polyfill', srcDir],
     },
     output: {
         path: distDir,
