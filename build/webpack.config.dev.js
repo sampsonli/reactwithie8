@@ -1,9 +1,8 @@
-const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { getDirs, distDir, srcDir, staticDir } = require('./util');
+const { getRoutes, distDir, srcDir, staticDir, ctxDir } = require('./util');
 
 module.exports = {
     entry: {
@@ -18,7 +17,7 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DllReferencePlugin({
-            context: path.resolve(__dirname, '../'),
+            context: ctxDir,
             manifest: require('../static/vendor-manifest.json'),
         }),
         new webpack.optimize.CommonsChunkPlugin({
@@ -32,11 +31,11 @@ module.exports = {
                 return module.resource && module.resource.indexOf('node_modules') > -1 && count > 1;
             },
         }),
-        ...getDirs((path.join(srcDir, 'routes'))).map(dir => new webpack.optimize.CommonsChunkPlugin({
+        ...getRoutes().map(route => new webpack.optimize.CommonsChunkPlugin({
             children: true,
-            async: `${dir}_async`,
+            async: `${route.dir}_async`,
             minChunks(module, count) {
-                return module.resource && module.resource.indexOf(path.join('routes', dir)) > -1 && count > 1;
+                return module.resource && module.resource.indexOf(route.fpath) > -1 && count > 1;
             },
         })),
         new webpack.NoErrorsPlugin(),
