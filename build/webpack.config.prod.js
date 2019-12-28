@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { getRoutes, distDir, srcDir, staticDir, ctxDir } = require('./util');
 
+const routes = getRoutes();
 module.exports = {
     entry: {
         app: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', srcDir],
@@ -23,7 +24,7 @@ module.exports = {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'manifest',
-            chunks: ['app'],
+            chunks: ['app', 'modules_async', ...routes.map(route => `${route.dir}_async`)],
         }),
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
@@ -32,7 +33,7 @@ module.exports = {
                 return module.resource && module.resource.indexOf('node_modules') > -1 && count > 1;
             },
         }),
-        ...getRoutes().map(route => new webpack.optimize.CommonsChunkPlugin({
+        ...routes.map(route => new webpack.optimize.CommonsChunkPlugin({
             children: true,
             async: `${route.dir}_async`,
             minChunks(module, count) {
