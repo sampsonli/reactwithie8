@@ -20,7 +20,7 @@ class Home extends Component {
                     </div>
                 </div>
                 <div className={css.content}>
-                    <div className={css.number} onClick={() => this.props.history.push('/demo/test')}>当前number值： <i>{data.number || '加载中...'}</i></div>
+                    <div className={css.number} onClick={model.getNumber}>当前number值： <i>{data.number || '加载中...'}</i></div>
                     <Radar />
                 </div>
 

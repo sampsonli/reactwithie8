@@ -5,11 +5,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Es3ifyPlugin = require('es3ify-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { getDirs, distDir, srcDir, staticDir } = require('./util');
+const bundleConfig = require('../static/bundle-config');
 
 module.exports = {
     entry: {
-        entry: srcDir,
-        vendor: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', 'es6-promise', 'react', 'prop-types', 'react-dom', 'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'react-deliverer', 'moment'],
+        app: ['es5-shim', 'es5-shim/es5-sham', 'console-polyfill', srcDir],
     },
     output: {
         path: distDir,
@@ -18,8 +18,9 @@ module.exports = {
         publicPath: '',
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: ['vendor', 'manifest'],
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require('../static/vendor-manifest.json'),
         }),
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
@@ -47,6 +48,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: `${srcDir}/index.ejs`,
+            chunks: ['app'],
+            bundleName: bundleConfig.vendor.js,
         }),
         new CopyWebpackPlugin([{ from: staticDir, to: distDir }]),
     ],

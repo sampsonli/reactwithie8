@@ -4,11 +4,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { getDirs, distDir, srcDir, staticDir } = require('./util');
+const bundleConfig = require('../static/bundle-config');
 
 module.exports = {
     entry: {
-        entry: ['webpack-hot-middleware/client?reload=true', srcDir],
-        vendor: ['es5-shim', 'es5-shim/es5-sham', 'es6-promise', 'react', 'prop-types', 'react-dom', 'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'react-deliverer', 'moment'],
+        app: ['webpack-hot-middleware/client?reload=true', srcDir],
     },
     output: {
         path: distDir,
@@ -18,8 +18,9 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: ['vendor', 'manifest'],
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require('../static/vendor-manifest.json'),
         }),
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
@@ -46,6 +47,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: `${srcDir}/index.ejs`,
+            chunks: ['app'],
+            bundleName: bundleConfig.vendor.js,
         }),
         new CopyWebpackPlugin([{ from: staticDir, to: distDir }]),
     ],
