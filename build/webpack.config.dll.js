@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const Es3ifyPlugin = require('es3ify-webpack-plugin');
+const AssetsPlugin = require('assets-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -8,7 +9,7 @@ module.exports = {
     },
 
     output: {
-        filename: '[name].dll.js',
+        filename: '[name].dll.[chunkhash:8].js',
         path: path.resolve(__dirname, '../static'),
         library: '[name]_lib',
     },
@@ -35,5 +36,9 @@ module.exports = {
             comments: false, // 去除注释
         }),
         new Es3ifyPlugin(),
+        new AssetsPlugin({
+            filename: 'bundle-config.json',
+            path: path.resolve(__dirname, '../static'),
+        }),
     ],
 };

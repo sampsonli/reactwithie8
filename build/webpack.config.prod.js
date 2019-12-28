@@ -4,6 +4,7 @@ const Es3ifyPlugin = require('es3ify-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { getRoutes, distDir, srcDir, staticDir, ctxDir } = require('./util');
+const bundleConfig = require('../static/bundle-config.json');
 
 const routes = getRoutes();
 module.exports = {
@@ -62,6 +63,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: `${srcDir}/index.ejs`,
+            dllName: bundleConfig.vendor.js,
         }),
         new CopyWebpackPlugin([{ from: staticDir, to: distDir }]),
     ],
