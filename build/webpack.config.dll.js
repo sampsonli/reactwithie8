@@ -9,7 +9,7 @@ module.exports = {
     },
 
     output: {
-        filename: '[name].dll.[chunkhash:8].js',
+        filename: '[name].dll.js?[chunkhash:8]',
         path: path.resolve(__dirname, '../static'),
         library: '[name]_lib',
     },
