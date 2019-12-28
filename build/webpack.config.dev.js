@@ -4,7 +4,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { getDirs, distDir, srcDir, staticDir } = require('./util');
-const bundleConfig = require('../static/bundle-config');
 
 module.exports = {
     entry: {
@@ -19,8 +18,12 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DllReferencePlugin({
-            context: __dirname,
+            context: path.resolve(__dirname, '../'),
             manifest: require('../static/vendor-manifest.json'),
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'manifest',
+            chunks: ['app'],
         }),
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
@@ -47,8 +50,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: `${srcDir}/index.ejs`,
-            chunks: ['app'],
-            bundleName: bundleConfig.vendor.js,
         }),
         new CopyWebpackPlugin([{ from: staticDir, to: distDir }]),
     ],

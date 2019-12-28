@@ -1,7 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const AssetsPlugin = require('assets-webpack-plugin');
-const { staticDir } = require('./util');
 
 module.exports = {
     entry: {
@@ -10,13 +8,13 @@ module.exports = {
 
     output: {
         filename: '[name].dll.js',
-        path: staticDir,
+        path: path.resolve(__dirname, '../static'),
         library: '[name]_lib',
     },
 
     plugins: [
         new webpack.DllPlugin({
-            path: path.join(__dirname, '../static/[name]-manifest.json'),
+            path: path.resolve(__dirname, '../static/[name]-manifest.json'),
             name: '[name]_lib',
         }),
         // 压缩js文件，ie8支持插件使用Es3ifyPlugin
@@ -29,10 +27,6 @@ module.exports = {
                 screw_ie8: false, // 支持ie8
             }, // 压缩
             comments: false, // 去除注释
-        }),
-        new AssetsPlugin({
-            filename: 'bundle-config.json',
-            path: staticDir,
         }),
     ],
 };
