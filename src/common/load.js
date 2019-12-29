@@ -11,6 +11,7 @@ export default (loadComp, loadingComp = () => null) => (
         }
         state = {
             Component: null,
+            hot: false,
         };
 
         componentWillMount() {
@@ -23,7 +24,7 @@ export default (loadComp, loadingComp = () => null) => (
                     this.setState({Component: Component.default ? Component.default : Component}); // 提高兼容性
                     if (typeof Component.onUpdate === 'function') {
                         Component.onUpdate((args) => {
-                            this.setState({Component: args.default});
+                            this.setState({Component: args.default, hot: true});
                         });
                     }
                 })
@@ -34,8 +35,8 @@ export default (loadComp, loadingComp = () => null) => (
         }
 
         render() {
-            const {Component} = this.state;
-            return (Component) ? <Component {...this.props} history={this.router} /> : loadingComp();
+            const {Component, hot} = this.state;
+            return (Component) ? <Component {...this.props} hot={hot} history={this.router} /> : loadingComp();
         }
     }
 );

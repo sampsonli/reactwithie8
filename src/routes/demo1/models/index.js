@@ -16,18 +16,16 @@ class HomeModel {
     }
 
     getInitData() {
-        if (!this.initData) {
-            setTimeout(() => {
-                this.setInitData(`初始数据4--${Math.floor(Math.random() * 1000)}`);
-            }, 16.7);
-        }
+        setTimeout(() => {
+            this.setInitData(`初始数据5551--${Math.floor(Math.random() * 1000)}`);
+        }, 1000);
     }
 
     getNumber = () => {
         const old = this.number;
         // 模拟接口请求数据
         setTimeout(() => {
-            this.setNumber(old + 1);
+            this.setNumber(old + 2);
         }, 16);
     }
 }
