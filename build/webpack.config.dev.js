@@ -2,14 +2,17 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const Es3ifyPlugin = require('es3ify-webpack-plugin');
 const { getRoutes, distDir, srcDir, staticDir, ctxDir } = require('./util');
 const bundleConfig = require('../static/bundle-config.json');
 const vendorManifest = require('../static/vendor-manifest.json');
 
+const isEs3 = !!process.env.ES3; // 是否转译成es3
+
 const routes = getRoutes();
 module.exports = {
     entry: {
-        app: ['webpack-hot-middleware/client?reload=true', srcDir],
+        app: isEs3 ? [srcDir] : ['webpack-hot-middleware/client?reload=true', srcDir],
     },
     output: {
         path: distDir,
@@ -18,7 +21,7 @@ module.exports = {
         publicPath: '',
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
+        isEs3 ? new Es3ifyPlugin() : new webpack.HotModuleReplacementPlugin(),
         new webpack.DllReferencePlugin({
             context: ctxDir,
             manifest: vendorManifest,

@@ -44,7 +44,6 @@ module.exports = {
             async: `${route.dir}_async`,
             minChunks(module, count) {
                 return module.resource && module.resource.indexOf(route.fpath) > -1 && count > 1;
-                // return module.issuer && module.issuer.indexOf(route.fpath) > -1 && count > 1;
             },
         })),
         // 压缩js文件，ie8支持插件使用Es3ifyPlugin
@@ -72,7 +71,7 @@ module.exports = {
             dllName: bundleConfig.vendor.js,
         }),
         new CopyWebpackPlugin([{ from: staticDir, to: distDir }]),
-    ].concat((process.env.ANALYSE && [
+    ].concat((process.env.ANALYSE && [ // 是否生成分析报告
         new BundleAnalyzerPlugin(),
     ]) || []),
     resolve: {
