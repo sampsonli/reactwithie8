@@ -16,7 +16,7 @@ class Home extends Component {
             <div className={css.container}>
                 <div className={css.header}>
                     <div className={css['h-ct']} onClick={() => model.getNumber()}>
-                        <span className={css['h-title']}>demo123513演示deliverer</span>
+                        <span className={css['h-title']}>demo11演示deliverer</span>
                     </div>
                 </div>
                 <div className={css.content}>

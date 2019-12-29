@@ -1,16 +1,16 @@
-import {deliver, reducer} from 'react-deliverer';
+import {deliver, mutate} from 'react-deliverer';
 
 @deliver('demo1_home')
 class HomeModel {
     number = 3;
     initData = null;
 
-    @reducer
+    @mutate
     setNumber(number) {
         this.number = number;
     }
 
-    @reducer
+    @mutate
     setInitData(initData) {
         this.initData = initData;
     }
