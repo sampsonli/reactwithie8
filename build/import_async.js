@@ -1,5 +1,5 @@
 module.exports = (_ref) => {
-    const template = _ref.template;
+    const {template} = _ref;
 
     const buildImport1 = template(`(
         new Promise((resolve) => {
@@ -41,12 +41,11 @@ module.exports = (_ref) => {
             return arg.leadingComments[0].value.replace('webpackChunkName:', '').replace(/\s/g, '').replace(/["|']/g, '');
         }
 
-
         if (!~arg.value.indexOf('/')) {
             return arg.value;
         }
         return null;
-    }
+    };
 
 
     return {
@@ -56,7 +55,6 @@ module.exports = (_ref) => {
 
         visitor: {
             Import: (path) => {
-                // console.log(path.parentPath.node.arguments[0])
                 let newImport;
                 const trunkName = getChunkName(path.parentPath.node.arguments[0]);
                 if (trunkName) {
