@@ -4,7 +4,11 @@ module.exports = (_ref) => {
     const buildImport1 = template(`(
         new Promise((resolve) => {
             require.ensure([], (require) => {
-                 resolve(require(SOURCE));
+                 const result = require(SOURCE);
+                 module.hot && module.hot.accept(SOURCE, () => {
+                    result.onUpdate && result.onUpdate(require(SOURCE));
+                 })
+                 resolve(result);
             }, MODEL);
         })
     )`);
@@ -12,7 +16,11 @@ module.exports = (_ref) => {
     const buildImport2 = template(`(
         new Promise((resolve) => {
             require.ensure([], (require) => {
-                 resolve(require(SOURCE));
+                 const result = require(SOURCE);
+                 module.hot && module.hot.accept(SOURCE, () => {
+                    result.onUpdate && result.onUpdate(require(SOURCE));
+                 })
+                 resolve(result);
             });
         })
     )`);
