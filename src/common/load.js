@@ -21,6 +21,11 @@ export default (loadComp, loadingComp = () => null) => (
             loadComp()
                 .then((Component) => {
                     this.setState({Component: Component.default ? Component.default : Component}); // 提高兼容性
+                    if (typeof Component.onUpdate === 'function') {
+                        Component.onUpdate((args) => {
+                            this.setState({Component: args.default});
+                        });
+                    }
                 })
                 .catch((err) => {
                     console.error('Cannot load component in async component');

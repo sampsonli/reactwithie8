@@ -28,7 +28,7 @@ class HomeModel {
         // 模拟接口请求数据
         setTimeout(() => {
             this.setNumber(old + 1);
-        }, 200);
+        }, 16);
     }
 }
 export default new HomeModel();

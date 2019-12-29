@@ -4,11 +4,9 @@ import PropTypes from 'prop-types';
 import css from './style.less';
 import model from '../../models';
 import Radar from './../../components/Radar';
-import '~/common/ajax';
 
 class Home extends Component {
     componentDidMount() {
-        console.log(typeof Cookie);
         model.getInitData();
 
         // console.log(this.props);
@@ -19,7 +17,7 @@ class Home extends Component {
             <div className={css.container}>
                 <div className={css.header}>
                     <div className={css['h-ct']} onClick={() => model.getNumber()}>
-                        <span className={css['h-title']}>demo1演示deliverer</span>
+                        <span className={css['h-title']}>demo11355演示deliverer</span>
                     </div>
                 </div>
                 <div className={css.content}>
@@ -37,3 +35,17 @@ Home.propTypes = {
     data: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 export default connect(state => ({data: state[model.ns]}))(Home);
+let doReplace;
+export const onUpdate = (cb) => {
+    doReplace = cb;
+};
+if (module.hot) {
+    module.hot.accept();
+    if (module.hot.data && module.hot.data.update) {
+        module.hot.data.update(module.exports);
+    }
+    module.hot.dispose(data => {
+        data.update = doReplace || module.hot.data.update;
+    });
+}
+
