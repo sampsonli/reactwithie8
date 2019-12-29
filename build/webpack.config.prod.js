@@ -3,7 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Es3ifyPlugin = require('es3ify-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const { getRoutes, distDir, srcDir, staticDir, ctxDir } = require('./util');
 const bundleConfig = require('../static/bundle-config.json');
 const vendorManifest = require('../static/vendor-manifest.json');
@@ -27,7 +27,7 @@ module.exports = {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'manifest',
-            chunks: ['app', 'modules_async', ...routes.map(route => `${route.dir}_async`)],
+            chunks: ['app'],
         }),
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
@@ -72,8 +72,9 @@ module.exports = {
             dllName: bundleConfig.vendor.js,
         }),
         new CopyWebpackPlugin([{ from: staticDir, to: distDir }]),
-        // new BundleAnalyzerPlugin(), // 打包分析插件，打包后会自动弹出tree图：127.0.0.1:8888
-    ],
+    ].concat((process.env.ANALYSE && [
+        new BundleAnalyzerPlugin(),
+    ]) || []),
     resolve: {
         // 实际就是自动添加后缀，默认是当成js文件来查找路径
         // 空字符串在此是为了resolve一些在import文件时不带文件扩展名的表达式

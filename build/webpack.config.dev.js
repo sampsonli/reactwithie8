@@ -25,7 +25,7 @@ module.exports = {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'manifest',
-            chunks: ['app', 'modules_async', ...routes.map(route => `${route.dir}_async`)],
+            chunks: ['app'],
         }),
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
