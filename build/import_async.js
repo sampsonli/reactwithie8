@@ -7,11 +7,11 @@ module.exports = (_ref) => {
                  const result = require(SOURCE);
                  resolve(result);
                  if(module.hot) {
-                     setTimeout(() => {
-                         result.onUpdate && module.hot.accept(SOURCE, () => {
-                            result.onUpdate && result.onUpdate(require(SOURCE));
-                         });
-                     }, 0);
+                    Promise.resolve().then(() => {
+                        typeof result.onUpdate === 'function' && module.hot.accept(SOURCE, () => {
+                            result.onUpdate(require(SOURCE));
+                        });
+                    })
                  }
             }, MODEL);
         })
@@ -23,13 +23,13 @@ module.exports = (_ref) => {
                  const result = require(SOURCE);
                  resolve(result);
                  if(module.hot) {
-                     setTimeout(() => {
-                         result.onUpdate && module.hot.accept(SOURCE, () => {
-                            result.onUpdate && result.onUpdate(require(SOURCE));
-                         });
-                     }, 0);
+                     Promise.resolve().then(() => {
+                        typeof result.onUpdate === 'function' && module.hot.accept(SOURCE, () => {
+                            result.onUpdate(require(SOURCE));
+                        });
+                     })
                  }
-            }, MODEL);
+            });
         })
     )`);
 
