@@ -16,11 +16,11 @@ class Home extends Component {
             <div className={css.container}>
                 <div className={css.header}>
                     <div className={css['h-ct']} onClick={() => model.getNumber()}>
-                        <span className={css['h-title']}>demo123434演示deliverer</span>
+                        <span className={css['h-title']}>demo12演示deliverer</span>
                     </div>
                 </div>
                 <div className={css.content}>
-                    <div className={css.number} onClick={model.getNumber}>当前number值： <i>{data.number || '加载中...'}</i></div>
+                    <div className={css.number} onClick={model.getNumber}>当前number13值： <i>{data.number || '加载中...'}</i></div>
                     <Radar />
                     <div>
                         {data.initData}

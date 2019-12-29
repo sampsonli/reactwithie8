@@ -22,7 +22,7 @@ export default (loadComp, loadingComp = () => null) => (
             loadComp()
                 .then((Component) => {
                     Component.onUpdate = (args) => {
-                        this.setState({Component: args.default, hot: true});
+                        this.setState({Component: args.default ? args.default : args, hot: true});
                     };
                     this.setState({Component: Component.default ? Component.default : Component}); // 提高兼容性
                 })

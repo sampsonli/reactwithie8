@@ -5,10 +5,14 @@ module.exports = (_ref) => {
         new Promise((resolve) => {
             require.ensure([], (require) => {
                  const result = require(SOURCE);
-                 module.hot && module.hot.accept(SOURCE, () => {
-                    result.onUpdate && result.onUpdate(require(SOURCE));
-                 })
                  resolve(result);
+                 if(module.hot) {
+                     setTimeout(() => {
+                         result.onUpdate && module.hot.accept(SOURCE, () => {
+                            result.onUpdate && result.onUpdate(require(SOURCE));
+                         });
+                     }, 0);
+                 }
             }, MODEL);
         })
     )`);
@@ -17,11 +21,15 @@ module.exports = (_ref) => {
         new Promise((resolve) => {
             require.ensure([], (require) => {
                  const result = require(SOURCE);
-                 module.hot && module.hot.accept(SOURCE, () => {
-                    result.onUpdate && result.onUpdate(require(SOURCE));
-                 })
                  resolve(result);
-            });
+                 if(module.hot) {
+                     setTimeout(() => {
+                         result.onUpdate && module.hot.accept(SOURCE, () => {
+                            result.onUpdate && result.onUpdate(require(SOURCE));
+                         });
+                     }, 0);
+                 }
+            }, MODEL);
         })
     )`);
 
