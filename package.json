@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=development node server.js",
     "dev:es3": "cross-env NODE_ENV=development ES3=true node server.js",
     "build": "npm run clean && webpack --config build/webpack.config.prod.js",
-    "analyse": "npm run clean && cross-env ANALYSE=1 webpack --config build/webpack.config.prod.js",
+    "build:analyse": "npm run clean && cross-env ANALYSE=1 webpack --config build/webpack.config.prod.js",
     "clean": "rimraf dist/*",
     "build:dll": "webpack --config build/webpack.config.dll.js",
     "test": "eslint src && echo \"Error: no test specified\" && exit 1"
@@ -37,7 +37,7 @@
     "moment": "^2.24.0",
     "prop-types": "15.7.2",
     "react": "0.14.9",
-    "react-deliverer": "^1.1.2",
+    "react-deliverer": "^2.0.0",
     "react-dom": "0.14.9",
     "react-redux": "5.0.1",
     "react-router": "2.3.0",
