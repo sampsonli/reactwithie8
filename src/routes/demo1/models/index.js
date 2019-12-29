@@ -21,7 +21,7 @@ class HomeModel {
         }, 1000);
     }
 
-    getNumber = () => {
+    getNumber() {
         const old = this.number;
         // 模拟接口请求数据
         setTimeout(() => {
