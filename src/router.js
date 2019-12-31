@@ -22,6 +22,7 @@ require.context('./', true, /^\.\/(common|components).*\.js$/); // 把common/com
 const routeConfig = {
     path: '/',
     childRoutes: routes,
+    indexRoute: { onEnter: (nextState, replace) => replace('/demo/home') },
 };
 // 通过Router配置上hashHistory和route
 // 再用reactRedux.provider将Router包含起来

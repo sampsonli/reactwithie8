@@ -3,20 +3,22 @@ import {deliver} from 'react-deliverer';
 function wait(time) {
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(999999);
+            resolve(new Date());
         }, time);
     });
 }
 
-@deliver('demo1_home')
+@deliver('demo_home')
 class HomeModel {
     loading = false;
-    data = null;
-    * getData() {
+    time = null;
+    * getTime() {
         this.loading = true;
-        const data = yield wait(2000);
-        this.data = data;
+        this.time = yield wait(1000);
         this.loading = false;
+        this.time = yield wait(1000);
+        this.time = yield wait(1000);
+        this.time = yield wait(1000);
     }
 }
 export default new HomeModel();
