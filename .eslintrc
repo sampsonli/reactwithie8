@@ -30,6 +30,7 @@
     "react/jsx-first-prop-new-line": "off",
     "react/jsx-filename-extension": "off",
     "no-restricted-syntax": "off",
+    "class-methods-use-this": "off",
     "linebreak-style": "off",
     "no-bitwise": "off",
     "jsx-a11y/no-static-element-interactions": "off",

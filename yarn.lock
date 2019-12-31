@@ -2602,11 +2602,6 @@ es3ify@^0.2.2:
     jstransform "~11.0.0"
     through "~2.3.4"
 
-es5-shim@4.5.13:
-  version "4.5.13"
-  resolved "https://registry.yarnpkg.com/es5-shim/-/es5-shim-4.5.13.tgz#5d88062de049f8969f83783f4a4884395f21d28b"
-  integrity sha512-xi6hh6gsvDE0MaW4Vp1lgNEBpVcCXRWfPXj5egDvtgLz4L9MEvNwYEMdJH+JJinWkwa8c3c3o5HduV7dB/e1Hw==
-
 es6-promise@3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-3.3.1.tgz#a08cdde84ccdbf34d027a1451bc91d4bcd28a613"
@@ -5939,10 +5934,10 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-deliverer@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/react-deliverer/-/react-deliverer-3.0.3.tgz#a2cb0b14126fa93e6f3d6f72c7ae56de9bf4d90c"
-  integrity sha512-fzwcesYlXSI1N5z5vCckNh5lfEQK2JNvhyCgpVVH85BkKeE0a09f4lfwwU1a1Jb68+gmBI+rki5dU3oETN4m+w==
+react-deliverer@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-deliverer/-/react-deliverer-3.0.4.tgz#cc86250448d98f6b8ba8f776a175532185c11c87"
+  integrity sha512-WjwTzYrGsZF6YZFu1Uxt9yWofQH42kmfz9ncN0o35Ip5r7namTcqQ0UQHZIPQDYmAxojIQeoCfnlCBVdkbjqoA==
 
 react-dom@0.14.9:
   version "0.14.9"

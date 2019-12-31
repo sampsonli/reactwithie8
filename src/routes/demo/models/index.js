@@ -12,9 +12,13 @@ function wait(time) {
 class HomeModel {
     loading = false;
     time = null;
+    print() {
+        console.log('hello');
+    }
     * getTime() {
         this.loading = true;
         this.time = yield wait(1000);
+        this.print();
         this.loading = false;
         this.time = yield wait(1000);
         this.time = yield wait(1000);
