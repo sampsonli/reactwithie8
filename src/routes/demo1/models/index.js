@@ -1,32 +1,22 @@
-import {deliver, mutate} from 'react-deliverer';
+import {deliver} from 'react-deliverer';
+
+function wait(time) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(999999);
+        }, time);
+    });
+}
 
 @deliver('demo1_home')
 class HomeModel {
-    number = 3;
-    initData = null;
-
-    @mutate
-    setNumber(number) {
-        this.number = number;
-    }
-
-    @mutate
-    setInitData(initData) {
-        this.initData = initData;
-    }
-
-    getInitData() {
-        setTimeout(() => {
-            this.setInitData(`初始数据5551--${Math.floor(Math.random() * 1000)}`);
-        }, 1000);
-    }
-
-    getNumber() {
-        const old = this.number;
-        // 模拟接口请求数据
-        setTimeout(() => {
-            this.setNumber(old + 2);
-        }, 16);
+    loading = false;
+    data = null;
+    * getData() {
+        this.loading = true;
+        const data = yield wait(2000);
+        this.data = data;
+        this.loading = false;
     }
 }
 export default new HomeModel();
