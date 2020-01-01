@@ -1103,6 +1103,11 @@ babel-plugin-transform-strict-mode@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
+babel-plugin-webpack-dynamic-import@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-webpack-dynamic-import/-/babel-plugin-webpack-dynamic-import-1.0.0.tgz#a16d2f1bc364c00de45a1ebea3c1b96210b19f7a"
+  integrity sha512-KkRYIOlmMwmWP1iOiKwHeCMRV/3f5P6dRHRl70JGSMk8pCiv5Yni7/a0tU/RchyEgaMXnygxXEy/2xnblM8fUQ==
+
 babel-preset-env@1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.7.0.tgz#dea79fa4ebeb883cd35dab07e260c1c9c04df77a"
