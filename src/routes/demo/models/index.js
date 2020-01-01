@@ -8,8 +8,9 @@ function wait(time) {
     });
 }
 
-@deliver('demo_home')
+@deliver
 class HomeModel {
+    ns = 'hello';
     loading = false;
     time = null;
     print() {
