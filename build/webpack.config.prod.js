@@ -70,7 +70,7 @@ module.exports = {
             template: `${srcDir}/index.ejs`,
             dllName: bundleConfig.vendor.js,
         }),
-        new CopyWebpackPlugin([{ from: staticDir, to: distDir }]),
+        new CopyWebpackPlugin([{ from: staticDir }]),
     ].concat((process.env.ANALYSE && [ // 是否生成分析报告
         new BundleAnalyzerPlugin(),
     ]) || []),

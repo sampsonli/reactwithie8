@@ -61,7 +61,7 @@ module.exports = {
             template: `${srcDir}/index.ejs`,
             dllName: bundleConfig.vendor.js,
         }),
-        new CopyWebpackPlugin([{ from: staticDir, to: distDir }]),
+        new CopyWebpackPlugin([{ from: staticDir }]),
     ],
     resolve: {
         // 实际就是自动添加后缀，默认是当成js文件来查找路径

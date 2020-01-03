@@ -20,9 +20,5 @@ class HomeModel {
         this.time = time;
     }
 }
-
-const result = new HomeModel();
-
-console.log(Object.prototype.toString.call(result.fetchData));
-export default result;
+export default new HomeModel();
 
