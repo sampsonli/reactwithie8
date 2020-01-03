@@ -5939,10 +5939,10 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-deliverer@^3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/react-deliverer/-/react-deliverer-3.1.4.tgz#8895020b1768b57ced3f58d80f7e8a7e181ea8cc"
-  integrity sha512-eh++iC3JinOxXGwOEdRP3PX5X+McEHnJM3xyZtjHfdFkSJgg5Ns+fADRtsTCczdgzyhv1PJPqtlb+gX4l6+wwA==
+react-deliverer@^3.1.9:
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/react-deliverer/-/react-deliverer-3.1.9.tgz#3c6ed63b7451baf67c59243f0a6d14d2cc9dc91e"
+  integrity sha512-ArW0LZ4xiwUZg/rlf+LI9JLqcAY4MNQGYei3dtvfzo/91jO1bnYhM0vcZh/J4hZVQyLeQwJzWzQqfuvgZS8ASg==
 
 react-dom@0.14.9:
   version "0.14.9"

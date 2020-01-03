@@ -1,6 +1,6 @@
 import {deliver} from 'react-deliverer';
 
-function wait(time) {
+function ajax(time) {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(new Date());
@@ -13,17 +13,16 @@ class HomeModel {
     ns = 'hello';
     loading = false;
     time = null;
-    print() {
-        console.log('hello');
-    }
-    * getTime() {
+    * fetchData() {
         this.loading = true;
-        this.time = yield wait(1000);
-        this.print();
+        const time = yield ajax(1000);
         this.loading = false;
-        this.time = yield wait(1000);
-        this.time = yield wait(1000);
-        this.time = yield wait(1000);
+        this.time = time;
     }
 }
-export default new HomeModel();
+
+const result = new HomeModel();
+
+console.log(Object.prototype.toString.call(result.fetchData));
+export default result;
+

@@ -8,9 +8,7 @@ import model from '../../models';
 
 class Home extends Component {
     componentDidMount() {
-        model.getTime().then(data => {
-            console.log(data);
-        });
+        model.fetchData();
     }
     render() {
         const {data} = this.props;
