@@ -3,9 +3,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Es3ifyPlugin = require('es3ify-webpack-plugin');
-const { getRoutes, distDir, srcDir, staticDir, ctxDir } = require('./util');
-const bundleConfig = require('../static/bundle-config.json');
-const vendorManifest = require('../static/vendor-manifest.json');
+const { getRoutes, distDir, srcDir, staticDir } = require('./util');
+// const bundleConfig = require('../static/bundle-config.json');
+// const vendorManifest = require('../static/vendor-manifest.json');
 
 const isEs3 = !!process.env.ES3; // 是否转译成es3
 
@@ -13,6 +13,8 @@ const routes = getRoutes();
 module.exports = {
     entry: {
         app: isEs3 ? [srcDir] : ['webpack-hot-middleware/client?reload=true', srcDir],
+        vendor: ['console-polyfill', 'es6-promise', 'react', 'prop-types', 'react-dom',
+            'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'react-deliverer', 'moment'],
     },
     output: {
         path: distDir,
@@ -22,13 +24,8 @@ module.exports = {
     },
     plugins: [
         isEs3 ? new Es3ifyPlugin() : new webpack.HotModuleReplacementPlugin(),
-        new webpack.DllReferencePlugin({
-            context: ctxDir,
-            manifest: vendorManifest,
-        }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'manifest',
-            chunks: ['app'],
+            name: ['vendor', 'manifest'],
         }),
         new webpack.optimize.CommonsChunkPlugin({
             children: true,
@@ -59,7 +56,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: `${srcDir}/index.ejs`,
-            dllName: bundleConfig.vendor.js,
+            // dllName: bundleConfig.vendor.js,
         }),
         new CopyWebpackPlugin([{ from: staticDir }]),
     ],
