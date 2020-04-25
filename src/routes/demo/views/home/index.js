@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import css from './style.less';
+import style from './style.less';
 import model from '../../models';
 
 export default
@@ -18,8 +18,8 @@ class Home extends Component {
     render() {
         const {data} = this.props;
         return (
-            <div className={css.container}>
-                <div className={css.content}>
+            <div className={style.demoContainer}>
+                <div className={style.content}>
                     {(data.loading && 'loading') || moment(data.time).format('HH:mm:ss')}
                 </div>
 

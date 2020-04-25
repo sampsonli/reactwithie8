@@ -34,7 +34,7 @@ export default (loadComp, loadingComp = () => null) => (
 
         render() {
             const {Component, hot} = this.state;
-            return (Component) ? <Component {...this.props} hot={hot} history={this.router} /> : loadingComp();
+            return (Component) ? <Component {...this.props} hot={hot} router={this.router} history={this.router} /> : loadingComp();
         }
     }
 );
