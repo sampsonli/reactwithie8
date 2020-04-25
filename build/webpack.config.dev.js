@@ -87,7 +87,7 @@ module.exports = {
             {
                 exclude: /(node_modules|assets)/,
                 test: /\.(css|less)$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css?modules&localIdentName=[local]-[hash:base64:5]!postcss-loader!less-loader'),
+                loader: ExtractTextPlugin.extract('style-loader', 'css?modules&camelCase&localIdentName=[local]-[hash:base64:5]!postcss-loader!less-loader'),
             },
             {
                 test: /(fontawesome-webfont|glyphicons-halflings-regular)\.(woff|woff2|ttf|eot|svg)($|\?)/,

@@ -71,9 +71,10 @@ module.exports = {
             dllName: bundleConfig.vendor.js,
         }),
         new CopyWebpackPlugin([{ from: staticDir }]),
-    ].concat((process.env.ANALYSE && [ // 是否生成分析报告
-        new BundleAnalyzerPlugin(),
-    ]) || []),
+        new BundleAnalyzerPlugin({
+            analyzerMode: process.env.ANALYSE ? 'server' : 'disabled',
+        }),
+    ],
     resolve: {
         // 实际就是自动添加后缀，默认是当成js文件来查找路径
         // 空字符串在此是为了resolve一些在import文件时不带文件扩展名的表达式
@@ -96,7 +97,7 @@ module.exports = {
             {
                 exclude: /(node_modules|assets)/,
                 test: /\.(css|less)$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css?modules&localIdentName=[local]-[hash:base64:5]!postcss-loader!less-loader'),
+                loader: ExtractTextPlugin.extract('style-loader', 'css?modules&camelCase&localIdentName=[local]-[hash:base64:5]!postcss-loader!less-loader'),
             },
             {
                 test: /\.(js|jsx)$/,

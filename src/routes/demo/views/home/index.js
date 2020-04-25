@@ -5,8 +5,13 @@ import moment from 'moment';
 import css from './style.less';
 import model from '../../models';
 
-
+export default
+@connect(state => ({data: state[model.ns]}))
 class Home extends Component {
+    static propTypes = {
+        history: PropTypes.shape({push: PropTypes.func}).isRequired,
+        data: PropTypes.objectOf(PropTypes.any).isRequired,
+    };
     componentDidMount() {
         model.fetchData();
     }
@@ -22,8 +27,3 @@ class Home extends Component {
         );
     }
 }
-Home.propTypes = {
-    history: PropTypes.shape({push: PropTypes.func}).isRequired,
-    data: PropTypes.objectOf(PropTypes.any).isRequired,
-};
-export default connect(state => ({data: state[model.ns]}))(Home);
