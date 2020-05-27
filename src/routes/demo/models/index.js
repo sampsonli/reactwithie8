@@ -8,8 +8,15 @@ function ajax(time) {
     });
 }
 
+class Base {
+    name = 123;
+    changeName() {
+        this.name = 234;
+    }
+}
+
 @deliver
-class HomeModel {
+class HomeModel extends Base {
     ns = 'hello';
     loading = false;
     time = null;
