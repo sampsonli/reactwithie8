@@ -11,7 +11,7 @@ function ajax(time) {
 class Base {
     name = 123;
     changeName() {
-        this.name = Math.random() * 1000 << 0;
+        this.name = String(Math.random()).split('.')[1].substr(0, 3);
     }
 }
 
