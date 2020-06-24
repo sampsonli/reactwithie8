@@ -1,5 +1,4 @@
-
-export const loadjs = (src, attr) => {
+export default (src, attr = '') => {
     if (!window.__loaded) {
         window.__loaded = {};
     }
@@ -19,4 +18,3 @@ export const loadjs = (src, attr) => {
     });
     return window.__loaded[src];
 };
-export const test = 11;
