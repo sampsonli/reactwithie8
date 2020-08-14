@@ -5,7 +5,10 @@ import React from 'react';
 import { Router, useRouterHistory} from 'react-router';
 import {createHashHistory} from 'history';
 import { Provider } from 'react-redux';
+import spring from 'redux-spring';
 import store from './store';
+
+spring(store);
 
 const appHistory = useRouterHistory(createHashHistory)({queryKey: false});
 // 自动注入各个子模块

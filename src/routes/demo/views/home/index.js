@@ -3,26 +3,26 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import style from './style.less';
-import model from '../../models';
+import HomeModel from '../../models/HomeModel';
 import RadarChart from '../../components/RadarChart';
 
-export default
-@connect(state => ({data: state[model.ns]}))
+
 class Home extends Component {
     static propTypes = {
         history: PropTypes.shape({push: PropTypes.func}).isRequired,
-        data: PropTypes.objectOf(PropTypes.any).isRequired,
+        model: PropTypes.objectOf(PropTypes.any).isRequired,
     };
     componentDidMount() {
+        const {model} = this.props;
         model.fetchData();
     }
     render() {
-        const {data} = this.props;
+        const {model} = this.props;
         return (
             <div className={style.demoContainer}>
-                <div className={style.btn} onClick={model.changeName}>按钮</div>
+                <div className={style.btn} onClick={model.changeName}>按钮12</div>
                 <div className={style.content}>
-                    {(data.loading && 'loading') || moment(data.time).format('HH:mm:ss')} - {data.name}
+                    {(model.loading && 'loading') || moment(model.time).format('HH:mm:ss')} - {model.name}
                 </div>
                 <RadarChart />
 
@@ -30,3 +30,5 @@ class Home extends Component {
         );
     }
 }
+
+export default connect(state => ({model: state[HomeModel.ns]}))(Home)

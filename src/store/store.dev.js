@@ -2,7 +2,6 @@
 
 import {createStore, applyMiddleware, compose} from 'redux';
 import createLogger from 'redux-logger';
-import deliverer from 'react-deliverer';
 
 const store = createStore(
     () => {},
@@ -12,6 +11,4 @@ const store = createStore(
     ),
 );
 
-store.asyncReducers = {};
-deliverer(store, store.asyncReducers);
 export default store;
