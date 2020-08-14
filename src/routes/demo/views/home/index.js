@@ -20,7 +20,7 @@ class Home extends Component {
         const {data} = this.props;
         return (
             <div className={style.demoContainer}>
-                <div className={style.btn} onClick={model.changeName}>按钮</div>
+                <div className={style.btn} onClick={model.fetchData}>按钮</div>
                 <div className={style.content}>
                     {(data.loading && 'loading') || moment(data.time).format('HH:mm:ss')} - {data.name}
                 </div>

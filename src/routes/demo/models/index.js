@@ -8,15 +8,8 @@ function ajax(time) {
     });
 }
 
-class Base {
-    name = 123;
-    changeName() {
-        this.name = String(Math.random()).split('.')[1].substr(0, 3);
-    }
-}
-
 @deliver
-class HomeModel extends Base {
+class HomeModel {
     ns = 'hello';
     loading = false;
     time = null;
