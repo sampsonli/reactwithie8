@@ -20,7 +20,7 @@ class Home extends Component {
         const {model} = this.props;
         return (
             <div className={style.demoContainer}>
-                <div className={style.btn} onClick={model.changeName}>按钮12</div>
+                <div className={style.btn} onClick={model.fetchData}>按钮12</div>
                 <div className={style.content}>
                     {(model.loading && 'loading') || moment(model.time).format('HH:mm:ss')} - {model.name}
                 </div>
@@ -31,4 +31,4 @@ class Home extends Component {
     }
 }
 
-export default connect(state => ({model: state[HomeModel.ns]}))(Home)
+export default connect(state => ({model: state[HomeModel.ns]}))(Home);
