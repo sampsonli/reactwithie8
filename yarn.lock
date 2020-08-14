@@ -5957,11 +5957,6 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-deliverer@^3.1.23:
-  version "3.1.23"
-  resolved "https://registry.npm.taobao.org/react-deliverer/download/react-deliverer-3.1.23.tgz#288e2b340d1b961edb68150588c697174c17eca7"
-  integrity sha1-KI4rNA0blh7baBUFiMaXF0wX7Kc=
-
 react-dom@0.14.9:
   version "0.14.9"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.14.9.tgz#05064a3dcf0fb1880a3b2bfc9d58c55d8d9f6293"
@@ -6077,10 +6072,10 @@ redux-logger@2.10.2:
   dependencies:
     deep-diff "0.3.4"
 
-redux-spring@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/redux-spring/-/redux-spring-1.0.0.tgz#54ca83678e429984636ef1d000f7a7acc7320c31"
-  integrity sha512-4gt5Nndv+D8+MPooVQAN6JipfaA1Ap2R6O6xHg/yXc9LRJV/QcK76GV6ZovOkX7iIboPHhsOXNtfoSAL7qmCqQ==
+redux-spring@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/redux-spring/-/redux-spring-1.0.1.tgz#cd5a4ab59791d0caf80193d58bd0fa43bb799a2a"
+  integrity sha512-BLoWCxKAb7yJfGoj3kPYuaaGm2pvKehPA5J2AcdZ8MC+H/SX7iMhJwqfHH/2CYAfgadtDfhXzcFuEohYmXowig==
 
 redux@3.7.2:
   version "3.7.2"

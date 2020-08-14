@@ -6,7 +6,7 @@ const AssetsPlugin = require('assets-webpack-plugin');
 module.exports = {
     entry: {
         vendor: ['console-polyfill', 'es6-promise', 'react', 'prop-types', 'react-dom',
-            'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'react-deliverer', 'moment'],
+            'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'moment'],
     },
 
     output: {
