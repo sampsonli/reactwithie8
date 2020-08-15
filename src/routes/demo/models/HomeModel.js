@@ -1,4 +1,4 @@
-import {Controller} from 'redux-spring';
+import {Model, service} from 'redux-spring';
 
 function ajax(time) {
     return new Promise((resolve) => {
@@ -8,8 +8,8 @@ function ajax(time) {
     });
 }
 
-@Controller('homemodel')
-class HomeModel {
+@service('homemodel')
+class HomeModel extends Model {
     ns = 'hello';
     loading = false;
     time = null;
