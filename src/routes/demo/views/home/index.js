@@ -10,12 +10,15 @@ import RadarChart from '../../components/RadarChart';
 class Home extends Component {
     static propTypes = {
         history: PropTypes.shape({push: PropTypes.func}).isRequired,
-        model: PropTypes.objectOf(PropTypes.any).isRequired,
+        model: PropTypes.instanceOf(HomeModel).isRequired,
     };
     componentDidMount() {
         const {model} = this.props;
         model.fetchData();
     }
+    componentWillUnmount() {
+    }
+
     render() {
         const {model} = this.props;
         return (
