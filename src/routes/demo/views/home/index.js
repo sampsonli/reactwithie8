@@ -12,18 +12,11 @@ class Home extends Component {
         history: PropTypes.shape({push: PropTypes.func}).isRequired,
         model: PropTypes.instanceOf(HomeModel).isRequired,
     };
-    componentDidMount() {
-        const {model} = this.props;
-        model.fetchData();
-    }
-    componentWillUnmount() {
-    }
-
     render() {
         const {model} = this.props;
         return (
             <div className={style.demoContainer}>
-                <div className={style.btn} onClick={model.fetchData}>按钮12</div>
+                <div className={style.btn} onClick={model.fetchData}>按钮122</div>
                 <div className={style.content}>
                     {(model.loading && 'loading') || moment(model.time).format('HH:mm:ss')} - {model.name}
                 </div>

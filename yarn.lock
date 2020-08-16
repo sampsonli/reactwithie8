@@ -6072,10 +6072,10 @@ redux-logger@2.10.2:
   dependencies:
     deep-diff "0.3.4"
 
-redux-spring@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/redux-spring/-/redux-spring-1.1.1.tgz#15b6c43e7549b43f99fffd7bac929443e98b802b"
-  integrity sha512-5fgHfMmHgE77hpQjiBW4QGelWNdHyO+ZbVlmMfZRWPlF8CmhOSpvR41NxDtrs4S/h+xVybKohDIv0razyaVsWA==
+redux-spring@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/redux-spring/-/redux-spring-1.1.4.tgz#f00e14ccb38ac3e0247e6865fd252bf7b2bed171"
+  integrity sha512-8/Iphq0pahvLwrYF93uCM6uVRD1fNHcAkdJU6uT8YT3QMWE+ZzQuCkvbh6yNEPMjjC2pdBWq8SrfE0jV+EOpyw==
 
 redux@3.7.2:
   version "3.7.2"
