@@ -10,7 +10,6 @@ function ajax(time) {
 
 @service('homemodel')
 class HomeModel extends Model {
-    ns = 'hello';
     loading = false;
     time = null;
     * fetchData() {

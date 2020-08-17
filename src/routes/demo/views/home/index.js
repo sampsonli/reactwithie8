@@ -12,8 +12,12 @@ class Home extends Component {
         history: PropTypes.shape({push: PropTypes.func}).isRequired,
         model: PropTypes.instanceOf(HomeModel).isRequired,
     };
+    componentDidMount() {
+        const {/** @type {HomeModel} */ model} = this.props;
+        model.fetchData();
+    }
     render() {
-        const {model} = this.props;
+        const {/** @type {HomeModel} */ model} = this.props;
         return (
             <div className={style.demoContainer}>
                 <div className={style.btn} onClick={model.fetchData}>按钮122</div>
