@@ -6,7 +6,9 @@ import style from './style.less';
 import HomeModel from '../../models/HomeModel';
 import RadarChart from '../../components/RadarChart';
 
-
+/**
+ * @extends {Component<{model: HomeModel, history: {push: function}}>}
+ */
 class Home extends Component {
     static propTypes = {
         history: PropTypes.shape({push: PropTypes.func}).isRequired,
