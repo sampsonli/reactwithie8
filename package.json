@@ -41,7 +41,7 @@
     "react-router": "2.3.0",
     "redux": "3.7.2",
     "redux-logger": "2.10.2",
-    "redux-spring": "^1.2.0",
+    "redux-spring": "^2.0.18",
     "uuid": "^8.1.0"
   },
   "devDependencies": {
