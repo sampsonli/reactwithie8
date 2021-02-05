@@ -1,5 +1,8 @@
-if (process.env.NODE_ENV === 'production') {
-    module.exports = require('./store.prod');
-} else {
-    module.exports = require('./store.dev');
-}
+import {createStore} from 'redux';
+import spring from 'redux-spring';
+
+const store = createStore(
+    () => {},
+    window.__INITIAL_STATE__,
+);
+export default spring(store);

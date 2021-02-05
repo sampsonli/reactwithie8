@@ -14,7 +14,7 @@ module.exports = {
     entry: {
         app: isEs3 ? [srcDir] : ['webpack-hot-middleware/client?reload=true', srcDir],
         vendor: ['console-polyfill', 'es6-promise', 'react', 'prop-types', 'react-dom',
-            'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'react-deliverer', 'moment'],
+            'react-router', 'history', 'react-redux', 'redux', 'axios', 'classnames', 'moment'],
     },
     output: {
         path: distDir,

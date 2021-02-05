@@ -1,4 +1,4 @@
-import {deliver} from 'react-deliverer';
+import {Model, service} from 'redux-spring';
 
 function ajax(time) {
     return new Promise((resolve) => {
@@ -8,9 +8,9 @@ function ajax(time) {
     });
 }
 
-@deliver
-class HomeModel {
-    ns = 'hello';
+
+@service('homemodel')
+class HomeModel extends Model {
     loading = false;
     time = null;
     * fetchData() {
@@ -20,5 +20,5 @@ class HomeModel {
         this.time = time;
     }
 }
-export default new HomeModel();
+export default HomeModel;
 
