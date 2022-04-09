@@ -33,7 +33,7 @@
     "es6-promise": "4.2.8",
     "history": "2.1.2",
     "js-cookie": "^2.2.1",
-    "moment": "^2.26.0",
+    "moment": "^2.29.2",
     "prop-types": "15.7.2",
     "react": "0.14.9",
     "react-dom": "0.14.9",
